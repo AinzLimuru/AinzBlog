@@ -170,7 +170,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2025-12-04 16:17:34 / Modified: 08:19:24" itemprop="dateCreated datePublished" datetime="2025-12-04T16:17:34+00:00">2025-12-04</time>
+              <time title="Created: 2025-12-04 16:17:34 / Modified: 08:26:15" itemprop="dateCreated datePublished" datetime="2025-12-04T16:17:34+00:00">2025-12-04</time>
             </span>
 
           
@@ -185,32 +185,31 @@
 
       
           <p>本教程所使用的分区格式为GPT，文件系统为EXT4。LMV的分区扩容方式与GPT方式不同。</p>
-<ol>
-<li>扩容<br>扩容操作可以在线进行，但缩容操作不可以。<br>扩容分为三个部分。首先是对硬盘进行扩容，此时使用lsblk可以看到硬盘的实际容量变大，但是硬盘下的分区没有变大。之后是对分区进行扩容，此时lsblk可以看到硬盘内的分区也变大，但是df命令看到的可用空间没有变大。最后是对分区内的文件系统进行扩容，此时df命令可以看到分区的可用容量变大。<br>1.1 硬盘空间扩容<br>vmdk文件可以直接在虚拟机内修改大小进行扩容。VMWare Workstation Pro以及ESXi都支持这样的操作，但都仅限于对硬盘进行扩容，直接缩小硬盘的大小是不被允许的。</li>
-</ol>
-<p>ESXi修改硬盘大小</p>
-<p>Workstation Pro修改硬盘大小<br>此时使用lsblk可以看到硬盘被扩容。<br>1.2 分区扩容<br>使用parted &#x2F;dev&#x2F;<device>命令进行修改，将<device>替换为对应的硬盘设备。<br>操作过程中可能会提示需要修复，按照提示进行修复即可。</p>
-<h1 id="设置显示单位为扇区"><a href="#设置显示单位为扇区" class="headerlink" title="设置显示单位为扇区"></a>设置显示单位为扇区</h1><p>unit s</p>
-<h1 id="查看分区详情包含为分配的扇区"><a href="#查看分区详情包含为分配的扇区" class="headerlink" title="查看分区详情包含为分配的扇区"></a>查看分区详情包含为分配的扇区</h1><p>p free</p>
-<h1 id="根据结果选择最后一个分区标号调整分区大小"><a href="#根据结果选择最后一个分区标号调整分区大小" class="headerlink" title="根据结果选择最后一个分区标号调整分区大小"></a>根据结果选择最后一个分区标号调整分区大小</h1><p>resizepart &lt;分区号&gt;</p>
-<h1 id="输入空闲扇区的最后一个扇区号以s结尾"><a href="#输入空闲扇区的最后一个扇区号以s结尾" class="headerlink" title="输入空闲扇区的最后一个扇区号以s结尾"></a>输入空闲扇区的最后一个扇区号以s结尾</h1><p>&lt;最后一个扇区编号&gt;s</p>
-<h1 id="退出"><a href="#退出" class="headerlink" title="退出"></a>退出</h1><p>quit<br> 此时再次使用lsblk命令可以看到分区已经被扩容。<br>1.3 文件系统扩容<br>使用resize2fs &#x2F;dev&#x2F;<device><num> 对文件系统进行扩容，device为硬盘的编号，num为分区的编号，具体可以在lsblk中进行查看。<br>此时，使用df命令可以看到可用空间已经顺利变大。<br>2. 缩容<br>！！！缩容操作可能会导致数据丢失，必须严格按照步骤进行操作。<br>！！！最好先把对应的vmdk文件备份一份以免没有办法补救。<br>2.1 文件系统缩容<br>使用resize2fs &#x2F;dev&#x2F;<device><num>   <size> 对分区进行缩容，<size>可以是xxK&#x2F;M&#x2F;G，如10G。<br>操作之后使用df -h命令查看缩小后的空间。<br>2.2 分区缩容<br>同样使用parted进行缩容。<br>unit s指定的是扇区，也可以使用unit MB unit MiB指定单位为数据大小。具体可以参考parted单位支持详解及使用示例-CSDN博客<br>！！！由于1000进制和1024进制的问题，GB级别上的容量差异约为95.4%，TB级别上的差异约为93.1%。因此安全起见建议先按照90%差异进行分区缩容，如文件系统缩容后为90GB,那么分区先按照100GB进行缩小。完成后使用lsblk查看分区，然后再决定是否继续缩小。<br>2.3 新建硬盘并分区<br>经过测试，此时直接对硬盘空间进行截断依然会导致分区损坏，因此只能按照预期缩小后的硬盘大小新建一块硬盘，然后按照原来的分区重新分区，使用dd命令进行完成分区内容的迁移。<br>为了保证复制过程的数据一致性，建议不要在硬盘挂载的情况下进行分区复制的操作，如果需要复制的是系统盘建议使用ubuntu的安装镜像以试用方式启动后进行操作。<br>#启动parted<br>parted<br>#设置单位为扇区<br>unit s<br>#选择源硬盘<br>selected &#x2F;dev&#x2F;&lt;原始硬盘的编号&gt;<br>#查看分区，记得将输出的内容保存，新建分区需要参考<br>print<br>#选择新建硬盘<br>selected &#x2F;dev&#x2F;&lt;新硬盘编号&gt;<br>#新建GPT分区表<br>mklabel gpt<br>#按照需要依次建立分区,扇区起止直接照抄<br>mkpart primary &lt;分区类型，File system一行有就填没有就省略&gt;  &lt;起始扇区&gt;s &lt;结束扇区&gt;s<br>#补全分区标记，print时看到部分分区的Flags一列有相关内容，多个标记以逗号进行分割<br>set &lt;分区编号&gt; &lt;标记&gt; on</p>
-<h1 id="示例，不要照抄，按照实际情况来"><a href="#示例，不要照抄，按照实际情况来" class="headerlink" title="示例，不要照抄，按照实际情况来"></a>示例，不要照抄，按照实际情况来</h1><h1 id="set-1-bios-grub-on"><a href="#set-1-bios-grub-on" class="headerlink" title="set 1 bios_grub on"></a>set 1 bios_grub on</h1><h1 id="set-2-boot-on"><a href="#set-2-boot-on" class="headerlink" title="set 2 boot on"></a>set 2 boot on</h1><h1 id="set-2-esp-on"><a href="#set-2-esp-on" class="headerlink" title="set 2 esp on"></a>set 2 esp on</h1><h1 id="最后退出"><a href="#最后退出" class="headerlink" title="最后退出"></a>最后退出</h1><p>quit<br>使用lsblk命令可以看到新硬盘的分区与源硬盘相同。<br>2.4 分区数据复制<br>分区复制的命令如下，逐个对分区进行复制。<br>dd if&#x3D;&#x2F;dev&#x2F;&lt;源硬盘编号&gt;&lt;分区编号&gt; of&#x3D;&#x2F;dev&#x2F;&lt;新硬盘编号&gt;&lt;分区编号&gt; conv&#x3D;noerror,sync status&#x3D;progress<br>2.5 修改UUID<br>在2.4完成后，数据已经完成了迁移，但相应的uuid并没有被迁移。部分文件系统的挂载是根据UUID进行的，因此需要对UUID进行复制。<br>使用blkid可以获取磁盘的UUID、分区的UUID、文件系统的UUID，依次修改新硬盘使其与源硬盘相同。<br>使用gdisk &#x2F;dev&#x2F;&lt;新硬盘编号&gt;编辑分区和硬盘。<br>#进入高级模式<br>x</p>
-<h1 id="c-change-partition-GUID-修改分区的UUID"><a href="#c-change-partition-GUID-修改分区的UUID" class="headerlink" title="c       change partition GUID 修改分区的UUID"></a>c       change partition GUID 修改分区的UUID</h1><h1 id="g-change-disk-GUID-修改硬盘的UUID"><a href="#g-change-disk-GUID-修改硬盘的UUID" class="headerlink" title="g       change disk GUID 修改硬盘的UUID"></a>g       change disk GUID 修改硬盘的UUID</h1><h1 id="修改硬盘UUID"><a href="#修改硬盘UUID" class="headerlink" title="修改硬盘UUID"></a>修改硬盘UUID</h1><p>c</p>
-<h1 id="输入UUID"><a href="#输入UUID" class="headerlink" title="输入UUID"></a>输入UUID</h1><uuid>
-# 修改分区UUID
-g
-# 输入编号
-<编号>
-# 输入uuid
-<uuid>
-# 退出
-quit
- 使用tune2fs /dev/<新硬盘编号><分区编号> -U <uuid>修改ext4文件系统的uuid，仅针对ext4文件系统，其他的文件系统的分区无需进行该操作。
-至此，所有工作完成，移除源硬盘，只使用新硬盘，启动虚拟机。
-3. 补充
-3.1 空间不够新建硬盘
-将vmdk和vmdk-flat文件一同拷贝到其他设备，在新设备上操作。如果是缩容，新建硬盘的操作也要在原始机器上新建后再拷贝出来，否则可能会出现vmdk虚拟机版本不兼容的问题。操作时如果提示需要转换vmdk文件切记不要转换！
+<h2 id="1-扩容"><a href="#1-扩容" class="headerlink" title="1. 扩容"></a>1. 扩容</h2><p>扩容操作可以在线进行，但缩容操作不可以。<br>扩容分为三个部分。首先是对硬盘进行扩容，此时使用lsblk可以看到硬盘的实际容量变大，但是硬盘下的分区没有变大。之后是对分区进行扩容，此时lsblk可以看到硬盘内的分区也变大，但是df命令看到的可用空间没有变大。最后是对分区内的文件系统进行扩容，此时df命令可以看到分区的可用容量变大。</p>
+<h3 id="1-1-硬盘空间扩容"><a href="#1-1-硬盘空间扩容" class="headerlink" title="1.1 硬盘空间扩容"></a>1.1 硬盘空间扩容</h3><p>vmdk文件可以直接在虚拟机内修改大小进行扩容。VMWare Workstation Pro以及ESXi都支持这样的操作，但都仅限于对硬盘进行扩容，直接缩小硬盘的大小是不被允许的。</p>
+<p><img src="/2025/12/04/%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%A1%AC%E7%9B%98VMDK%E6%89%A9%E5%AE%B9%E5%92%8C%E7%BC%A9%E5%AE%B9-%E7%A1%AC%E7%9B%98%E7%A9%BA%E9%97%B4%E3%80%81%E5%88%86%E5%8C%BA%E3%80%81%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/ESXi%E4%BF%AE%E6%94%B9%E7%A1%AC%E7%9B%98%E5%A4%A7%E5%B0%8F.png" alt="ESXi修改硬盘大小"></p>
+<p>![Workstation Pro修改硬盘大小](Workstation Pro修改硬盘大小.png)</p>
+<p>此时使用lsblk可以看到硬盘被扩容。</p>
+<h3 id="1-2-分区扩容"><a href="#1-2-分区扩容" class="headerlink" title="1.2 分区扩容"></a>1.2 分区扩容</h3><p>使用<code>parted /dev/&lt;device&gt;</code>命令进行修改，将<code>&lt;device&gt;</code>替换为对应的硬盘设备。<br>操作过程中可能会提示需要修复，按照提示进行修复即可。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置显示单位为扇区</span></span><br><span class="line">unit s</span><br><span class="line"><span class="comment"># 查看分区详情包含为分配的扇区</span></span><br><span class="line">p free</span><br><span class="line"><span class="comment"># 根据结果选择最后一个分区标号调整分区大小</span></span><br><span class="line">resizepart &lt;分区号&gt;</span><br><span class="line"><span class="comment"># 输入空闲扇区的最后一个扇区号以s结尾</span></span><br><span class="line">&lt;最后一个扇区编号&gt;s</span><br><span class="line"><span class="comment"># 退出</span></span><br><span class="line">quit</span><br></pre></td></tr></table></figure>
+<p>此时再次使用lsblk命令可以看到分区已经被扩容。</p>
+<h3 id="1-3-文件系统扩容"><a href="#1-3-文件系统扩容" class="headerlink" title="1.3 文件系统扩容"></a>1.3 文件系统扩容</h3><p>使用 <code>resize2fs /dev/&lt;device&gt;&lt;num&gt;</code> 对文件系统进行扩容，device为硬盘的编号，num为分区的编号，具体可以在lsblk中进行查看。<br>此时，使用df命令可以看到可用空间已经顺利变大。</p>
+<h2 id="2-缩容"><a href="#2-缩容" class="headerlink" title="2. 缩容"></a>2. 缩容</h2><p><strong>！！！缩容操作可能会导致数据丢失，必须严格按照步骤进行操作。</strong><br><strong>！！！最好先把对应的vmdk文件备份一份以免没有办法补救。</strong></p>
+<h3 id="2-1-文件系统缩容"><a href="#2-1-文件系统缩容" class="headerlink" title="2.1 文件系统缩容"></a>2.1 文件系统缩容</h3><p>使用 <code>resize2fs /dev/&lt;device&gt;&lt;num&gt; &lt;size&gt;</code> 对分区进行缩容，<code>&lt;size&gt;</code>可以是xxK&#x2F;M&#x2F;G，如10G。<br>操作之后使用 <code>df -h</code> 命令查看缩小后的空间。</p>
+<h3 id="2-2-分区缩容"><a href="#2-2-分区缩容" class="headerlink" title="2.2 分区缩容"></a>2.2 分区缩容</h3><p>同样使用parted进行缩容。<br><code>unit s</code> 指定的是扇区，也可以使用 <code>unit MB</code> <code>unit MiB</code> 指定单位为数据大小。具体可以参考 <em>parted单位支持详解及使用示例-CSDN博客</em>。</p>
+<p><strong>！！！由于1000进制和1024进制的问题，GB级别上的容量差异约为95.4%，TB级别上的差异约为93.1%。因此安全起见建议先按照90%差异进行分区缩容，如文件系统缩容后为90GB,那么分区先按照100GB进行缩小。完成后使用lsblk查看分区，然后再决定是否继续缩小。</strong></p>
+<h3 id="2-3-新建硬盘并分区"><a href="#2-3-新建硬盘并分区" class="headerlink" title="2.3 新建硬盘并分区"></a>2.3 新建硬盘并分区</h3><p>经过测试，此时直接对硬盘空间进行截断依然会导致分区损坏，因此只能按照预期缩小后的硬盘大小新建一块硬盘，然后按照原来的分区重新分区，使用dd命令进行完成分区内容的迁移。<br>为了保证复制过程的数据一致性，建议不要在硬盘挂载的情况下进行分区复制的操作，如果需要复制的是系统盘建议使用ubuntu的安装镜像以试用方式启动后进行操作。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#启动parted</span></span><br><span class="line">parted</span><br><span class="line"><span class="comment">#设置单位为扇区</span></span><br><span class="line">unit s</span><br><span class="line"><span class="comment">#选择源硬盘</span></span><br><span class="line">selected /dev/&lt;原始硬盘的编号&gt;</span><br><span class="line"><span class="comment">#查看分区，记得将输出的内容保存，新建分区需要参考</span></span><br><span class="line"><span class="built_in">print</span></span><br><span class="line"><span class="comment">#选择新建硬盘</span></span><br><span class="line">selected /dev/&lt;新硬盘编号&gt;</span><br><span class="line"><span class="comment">#新建GPT分区表</span></span><br><span class="line">mklabel gpt</span><br><span class="line"><span class="comment">#按照需要依次建立分区,扇区起止直接照抄</span></span><br><span class="line">mkpart primary &lt;分区类型，File system一行有就填没有就省略&gt;  &lt;起始扇区&gt;s &lt;结束扇区&gt;s</span><br><span class="line"><span class="comment">#补全分区标记，print时看到部分分区的Flags一列有相关内容，多个标记以逗号进行分割</span></span><br><span class="line"><span class="built_in">set</span> &lt;分区编号&gt; &lt;标记&gt; on</span><br><span class="line"><span class="comment"># 示例，不要照抄，按照实际情况来</span></span><br><span class="line"><span class="comment"># set 1 bios_grub on</span></span><br><span class="line"><span class="comment"># set 2 boot on</span></span><br><span class="line"><span class="comment"># set 2 esp on</span></span><br><span class="line"><span class="comment"># 最后退出</span></span><br><span class="line">quit</span><br></pre></td></tr></table></figure>
+<p>使用lsblk命令可以看到新硬盘的分区与源硬盘相同。</p>
+<h3 id="2-4-分区数据复制"><a href="#2-4-分区数据复制" class="headerlink" title="2.4 分区数据复制"></a>2.4 分区数据复制</h3><p>分区复制的命令如下，逐个对分区进行复制。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dd</span> <span class="keyword">if</span>=/dev/&lt;源硬盘编号&gt;&lt;分区编号&gt; of=/dev/&lt;新硬盘编号&gt;&lt;分区编号&gt; conv=noerror,<span class="built_in">sync</span> status=progress </span><br></pre></td></tr></table></figure>
+
+<h3 id="2-5-修改UUID"><a href="#2-5-修改UUID" class="headerlink" title="2.5 修改UUID"></a>2.5 修改UUID</h3><p>在2.4完成后，数据已经完成了迁移，但相应的uuid并没有被迁移。部分文件系统的挂载是根据UUID进行的，因此需要对UUID进行复制。<br>使用blkid可以获取磁盘的UUID、分区的UUID、文件系统的UUID，依次修改新硬盘使其与源硬盘相同。<br>使用 <code>gdisk /dev/&lt;新硬盘编号&gt;</code> 编辑分区和硬盘。 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#进入高级模式</span></span><br><span class="line">x</span><br><span class="line"><span class="comment"># c       change partition GUID 修改分区的UUID</span></span><br><span class="line"><span class="comment"># g       change disk GUID 修改硬盘的UUID</span></span><br><span class="line"><span class="comment"># 修改硬盘UUID</span></span><br><span class="line">c</span><br><span class="line"><span class="comment"># 输入UUID</span></span><br><span class="line">&lt;uuid&gt;</span><br><span class="line"><span class="comment"># 修改分区UUID</span></span><br><span class="line">g</span><br><span class="line"><span class="comment"># 输入编号</span></span><br><span class="line">&lt;编号&gt;</span><br><span class="line"><span class="comment"># 输入uuid</span></span><br><span class="line">&lt;uuid&gt;</span><br><span class="line"><span class="comment"># 退出</span></span><br><span class="line">quit</span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>tune2fs /dev/&lt;新硬盘编号&gt;&lt;分区编号&gt; -U &lt;uuid&gt;</code> 修改ext4文件系统的uuid，仅针对ext4文件系统，其他的文件系统的分区无需进行该操作。<br>至此，所有工作完成，移除源硬盘，只使用新硬盘，启动虚拟机。</p>
+<h2 id="3-补充"><a href="#3-补充" class="headerlink" title="3. 补充"></a>3. 补充</h2><h3 id="3-1-空间不够新建硬盘"><a href="#3-1-空间不够新建硬盘" class="headerlink" title="3.1 空间不够新建硬盘"></a>3.1 空间不够新建硬盘</h3><p>将vmdk和vmdk-flat文件一同拷贝到其他设备，在新设备上操作。如果是缩容，新建硬盘的操作也要在原始机器上新建后再拷贝出来，否则可能会出现vmdk虚拟机版本不兼容的问题。操作时如果提示需要转换vmdk文件切记不要转换！</p>
+
       
     </div>
 
@@ -254,7 +253,7 @@ quit
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2025-12-04 16:02:53 / Modified: 08:19:24" itemprop="dateCreated datePublished" datetime="2025-12-04T16:02:53+00:00">2025-12-04</time>
+              <time title="Created: 2025-12-04 16:02:53 / Modified: 08:26:15" itemprop="dateCreated datePublished" datetime="2025-12-04T16:02:53+00:00">2025-12-04</time>
             </span>
 
           
@@ -268,12 +267,16 @@ quit
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>该报错一般出现在插入题注时，Word无法找到对应标题的样式而报错。一般有两种情况：<br><img src="/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/%E9%94%99%E8%AF%AF1.png" alt="错误1"></p>
-<h1 id="1-没配置多级列表，"><a href="#1-没配置多级列表，" class="headerlink" title="1.没配置多级列表，"></a>1.没配置多级列表，</h1><p>这种情况比较简单，直接配置多级列表即可，本文不做赘述。</p>
-<h1 id="2-多级列表制定的样式并非原本的标题样式，对标题使用了自己新建的样式。"><a href="#2-多级列表制定的样式并非原本的标题样式，对标题使用了自己新建的样式。" class="headerlink" title="2.多级列表制定的样式并非原本的标题样式，对标题使用了自己新建的样式。"></a>2.多级列表制定的样式并非原本的标题样式，对标题使用了自己新建的样式。</h1><p>本文主要解决第二种情况，即多级列表指定的样式并非原本的标题样式，对标题使用了自己新建的样式时，插入题注报错的问题。</p>
-<h2 id="2-1-样式链接"><a href="#2-1-样式链接" class="headerlink" title="2.1 样式链接"></a>2.1 样式链接</h2><p>首先，将对应的原始标题的样式链接到你修改过的样式。原始标题的名称是”标题&lt;空格&gt;&lt;序号&gt;”，将对应等级的编号的样式链接到你当前使用的样式。此时，不会在出现没有制定样式的问题的报错，但是在插入题注后会出现标题中的第二种报错，如图所示。<br><img src="/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/%E9%94%99%E8%AF%AF2.png" alt="错误2"></p>
-<h2 id="2-2-修改域属性"><a href="#2-2-修改域属性" class="headerlink" title="2.2 修改域属性"></a>2.2 修改域属性</h2><p>然后，右键报错的文字，选择编辑域。在弹出的窗口中保持StyleRef的域名不变，在域属性中找到当前标题使用的样式，在我这里是”标题1”，注意这个和原始的样式不是同一个，中间没有空格，是我自己新建的样式。<br><img src="/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/%E9%80%89%E6%8B%A9%E6%A0%B7%E5%BC%8F.png" alt="选择样式"></p>
-<h2 id="2-3-更新域"><a href="#2-3-更新域" class="headerlink" title="2.3 更新域"></a>2.3 更新域</h2><p>最后，编号正常。<br><img src="/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/%E7%BC%96%E5%8F%B7%E6%AD%A3%E5%B8%B8.png" alt="编号正常"></p>
+          <p>该报错一般出现在插入题注时，Word无法找到对应标题的样式而报错。一般有两种情况：</p>
+<p><img src="/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/%E9%94%99%E8%AF%AF1.png" alt="错误1"></p>
+<h2 id="1-没配置多级列表"><a href="#1-没配置多级列表" class="headerlink" title="1. 没配置多级列表"></a>1. 没配置多级列表</h2><p>这种情况比较简单，直接配置多级列表即可，本文不做赘述。</p>
+<h2 id="2-多级列表制定的样式并非原本的标题样式，对标题使用了自己新建的样式"><a href="#2-多级列表制定的样式并非原本的标题样式，对标题使用了自己新建的样式" class="headerlink" title="2. 多级列表制定的样式并非原本的标题样式，对标题使用了自己新建的样式"></a>2. 多级列表制定的样式并非原本的标题样式，对标题使用了自己新建的样式</h2><p>本文主要解决第二种情况，即多级列表指定的样式并非原本的标题样式，对标题使用了自己新建的样式时，插入题注报错的问题。</p>
+<h3 id="2-1-样式链接"><a href="#2-1-样式链接" class="headerlink" title="2.1 样式链接"></a>2.1 样式链接</h3><p>首先，将对应的原始标题的样式链接到你修改过的样式。原始标题的名称是”标题&lt;空格&gt;&lt;序号&gt;”，将对应等级的编号的样式链接到你当前使用的样式。此时，不会在出现没有制定样式的问题的报错，但是在插入题注后会出现标题中的第二种报错，如图所示。</p>
+<p><img src="/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/%E9%94%99%E8%AF%AF2.png" alt="错误2"></p>
+<h3 id="2-2-修改域属性"><a href="#2-2-修改域属性" class="headerlink" title="2.2 修改域属性"></a>2.2 修改域属性</h3><p>然后，右键报错的文字，选择编辑域。在弹出的窗口中保持StyleRef的域名不变，在域属性中找到当前标题使用的样式，在我这里是”标题1”，注意这个和原始的样式不是同一个，中间没有空格，是我自己新建的样式。</p>
+<p><img src="/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/%E9%80%89%E6%8B%A9%E6%A0%B7%E5%BC%8F.png" alt="选择样式"></p>
+<h3 id="2-3-更新域"><a href="#2-3-更新域" class="headerlink" title="2.3 更新域"></a>2.3 更新域</h3><p>最后，编号正常。</p>
+<p><img src="/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/%E7%BC%96%E5%8F%B7%E6%AD%A3%E5%B8%B8.png" alt="编号正常"></p>
 
       
     </div>
@@ -318,7 +321,7 @@ quit
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2025-12-04 15:53:49 / Modified: 08:19:24" itemprop="dateCreated datePublished" datetime="2025-12-04T15:53:49+00:00">2025-12-04</time>
+              <time title="Created: 2025-12-04 15:53:49 / Modified: 08:26:15" itemprop="dateCreated datePublished" datetime="2025-12-04T15:53:49+00:00">2025-12-04</time>
             </span>
 
           
@@ -332,11 +335,12 @@ quit
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="在Hexo博客中插入图片"><a href="#在Hexo博客中插入图片" class="headerlink" title="在Hexo博客中插入图片"></a>在Hexo博客中插入图片</h1><p>在Hexo博客中插入图片非常简单,可以选择以下两种方式：</p>
+          <h2 id="在Hexo博客中插入图片"><a href="#在Hexo博客中插入图片" class="headerlink" title="在Hexo博客中插入图片"></a>在Hexo博客中插入图片</h2><p>在Hexo博客中插入图片非常简单,可以选择以下两种方式：</p>
 <ol>
 <li>直接在将所有的图片放在<code>source/images/</code>目录下，然后在Markdown文件中通过相对路径引用图片。</li>
 </ol>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![<span class="string">图片描述</span>](<span class="link">/images/your-image.png</span>)</span><br></pre></td></tr></table></figure>
+
 <ol start="2">
 <li>使用Hexo的<code>post_asset_folder</code>功能，将图片与文章放在同一目录下。首先在Hexo配置文件<code>_config.yml</code>中启用<code>post_asset_folder</code>选项：</li>
 </ol>
@@ -344,7 +348,8 @@ quit
 <p>然后在创建新文章时，Hexo会自动为该文章创建一个同名的文件夹，将图片放在该文件夹中。引用图片时，可以使用相对路径：</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![<span class="string">图片描述</span>](<span class="link">your-image.png</span>)</span><br></pre></td></tr></table></figure>
 <p>这样，图片就会正确显示在你的Hexo博客文章中。</p>
-<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><p>部分项目会出现图片无法加载的情况，检查后会发现尝试从根目录加载图片，这时需要在Hexo配置文件中添加以下配置，确保图片路径正确解析。<br>在<code>_config.yml</code>中添加：</p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>部分项目会出现图片无法加载的情况，检查后会发现尝试从根目录加载图片，这时需要在Hexo配置文件中添加以下配置，确保图片路径正确解析。</p>
+<p>在<code>_config.yml</code>中添加：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">marked:</span></span><br><span class="line">  <span class="attr">prependRoot:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">postAsset:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
 <p>这样可以确保Hexo在渲染Markdown时正确处理图片路径，避免加载失败的问题。</p>
 
@@ -391,7 +396,7 @@ quit
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2025-12-04 15:29:57 / Modified: 08:19:24" itemprop="dateCreated datePublished" datetime="2025-12-04T15:29:57+00:00">2025-12-04</time>
+              <time title="Created: 2025-12-04 15:29:57 / Modified: 08:26:15" itemprop="dateCreated datePublished" datetime="2025-12-04T15:29:57+00:00">2025-12-04</time>
             </span>
 
           
@@ -405,10 +410,11 @@ quit
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>链接到新的教育邮箱账户即可。<br>1.打开ManageAccount页面<br><img src="/2025/12/04/JetBrains%E5%AD%A6%E7%94%9F%E8%AE%B8%E5%8F%AF%E8%AF%81%E7%BB%AD%E8%AE%A2%E5%A4%B1%E8%B4%A5%E5%A4%84%E7%90%86/step_1.png" alt="ManageAccount页面入口"></p>
-<p>2.新页面点Linked emails<br><img src="/2025/12/04/JetBrains%E5%AD%A6%E7%94%9F%E8%AE%B8%E5%8F%AF%E8%AF%81%E7%BB%AD%E8%AE%A2%E5%A4%B1%E8%B4%A5%E5%A4%84%E7%90%86/step_2.png" alt="Linked emails入口"></p>
-<p>3.输入教育邮箱，点击按钮<br><img src="/2025/12/04/JetBrains%E5%AD%A6%E7%94%9F%E8%AE%B8%E5%8F%AF%E8%AF%81%E7%BB%AD%E8%AE%A2%E5%A4%B1%E8%B4%A5%E5%A4%84%E7%90%86/step_3.png" alt="添加教育邮箱"></p>
-<p>4.点一下邮件里面的链接，然后就能看到许可证了。</p>
+          <p>链接到新的教育邮箱账户即可。</p>
+<h2 id="1-打开ManageAccount页面"><a href="#1-打开ManageAccount页面" class="headerlink" title="1. 打开ManageAccount页面"></a>1. 打开ManageAccount页面</h2><p><img src="/2025/12/04/JetBrains%E5%AD%A6%E7%94%9F%E8%AE%B8%E5%8F%AF%E8%AF%81%E7%BB%AD%E8%AE%A2%E5%A4%B1%E8%B4%A5%E5%A4%84%E7%90%86/step_1.png" alt="ManageAccount页面入口"></p>
+<h2 id="2-新页面点Linked-emails"><a href="#2-新页面点Linked-emails" class="headerlink" title="2. 新页面点Linked emails"></a>2. 新页面点Linked emails</h2><p><img src="/2025/12/04/JetBrains%E5%AD%A6%E7%94%9F%E8%AE%B8%E5%8F%AF%E8%AF%81%E7%BB%AD%E8%AE%A2%E5%A4%B1%E8%B4%A5%E5%A4%84%E7%90%86/step_2.png" alt="Linked emails入口"></p>
+<h2 id="3-输入教育邮箱，点击按钮"><a href="#3-输入教育邮箱，点击按钮" class="headerlink" title="3. 输入教育邮箱，点击按钮"></a>3. 输入教育邮箱，点击按钮</h2><p><img src="/2025/12/04/JetBrains%E5%AD%A6%E7%94%9F%E8%AE%B8%E5%8F%AF%E8%AF%81%E7%BB%AD%E8%AE%A2%E5%A4%B1%E8%B4%A5%E5%A4%84%E7%90%86/step_3.png" alt="添加教育邮箱"></p>
+<h2 id="4-完成验证"><a href="#4-完成验证" class="headerlink" title="4. 完成验证"></a>4. 完成验证</h2><p>点一下邮件里面的链接，然后就能看到许可证了。</p>
 
       
     </div>
