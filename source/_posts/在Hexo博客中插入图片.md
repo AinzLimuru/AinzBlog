@@ -4,12 +4,14 @@ date: 2025-12-04 15:53:49
 tags:
 ---
 
-# 在Hexo博客中插入图片
+## 在Hexo博客中插入图片
 在Hexo博客中插入图片非常简单,可以选择以下两种方式：
+
 1. 直接在将所有的图片放在`source/images/`目录下，然后在Markdown文件中通过相对路径引用图片。
 ```markdown
 ![图片描述](/images/your-image.png)
 ```
+
 2. 使用Hexo的`post_asset_folder`功能，将图片与文章放在同一目录下。首先在Hexo配置文件`_config.yml`中启用`post_asset_folder`选项：
 ```yaml
 post_asset_folder: true
@@ -20,8 +22,9 @@ post_asset_folder: true
 ```
 这样，图片就会正确显示在你的Hexo博客文章中。
 
-# 注意事项
+## 注意事项
 部分项目会出现图片无法加载的情况，检查后会发现尝试从根目录加载图片，这时需要在Hexo配置文件中添加以下配置，确保图片路径正确解析。
+
 在`_config.yml`中添加：
 ```yaml
 marked:
