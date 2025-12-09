@@ -22,25 +22,23 @@
     var CONFIG = {"hostname":"blog.rimuru.uk","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="该报错一般出现在插入题注时，Word无法找到对应标题的样式而报错。一般有两种情况：  1. 没配置多级列表这种情况比较简单，直接配置多级列表即可，本文不做赘述。 2. 多级列表制定的样式并非原本的标题样式，对标题使用了自己新建的样式本文主要解决第二种情况，即多级列表指定的样式并非原本的标题样式，对标题使用了自己新建的样式时，插入题注报错的问题。 2.1 样式链接首先，将对应的原始标题的样式链接到你">
+  <meta name="description" content="解决火车完全堵死至消失1. 在繁忙的火车站建立一个环形的等待区在火车站附近建立一个环形的轨道，确保火车可以在此等待而不会堵塞主线。这可以有效地缓解火车站的拥堵问题，特别是繁忙的货运火车站。 2. 延长对外连接的支线建立等待区延长对外连接的支线，确保火车可以在支线上等待而不会堵塞主线。这可以帮助缓解由于对外连接拥堵导致的火车消失问题。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="解决 Microsoft Word：错误!文档中没有指定样式的文字">
-<meta property="og:url" content="https://blog.rimuru.uk/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/">
+<meta property="og:title" content="天际线2 城市规划技巧指南">
+<meta property="og:url" content="https://blog.rimuru.uk/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%9F%8E%E5%B8%82%E8%A7%84%E5%88%92%E6%8A%80%E5%B7%A7%E6%8C%87%E5%8D%97/">
 <meta property="og:site_name" content="Rimuru&#39;s Blog">
-<meta property="og:description" content="该报错一般出现在插入题注时，Word无法找到对应标题的样式而报错。一般有两种情况：  1. 没配置多级列表这种情况比较简单，直接配置多级列表即可，本文不做赘述。 2. 多级列表制定的样式并非原本的标题样式，对标题使用了自己新建的样式本文主要解决第二种情况，即多级列表指定的样式并非原本的标题样式，对标题使用了自己新建的样式时，插入题注报错的问题。 2.1 样式链接首先，将对应的原始标题的样式链接到你">
+<meta property="og:description" content="解决火车完全堵死至消失1. 在繁忙的火车站建立一个环形的等待区在火车站附近建立一个环形的轨道，确保火车可以在此等待而不会堵塞主线。这可以有效地缓解火车站的拥堵问题，特别是繁忙的货运火车站。 2. 延长对外连接的支线建立等待区延长对外连接的支线，确保火车可以在支线上等待而不会堵塞主线。这可以帮助缓解由于对外连接拥堵导致的火车消失问题。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.rimuru.uk/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/%E9%94%99%E8%AF%AF1.png">
-<meta property="og:image" content="https://blog.rimuru.uk/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/%E9%94%99%E8%AF%AF2.png">
-<meta property="og:image" content="https://blog.rimuru.uk/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/%E9%80%89%E6%8B%A9%E6%A0%B7%E5%BC%8F.png">
-<meta property="og:image" content="https://blog.rimuru.uk/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/%E7%BC%96%E5%8F%B7%E6%AD%A3%E5%B8%B8.png">
-<meta property="article:published_time" content="2025-12-04T16:02:53.000Z">
-<meta property="article:modified_time" content="2025-12-09T02:44:37.687Z">
+<meta property="og:image" content="https://blog.rimuru.uk/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%9F%8E%E5%B8%82%E8%A7%84%E5%88%92%E6%8A%80%E5%B7%A7%E6%8C%87%E5%8D%97/%E7%81%AB%E8%BD%A6%E7%AB%99%E7%AD%89%E5%BE%85%E5%8C%BA%E5%9F%9F.png">
+<meta property="og:image" content="https://blog.rimuru.uk/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%9F%8E%E5%B8%82%E8%A7%84%E5%88%92%E6%8A%80%E5%B7%A7%E6%8C%87%E5%8D%97/%E9%93%81%E8%B7%AF%E5%A4%96%E9%83%A8%E9%93%BE%E6%8E%A5%E7%AD%89%E5%BE%85%E5%8C%BA%E5%9F%9F.png">
+<meta property="article:published_time" content="2025-12-09T09:55:31.000Z">
+<meta property="article:modified_time" content="2025-12-09T02:44:37.681Z">
 <meta property="article:author" content="Rimuru">
-<meta property="article:tag" content="hexo, blog, tech, virtualization, programming, linux, windows">
+<meta property="article:tag" content="天际线2">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blog.rimuru.uk/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/%E9%94%99%E8%AF%AF1.png">
+<meta name="twitter:image" content="https://blog.rimuru.uk/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%9F%8E%E5%B8%82%E8%A7%84%E5%88%92%E6%8A%80%E5%B7%A7%E6%8C%87%E5%8D%97/%E7%81%AB%E8%BD%A6%E7%AB%99%E7%AD%89%E5%BE%85%E5%8C%BA%E5%9F%9F.png">
 
-<link rel="canonical" href="https://blog.rimuru.uk/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/">
+<link rel="canonical" href="https://blog.rimuru.uk/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%9F%8E%E5%B8%82%E8%A7%84%E5%88%92%E6%8A%80%E5%B7%A7%E6%8C%87%E5%8D%97/">
 
 
 <script id="page-configurations">
@@ -53,7 +51,7 @@
   };
 </script>
 
-  <title>解决 Microsoft Word：错误!文档中没有指定样式的文字 | Rimuru's Blog</title>
+  <title>天际线2 城市规划技巧指南 | Rimuru's Blog</title>
   
 
 
@@ -164,7 +162,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.rimuru.uk/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/">
+    <link itemprop="mainEntityOfPage" href="https://blog.rimuru.uk/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%9F%8E%E5%B8%82%E8%A7%84%E5%88%92%E6%8A%80%E5%B7%A7%E6%8C%87%E5%8D%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -177,7 +175,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          解决 Microsoft Word：错误!文档中没有指定样式的文字
+          天际线2 城市规划技巧指南
         </h1>
 
         <div class="post-meta">
@@ -186,23 +184,17 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2025-12-04 16:02:53" itemprop="dateCreated datePublished" datetime="2025-12-04T16:02:53+00:00">2025-12-04</time>
+              <time title="创建时间：2025-12-09 09:55:31 / 修改时间：02:44:37" itemprop="dateCreated datePublished" datetime="2025-12-09T09:55:31+00:00">2025-12-09</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-12-09 02:44:37" itemprop="dateModified" datetime="2025-12-09T02:44:37+00:00">2025-12-09</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tech/" itemprop="url" rel="index"><span itemprop="name">疑难杂症</span></a>
+                  <a href="/categories/gaming/" itemprop="url" rel="index"><span itemprop="name">游戏</span></a>
                 </span>
             </span>
 
@@ -217,16 +209,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>该报错一般出现在插入题注时，Word无法找到对应标题的样式而报错。一般有两种情况：</p>
-<p><img data-src="/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/%E9%94%99%E8%AF%AF1.png" alt="错误1"></p>
-<h2 id="1-没配置多级列表"><a href="#1-没配置多级列表" class="headerlink" title="1. 没配置多级列表"></a>1. 没配置多级列表</h2><p>这种情况比较简单，直接配置多级列表即可，本文不做赘述。</p>
-<h2 id="2-多级列表制定的样式并非原本的标题样式，对标题使用了自己新建的样式"><a href="#2-多级列表制定的样式并非原本的标题样式，对标题使用了自己新建的样式" class="headerlink" title="2. 多级列表制定的样式并非原本的标题样式，对标题使用了自己新建的样式"></a>2. 多级列表制定的样式并非原本的标题样式，对标题使用了自己新建的样式</h2><p>本文主要解决第二种情况，即多级列表指定的样式并非原本的标题样式，对标题使用了自己新建的样式时，插入题注报错的问题。</p>
-<h3 id="2-1-样式链接"><a href="#2-1-样式链接" class="headerlink" title="2.1 样式链接"></a>2.1 样式链接</h3><p>首先，将对应的原始标题的样式链接到你修改过的样式。原始标题的名称是”标题&lt;空格&gt;&lt;序号&gt;”，将对应等级的编号的样式链接到你当前使用的样式。此时，不会在出现没有制定样式的问题的报错，但是在插入题注后会出现标题中的第二种报错，如图所示。</p>
-<p><img data-src="/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/%E9%94%99%E8%AF%AF2.png" alt="错误2"></p>
-<h3 id="2-2-修改域属性"><a href="#2-2-修改域属性" class="headerlink" title="2.2 修改域属性"></a>2.2 修改域属性</h3><p>然后，右键报错的文字，选择编辑域。在弹出的窗口中保持StyleRef的域名不变，在域属性中找到当前标题使用的样式，在我这里是”标题1”，注意这个和原始的样式不是同一个，中间没有空格，是我自己新建的样式。</p>
-<p><img data-src="/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/%E9%80%89%E6%8B%A9%E6%A0%B7%E5%BC%8F.png" alt="选择样式"></p>
-<h3 id="2-3-更新域"><a href="#2-3-更新域" class="headerlink" title="2.3 更新域"></a>2.3 更新域</h3><p>最后，编号正常。</p>
-<p><img data-src="/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/%E7%BC%96%E5%8F%B7%E6%AD%A3%E5%B8%B8.png" alt="编号正常"></p>
+        <h1 id="解决火车完全堵死至消失"><a href="#解决火车完全堵死至消失" class="headerlink" title="解决火车完全堵死至消失"></a>解决火车完全堵死至消失</h1><h2 id="1-在繁忙的火车站建立一个环形的等待区"><a href="#1-在繁忙的火车站建立一个环形的等待区" class="headerlink" title="1. 在繁忙的火车站建立一个环形的等待区"></a>1. 在繁忙的火车站建立一个环形的等待区</h2><p>在火车站附近建立一个环形的轨道，确保火车可以在此等待而不会堵塞主线。这可以有效地缓解火车站的拥堵问题，特别是繁忙的货运火车站。<br><img data-src="/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%9F%8E%E5%B8%82%E8%A7%84%E5%88%92%E6%8A%80%E5%B7%A7%E6%8C%87%E5%8D%97/%E7%81%AB%E8%BD%A6%E7%AB%99%E7%AD%89%E5%BE%85%E5%8C%BA%E5%9F%9F.png" alt="火车站等待区域"></p>
+<h2 id="2-延长对外连接的支线建立等待区"><a href="#2-延长对外连接的支线建立等待区" class="headerlink" title="2. 延长对外连接的支线建立等待区"></a>2. 延长对外连接的支线建立等待区</h2><p>延长对外连接的支线，确保火车可以在支线上等待而不会堵塞主线。这可以帮助缓解由于对外连接拥堵导致的火车消失问题。<br><img data-src="/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%9F%8E%E5%B8%82%E8%A7%84%E5%88%92%E6%8A%80%E5%B7%A7%E6%8C%87%E5%8D%97/%E9%93%81%E8%B7%AF%E5%A4%96%E9%83%A8%E9%93%BE%E6%8E%A5%E7%AD%89%E5%BE%85%E5%8C%BA%E5%9F%9F.png" alt="铁路外部链接等待区域"></p>
 
     </div>
 
@@ -235,6 +219,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/cities-skylines-2/" rel="tag"># 天际线2</a>
+          </div>
 
         
 
@@ -242,13 +229,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2025/12/04/%E5%9C%A8Hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87/" rel="prev" title="在Hexo博客中插入图片">
-      <i class="fa fa-chevron-left"></i> 在Hexo博客中插入图片
+    <a href="/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%B8%B8%E8%A7%81BUG%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E6%B1%87%E6%80%BB/" rel="prev" title="天际线2 常见BUG解决方法汇总">
+      <i class="fa fa-chevron-left"></i> 天际线2 常见BUG解决方法汇总
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2025/12/04/%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%A1%AC%E7%9B%98VMDK%E6%89%A9%E5%AE%B9%E5%92%8C%E7%BC%A9%E5%AE%B9-%E7%A1%AC%E7%9B%98%E7%A9%BA%E9%97%B4%E3%80%81%E5%88%86%E5%8C%BA%E3%80%81%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/" rel="next" title="虚拟机硬盘VMDK扩容和缩容(硬盘空间、分区、文件系统)">
-      虚拟机硬盘VMDK扩容和缩容(硬盘空间、分区、文件系统) <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -307,7 +291,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%B2%A1%E9%85%8D%E7%BD%AE%E5%A4%9A%E7%BA%A7%E5%88%97%E8%A1%A8"><span class="nav-number">1.</span> <span class="nav-text">1. 没配置多级列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%A4%9A%E7%BA%A7%E5%88%97%E8%A1%A8%E5%88%B6%E5%AE%9A%E7%9A%84%E6%A0%B7%E5%BC%8F%E5%B9%B6%E9%9D%9E%E5%8E%9F%E6%9C%AC%E7%9A%84%E6%A0%87%E9%A2%98%E6%A0%B7%E5%BC%8F%EF%BC%8C%E5%AF%B9%E6%A0%87%E9%A2%98%E4%BD%BF%E7%94%A8%E4%BA%86%E8%87%AA%E5%B7%B1%E6%96%B0%E5%BB%BA%E7%9A%84%E6%A0%B7%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">2. 多级列表制定的样式并非原本的标题样式，对标题使用了自己新建的样式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E6%A0%B7%E5%BC%8F%E9%93%BE%E6%8E%A5"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 样式链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E4%BF%AE%E6%94%B9%E5%9F%9F%E5%B1%9E%E6%80%A7"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 修改域属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E6%9B%B4%E6%96%B0%E5%9F%9F"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 更新域</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E7%81%AB%E8%BD%A6%E5%AE%8C%E5%85%A8%E5%A0%B5%E6%AD%BB%E8%87%B3%E6%B6%88%E5%A4%B1"><span class="nav-number">1.</span> <span class="nav-text">解决火车完全堵死至消失</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%9C%A8%E7%B9%81%E5%BF%99%E7%9A%84%E7%81%AB%E8%BD%A6%E7%AB%99%E5%BB%BA%E7%AB%8B%E4%B8%80%E4%B8%AA%E7%8E%AF%E5%BD%A2%E7%9A%84%E7%AD%89%E5%BE%85%E5%8C%BA"><span class="nav-number">1.1.</span> <span class="nav-text">1. 在繁忙的火车站建立一个环形的等待区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%BB%B6%E9%95%BF%E5%AF%B9%E5%A4%96%E8%BF%9E%E6%8E%A5%E7%9A%84%E6%94%AF%E7%BA%BF%E5%BB%BA%E7%AB%8B%E7%AD%89%E5%BE%85%E5%8C%BA"><span class="nav-number">1.2.</span> <span class="nav-text">2. 延长对外连接的支线建立等待区</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
