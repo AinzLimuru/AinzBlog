@@ -75,7 +75,9 @@ category_map:
   疑难杂症: tech
   虚拟机: virtualization
   Hexo: hexo
+  游戏: gaming
 tag_map:
+  天际线2: cities-skylines-2
 
 # Metadata elements
 ## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
