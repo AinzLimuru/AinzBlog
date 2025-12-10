@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.rimuru.uk/categories/</loc>
+    <loc>https://blog.rimuru.uk/tags/</loc>
     
     <lastmod>2025-12-10</lastmod>
     
@@ -11,7 +11,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rimuru.uk/tags/</loc>
+    <loc>https://blog.rimuru.uk/categories/</loc>
     
     <lastmod>2025-12-10</lastmod>
     
