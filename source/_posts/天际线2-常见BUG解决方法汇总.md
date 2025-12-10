@@ -1,7 +1,10 @@
 ---
 title: 天际线2 常见BUG解决方法汇总
 date: 2025-12-09 09:55:14
-tags:
+categories:
+  - 游戏
+tags: 天际线2
+cover: cover.png
 ---
 ## 邮局不出车
 ### 现象

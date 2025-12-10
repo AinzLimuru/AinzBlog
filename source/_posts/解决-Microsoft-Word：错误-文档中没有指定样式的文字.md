@@ -3,6 +3,7 @@ title: 解决 Microsoft Word：错误!文档中没有指定样式的文字
 date: 2025-12-04 16:02:53
 categories:
   - 疑难杂症
+cover: cover.png
 ---
 该报错一般出现在插入题注时，Word无法找到对应标题的样式而报错。一般有两种情况：
 

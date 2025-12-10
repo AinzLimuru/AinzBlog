@@ -3,6 +3,7 @@ title: 在Hexo博客中插入图片
 date: 2025-12-04 15:53:49
 categories:
   - Hexo
+cover: cover.png
 ---
 
 ## 在Hexo博客中插入图片
