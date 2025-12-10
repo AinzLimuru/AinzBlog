@@ -35,7 +35,7 @@
     "esbuild": "^0.25.0",
     "esbuild-plugin-sass": "^1.0.1",
     "husky": "^9.0.11",
-    "lint-staged": "^15.2.4",
+    "lint-staged": "^16.2.7",
     "postcss": "^8.4.38",
     "postcss-preset-env": "^9.5.13",
     "prettier": "3.2.5",
