@@ -25,6 +25,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Build Theme Assets
+        run: |
+          cd themes/Kratos-Rebirth
+          node devtools/build-once.js
+
       - name: Build Hexo
         run: npx hexo generate
 
