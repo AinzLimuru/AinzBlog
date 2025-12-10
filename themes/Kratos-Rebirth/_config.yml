@@ -52,8 +52,8 @@ image:
     light: "/images/background_light.png" # 亮色模式
     dark: "/images/background_dark.png" # 暗色模式
   about: # 介绍卡片
-    light: "" # 亮色模式
-    dark: "" # 暗色模式
+    light: "/images/author.png" # 亮色模式
+    dark: "/images/author.png" # 暗色模式
 
 # 导航栏配置
 nav:
