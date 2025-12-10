@@ -72,12 +72,16 @@ index_generator:
 # Category & Tag
 default_category: uncategorized
 category_map:
-  疑难杂症: tech
-  虚拟机: virtualization
+  疑难杂症: troubleshooting
+  技术分享: tech
   Hexo: hexo
   游戏: gaming
 tag_map:
   天际线2: cities-skylines-2
+  虚拟机: virtualization
+  Wallpaper Engine: wallpaper-engine
+  Steam: steam
+  教程: tutorial
 
 # Metadata elements
 ## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
