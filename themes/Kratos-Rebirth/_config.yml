@@ -43,8 +43,8 @@ search:
 
 # 图片配置
 image:
-  favicon: "/images/author.png" # 站点图标
-  avatar: "/images/user.svg" # 个人信息挂件上的头像
+  favicon: "/images/favicon.png" # 站点图标
+  avatar: "/images/avatar.png" # 个人信息挂件上的头像
   banner: # 站点横幅
     light: "" # 亮色模式
     dark: "" # 暗色模式
