@@ -1,188 +1,907 @@
-<!DOCTYPE html><html lang="zh-CN"><head><link rel="stylesheet" type="text/css" href="/css/nerd.css"><link rel="stylesheet" type="text/css" href="/css/loadingcar.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-butterfly-swiper-marcus/lib/skills.min.css"><link rel="preload" as="style" type="text/css" href="/css/nerd.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/packages/theme-chalk/lib/index.css"><script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/element-ui@2.15.6/lib/index.js" defer></script><script src="/js/random.js" defer></script><script data-pjax="" src="/js/custom.js" defer></script><script data-pjax="" src="/js/linksbar.js" defer></script><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/carousel-touch.min.js" defer></script><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' 'unsafe-hashes' https:; script-src-elem 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; frame-src 'self' https:; connect-src 'self' https:; font-src 'self' https:;"><title>Rimuru's Blog</title><meta name="author" content="Rimuru"><meta name="copyright" content="Rimuru"><meta name="format-detection" content="telephone=no"><meta name="theme-color"><meta name="description" content="A tech blog about Hexo, Virtualization, and Programming.">
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.rimuru.uk","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="A tech blog about Hexo, Virtualization, and Programming.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Rimuru&#39;s Blog">
 <meta property="og:url" content="https://blog.rimuru.uk/">
 <meta property="og:site_name" content="Rimuru&#39;s Blog">
 <meta property="og:description" content="A tech blog about Hexo, Virtualization, and Programming.">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
 <meta property="article:author" content="Rimuru">
 <meta property="article:tag" content="hexo, blog, tech, virtualization, programming, linux, windows">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://blog.rimuru.uk/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
-  root: '/',
-  algolia: undefined,
-  localSearch: undefined,
-  translate: undefined,
-  noticeOutdate: undefined,
-  highlight: undefined,
-  copy: {
-    success: '复制成功',
-    error: '复制错误',
-    noSupport: '浏览器不支持'
-  },
-  relativeDate: {
-    homepage: false,
-    post: false
-  },
-  runtime: '',
-  date_suffix: {
-    just: '刚刚',
-    min: '分钟前',
-    hour: '小时前',
-    day: '天前',
-    month: '个月前'
-  },
-  copyright: undefined,
-  lightbox: 'fancybox',
-  Snackbar: undefined,
-  source: {
-    justifiedGallery: {
-      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
-      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
-    }
-  },
-  isPhotoFigcaption: false,
-  islazyload: false,
-  isAnchor: false
-}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
-  title: 'Rimuru\'s Blog',
-  isPost: false,
-  isHome: true,
-  isHighlightShrink: false,
-  isToc: false,
-  postUpdate: '2025-12-10 06:22:12'
-}</script><noscript><style type="text/css">
-  #nav {
-    opacity: 1
-  }
-  .justified-gallery img {
-    opacity: 1
-  }
 
-  #recent-posts time,
-  #post-meta time {
-    display: inline !important
-  }
-</style></noscript><script>(win=>{
-    win.saveToLocal = {
-      set: function setWithExpiry(key, value, ttl) {
-        if (ttl === 0) return
-        const now = new Date()
-        const expiryDay = ttl * 86400000
-        const item = {
-          value: value,
-          expiry: now.getTime() + expiryDay,
-        }
-        localStorage.setItem(key, JSON.stringify(item))
-      },
+<link rel="canonical" href="https://blog.rimuru.uk/">
 
-      get: function getWithExpiry(key) {
-        const itemStr = localStorage.getItem(key)
 
-        if (!itemStr) {
-          return undefined
-        }
-        const item = JSON.parse(itemStr)
-        const now = new Date()
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
 
-        if (now.getTime() > item.expiry) {
-          localStorage.removeItem(key)
-          return undefined
-        }
-        return item.value
-      }
-    }
+  <title>Rimuru's Blog</title>
   
-    win.getScript = url => new Promise((resolve, reject) => {
-      const script = document.createElement('script')
-      script.src = url
-      script.async = true
-      script.onerror = reject
-      script.onload = script.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        script.onload = script.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(script)
-    })
-  
-      win.activateDarkMode = function () {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      win.activateLightMode = function () {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
-      const t = saveToLocal.get('theme')
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Rimuru's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Rimuru's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
     
-          if (t === 'dark') activateDarkMode()
-          else if (t === 'light') activateLightMode()
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.rimuru.uk/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%9F%8E%E5%B8%82%E8%A7%84%E5%88%92%E6%8A%80%E5%B7%A7%E6%8C%87%E5%8D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Rimuru">
+      <meta itemprop="description" content="A tech blog about Hexo, Virtualization, and Programming.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Rimuru's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%9F%8E%E5%B8%82%E8%A7%84%E5%88%92%E6%8A%80%E5%B7%A7%E6%8C%87%E5%8D%97/" class="post-title-link" itemprop="url">天际线2 城市规划技巧指南</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-12-09 09:55:31" itemprop="dateCreated datePublished" datetime="2025-12-09T09:55:31+00:00">2025-12-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-12-10 06:24:09" itemprop="dateModified" datetime="2025-12-10T06:24:09+00:00">2025-12-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/gaming/" itemprop="url" rel="index"><span itemprop="name">游戏</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="解决火车完全堵死至消失"><a href="#解决火车完全堵死至消失" class="headerlink" title="解决火车完全堵死至消失"></a>解决火车完全堵死至消失</h2><h3 id="1-在繁忙的火车站建立一个环形的等待区"><a href="#1-在繁忙的火车站建立一个环形的等待区" class="headerlink" title="1. 在繁忙的火车站建立一个环形的等待区"></a>1. 在繁忙的火车站建立一个环形的等待区</h3><p>在火车站附近建立一个环形的轨道，确保火车可以在此等待而不会堵塞主线。这可以有效地缓解火车站的拥堵问题，特别是繁忙的货运火车站。<br><img data-src="/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%9F%8E%E5%B8%82%E8%A7%84%E5%88%92%E6%8A%80%E5%B7%A7%E6%8C%87%E5%8D%97/%E7%81%AB%E8%BD%A6%E7%AB%99%E7%AD%89%E5%BE%85%E5%8C%BA%E5%9F%9F.png" alt="火车站等待区域"></p>
+<h3 id="2-延长对外连接的支线建立等待区"><a href="#2-延长对外连接的支线建立等待区" class="headerlink" title="2. 延长对外连接的支线建立等待区"></a>2. 延长对外连接的支线建立等待区</h3><p>延长对外连接的支线，确保火车可以在支线上等待而不会堵塞主线。这可以帮助缓解由于对外连接拥堵导致的火车消失问题。<br><img data-src="/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%9F%8E%E5%B8%82%E8%A7%84%E5%88%92%E6%8A%80%E5%B7%A7%E6%8C%87%E5%8D%97/%E9%93%81%E8%B7%AF%E5%A4%96%E9%83%A8%E9%93%BE%E6%8E%A5%E7%AD%89%E5%BE%85%E5%8C%BA%E5%9F%9F.png" alt="铁路外部链接等待区域"></p>
+<h2 id="解决（缓解）港口-货运站车辆堵塞的问题"><a href="#解决（缓解）港口-货运站车辆堵塞的问题" class="headerlink" title="解决（缓解）港口&#x2F;货运站车辆堵塞的问题"></a>解决（缓解）港口&#x2F;货运站车辆堵塞的问题</h2><h3 id="1-增加港口-货运站的数量"><a href="#1-增加港口-货运站的数量" class="headerlink" title="1. 增加港口&#x2F;货运站的数量"></a>1. 增加港口&#x2F;货运站的数量</h3><p>尽量保证所有的站点的到达的车辆数量相同。游戏中大部分的车辆都是按照就近原则进行分配的，因此避免将某一个站点放在区块的中心或者边缘的中心，尽量放置在四角的位置。</p>
+<h3 id="2-避免跨越道路后再进入港口-货运站"><a href="#2-避免跨越道路后再进入港口-货运站" class="headerlink" title="2. 避免跨越道路后再进入港口&#x2F;货运站"></a>2. 避免跨越道路后再进入港口&#x2F;货运站</h3><p>跨越道路进入港口&#x2F;货运站会导致车辆在等待时占用道路资源，增加堵塞的可能性。尽量设计直接进入港口&#x2F;货运站的道路。如果车辆必须跨越道路，则延后跨越道路的位置，使得车辆能够快速的完成跨越道路的过程，减少对主路的堵塞。<br>具体而言，将可以跨越的道路修改为带分割线的道路，这样可以将车辆跨越道路的位置从站点附近延后到最近的十字路口，这里掉头造成阻塞的概率更小。<br><img data-src="/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%9F%8E%E5%B8%82%E8%A7%84%E5%88%92%E6%8A%80%E5%B7%A7%E6%8C%87%E5%8D%97/%E7%AB%99%E7%82%B9%E8%B7%A8%E8%B6%8A%E9%81%93%E8%B7%AF%E8%AE%BE%E8%AE%A1.png" alt="站点跨越道路设计"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.rimuru.uk/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%B8%B8%E8%A7%81BUG%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E6%B1%87%E6%80%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Rimuru">
+      <meta itemprop="description" content="A tech blog about Hexo, Virtualization, and Programming.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Rimuru's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%B8%B8%E8%A7%81BUG%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E6%B1%87%E6%80%BB/" class="post-title-link" itemprop="url">天际线2 常见BUG解决方法汇总</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-12-09 09:55:14" itemprop="dateCreated datePublished" datetime="2025-12-09T09:55:14+00:00">2025-12-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-12-10 06:24:09" itemprop="dateModified" datetime="2025-12-10T06:24:09+00:00">2025-12-10</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="邮局不出车"><a href="#邮局不出车" class="headerlink" title="邮局不出车"></a>邮局不出车</h2><h3 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h3><p>部分区块的邮局不出车，其他地方的邮局正常。邮局内有一些信件未被处理。</p>
+<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>在邮局所属区块附近建立分拣中心，然后等待一段时间，邮局会开始出车处理信件。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.rimuru.uk/2025/12/04/%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%A1%AC%E7%9B%98VMDK%E6%89%A9%E5%AE%B9%E5%92%8C%E7%BC%A9%E5%AE%B9-%E7%A1%AC%E7%9B%98%E7%A9%BA%E9%97%B4%E3%80%81%E5%88%86%E5%8C%BA%E3%80%81%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Rimuru">
+      <meta itemprop="description" content="A tech blog about Hexo, Virtualization, and Programming.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Rimuru's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/12/04/%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%A1%AC%E7%9B%98VMDK%E6%89%A9%E5%AE%B9%E5%92%8C%E7%BC%A9%E5%AE%B9-%E7%A1%AC%E7%9B%98%E7%A9%BA%E9%97%B4%E3%80%81%E5%88%86%E5%8C%BA%E3%80%81%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">虚拟机硬盘VMDK扩容和缩容(硬盘空间、分区、文件系统)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-12-04 16:17:34" itemprop="dateCreated datePublished" datetime="2025-12-04T16:17:34+00:00">2025-12-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-12-10 06:24:09" itemprop="dateModified" datetime="2025-12-10T06:24:09+00:00">2025-12-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/virtualization/" itemprop="url" rel="index"><span itemprop="name">虚拟机</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>本教程所使用的分区格式为GPT，文件系统为EXT4。LMV的分区扩容方式与GPT方式不同。</p>
+<h2 id="1-扩容"><a href="#1-扩容" class="headerlink" title="1. 扩容"></a>1. 扩容</h2><p>扩容操作可以在线进行，但缩容操作不可以。<br>扩容分为三个部分。首先是对硬盘进行扩容，此时使用lsblk可以看到硬盘的实际容量变大，但是硬盘下的分区没有变大。之后是对分区进行扩容，此时lsblk可以看到硬盘内的分区也变大，但是df命令看到的可用空间没有变大。最后是对分区内的文件系统进行扩容，此时df命令可以看到分区的可用容量变大。</p>
+<h3 id="1-1-硬盘空间扩容"><a href="#1-1-硬盘空间扩容" class="headerlink" title="1.1 硬盘空间扩容"></a>1.1 硬盘空间扩容</h3><p>vmdk文件可以直接在虚拟机内修改大小进行扩容。VMWare Workstation Pro以及ESXi都支持这样的操作，但都仅限于对硬盘进行扩容，直接缩小硬盘的大小是不被允许的。</p>
+<p><img data-src="/2025/12/04/%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%A1%AC%E7%9B%98VMDK%E6%89%A9%E5%AE%B9%E5%92%8C%E7%BC%A9%E5%AE%B9-%E7%A1%AC%E7%9B%98%E7%A9%BA%E9%97%B4%E3%80%81%E5%88%86%E5%8C%BA%E3%80%81%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/ESXi%E4%BF%AE%E6%94%B9%E7%A1%AC%E7%9B%98%E5%A4%A7%E5%B0%8F.png" alt="ESXi修改硬盘大小"></p>
+<p><img data-src="/Workstation%20Pro%E4%BF%AE%E6%94%B9%E7%A1%AC%E7%9B%98%E5%A4%A7%E5%B0%8F.png" alt="Workstation Pro修改硬盘大小"></p>
+<p>此时使用lsblk可以看到硬盘被扩容。</p>
+<h3 id="1-2-分区扩容"><a href="#1-2-分区扩容" class="headerlink" title="1.2 分区扩容"></a>1.2 分区扩容</h3><p>使用<code>parted /dev/&lt;device&gt;</code>命令进行修改，将<code>&lt;device&gt;</code>替换为对应的硬盘设备。<br>操作过程中可能会提示需要修复，按照提示进行修复即可。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置显示单位为扇区</span></span><br><span class="line">unit s</span><br><span class="line"><span class="comment"># 查看分区详情包含为分配的扇区</span></span><br><span class="line">p free</span><br><span class="line"><span class="comment"># 根据结果选择最后一个分区标号调整分区大小</span></span><br><span class="line">resizepart &lt;分区号&gt;</span><br><span class="line"><span class="comment"># 输入空闲扇区的最后一个扇区号以s结尾</span></span><br><span class="line">&lt;最后一个扇区编号&gt;s</span><br><span class="line"><span class="comment"># 退出</span></span><br><span class="line">quit</span><br></pre></td></tr></table></figure>
+<p>此时再次使用lsblk命令可以看到分区已经被扩容。</p>
+<h3 id="1-3-文件系统扩容"><a href="#1-3-文件系统扩容" class="headerlink" title="1.3 文件系统扩容"></a>1.3 文件系统扩容</h3><p>使用 <code>resize2fs /dev/&lt;device&gt;&lt;num&gt;</code> 对文件系统进行扩容，device为硬盘的编号，num为分区的编号，具体可以在lsblk中进行查看。<br>此时，使用df命令可以看到可用空间已经顺利变大。</p>
+<h2 id="2-缩容"><a href="#2-缩容" class="headerlink" title="2. 缩容"></a>2. 缩容</h2><p><strong>！！！缩容操作可能会导致数据丢失，必须严格按照步骤进行操作。</strong><br><strong>！！！最好先把对应的vmdk文件备份一份以免没有办法补救。</strong></p>
+<h3 id="2-1-文件系统缩容"><a href="#2-1-文件系统缩容" class="headerlink" title="2.1 文件系统缩容"></a>2.1 文件系统缩容</h3><p>使用 <code>resize2fs /dev/&lt;device&gt;&lt;num&gt; &lt;size&gt;</code> 对分区进行缩容，<code>&lt;size&gt;</code>可以是xxK&#x2F;M&#x2F;G，如10G。<br>操作之后使用 <code>df -h</code> 命令查看缩小后的空间。</p>
+<h3 id="2-2-分区缩容"><a href="#2-2-分区缩容" class="headerlink" title="2.2 分区缩容"></a>2.2 分区缩容</h3><p>同样使用parted进行缩容。<br><code>unit s</code> 指定的是扇区，也可以使用 <code>unit MB</code> <code>unit MiB</code> 指定单位为数据大小。具体可以参考 <em>parted单位支持详解及使用示例-CSDN博客</em>。</p>
+<p><strong>！！！由于1000进制和1024进制的问题，GB级别上的容量差异约为95.4%，TB级别上的差异约为93.1%。因此安全起见建议先按照90%差异进行分区缩容，如文件系统缩容后为90GB,那么分区先按照100GB进行缩小。完成后使用lsblk查看分区，然后再决定是否继续缩小。</strong></p>
+<h3 id="2-3-新建硬盘并分区"><a href="#2-3-新建硬盘并分区" class="headerlink" title="2.3 新建硬盘并分区"></a>2.3 新建硬盘并分区</h3><p>经过测试，此时直接对硬盘空间进行截断依然会导致分区损坏，因此只能按照预期缩小后的硬盘大小新建一块硬盘，然后按照原来的分区重新分区，使用dd命令进行完成分区内容的迁移。<br>为了保证复制过程的数据一致性，建议不要在硬盘挂载的情况下进行分区复制的操作，如果需要复制的是系统盘建议使用ubuntu的安装镜像以试用方式启动后进行操作。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#启动parted</span></span><br><span class="line">parted</span><br><span class="line"><span class="comment">#设置单位为扇区</span></span><br><span class="line">unit s</span><br><span class="line"><span class="comment">#选择源硬盘</span></span><br><span class="line">selected /dev/&lt;原始硬盘的编号&gt;</span><br><span class="line"><span class="comment">#查看分区，记得将输出的内容保存，新建分区需要参考</span></span><br><span class="line"><span class="built_in">print</span></span><br><span class="line"><span class="comment">#选择新建硬盘</span></span><br><span class="line">selected /dev/&lt;新硬盘编号&gt;</span><br><span class="line"><span class="comment">#新建GPT分区表</span></span><br><span class="line">mklabel gpt</span><br><span class="line"><span class="comment">#按照需要依次建立分区,扇区起止直接照抄</span></span><br><span class="line">mkpart primary &lt;分区类型，File system一行有就填没有就省略&gt;  &lt;起始扇区&gt;s &lt;结束扇区&gt;s</span><br><span class="line"><span class="comment">#补全分区标记，print时看到部分分区的Flags一列有相关内容，多个标记以逗号进行分割</span></span><br><span class="line"><span class="built_in">set</span> &lt;分区编号&gt; &lt;标记&gt; on</span><br><span class="line"><span class="comment"># 示例，不要照抄，按照实际情况来</span></span><br><span class="line"><span class="comment"># set 1 bios_grub on</span></span><br><span class="line"><span class="comment"># set 2 boot on</span></span><br><span class="line"><span class="comment"># set 2 esp on</span></span><br><span class="line"><span class="comment"># 最后退出</span></span><br><span class="line">quit</span><br></pre></td></tr></table></figure>
+<p>使用lsblk命令可以看到新硬盘的分区与源硬盘相同。</p>
+<h3 id="2-4-分区数据复制"><a href="#2-4-分区数据复制" class="headerlink" title="2.4 分区数据复制"></a>2.4 分区数据复制</h3><p>分区复制的命令如下，逐个对分区进行复制。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dd</span> <span class="keyword">if</span>=/dev/&lt;源硬盘编号&gt;&lt;分区编号&gt; of=/dev/&lt;新硬盘编号&gt;&lt;分区编号&gt; conv=noerror,<span class="built_in">sync</span> status=progress </span><br></pre></td></tr></table></figure>
+
+<h3 id="2-5-修改UUID"><a href="#2-5-修改UUID" class="headerlink" title="2.5 修改UUID"></a>2.5 修改UUID</h3><p>在2.4完成后，数据已经完成了迁移，但相应的uuid并没有被迁移。部分文件系统的挂载是根据UUID进行的，因此需要对UUID进行复制。<br>使用blkid可以获取磁盘的UUID、分区的UUID、文件系统的UUID，依次修改新硬盘使其与源硬盘相同。<br>使用 <code>gdisk /dev/&lt;新硬盘编号&gt;</code> 编辑分区和硬盘。 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#进入高级模式</span></span><br><span class="line">x</span><br><span class="line"><span class="comment"># c       change partition GUID 修改分区的UUID</span></span><br><span class="line"><span class="comment"># g       change disk GUID 修改硬盘的UUID</span></span><br><span class="line"><span class="comment"># 修改硬盘UUID</span></span><br><span class="line">c</span><br><span class="line"><span class="comment"># 输入UUID</span></span><br><span class="line">&lt;uuid&gt;</span><br><span class="line"><span class="comment"># 修改分区UUID</span></span><br><span class="line">g</span><br><span class="line"><span class="comment"># 输入编号</span></span><br><span class="line">&lt;编号&gt;</span><br><span class="line"><span class="comment"># 输入uuid</span></span><br><span class="line">&lt;uuid&gt;</span><br><span class="line"><span class="comment"># 退出</span></span><br><span class="line">quit</span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>tune2fs /dev/&lt;新硬盘编号&gt;&lt;分区编号&gt; -U &lt;uuid&gt;</code> 修改ext4文件系统的uuid，仅针对ext4文件系统，其他的文件系统的分区无需进行该操作。<br>至此，所有工作完成，移除源硬盘，只使用新硬盘，启动虚拟机。</p>
+<h2 id="3-补充"><a href="#3-补充" class="headerlink" title="3. 补充"></a>3. 补充</h2><h3 id="3-1-空间不够新建硬盘"><a href="#3-1-空间不够新建硬盘" class="headerlink" title="3.1 空间不够新建硬盘"></a>3.1 空间不够新建硬盘</h3><p>将vmdk和vmdk-flat文件一同拷贝到其他设备，在新设备上操作。如果是缩容，新建硬盘的操作也要在原始机器上新建后再拷贝出来，否则可能会出现vmdk虚拟机版本不兼容的问题。操作时如果提示需要转换vmdk文件切记不要转换！</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.rimuru.uk/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Rimuru">
+      <meta itemprop="description" content="A tech blog about Hexo, Virtualization, and Programming.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Rimuru's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/" class="post-title-link" itemprop="url">解决 Microsoft Word：错误!文档中没有指定样式的文字</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-12-04 16:02:53" itemprop="dateCreated datePublished" datetime="2025-12-04T16:02:53+00:00">2025-12-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-12-10 06:24:09" itemprop="dateModified" datetime="2025-12-10T06:24:09+00:00">2025-12-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tech/" itemprop="url" rel="index"><span itemprop="name">疑难杂症</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>该报错一般出现在插入题注时，Word无法找到对应标题的样式而报错。一般有两种情况：</p>
+<p><img data-src="/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/%E9%94%99%E8%AF%AF1.png" alt="错误1"></p>
+<h2 id="1-没配置多级列表"><a href="#1-没配置多级列表" class="headerlink" title="1. 没配置多级列表"></a>1. 没配置多级列表</h2><p>这种情况比较简单，直接配置多级列表即可，本文不做赘述。</p>
+<h2 id="2-多级列表制定的样式并非原本的标题样式，对标题使用了自己新建的样式"><a href="#2-多级列表制定的样式并非原本的标题样式，对标题使用了自己新建的样式" class="headerlink" title="2. 多级列表制定的样式并非原本的标题样式，对标题使用了自己新建的样式"></a>2. 多级列表制定的样式并非原本的标题样式，对标题使用了自己新建的样式</h2><p>本文主要解决第二种情况，即多级列表指定的样式并非原本的标题样式，对标题使用了自己新建的样式时，插入题注报错的问题。</p>
+<h3 id="2-1-样式链接"><a href="#2-1-样式链接" class="headerlink" title="2.1 样式链接"></a>2.1 样式链接</h3><p>首先，将对应的原始标题的样式链接到你修改过的样式。原始标题的名称是”标题&lt;空格&gt;&lt;序号&gt;”，将对应等级的编号的样式链接到你当前使用的样式。此时，不会在出现没有制定样式的问题的报错，但是在插入题注后会出现标题中的第二种报错，如图所示。</p>
+<p><img data-src="/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/%E9%94%99%E8%AF%AF2.png" alt="错误2"></p>
+<h3 id="2-2-修改域属性"><a href="#2-2-修改域属性" class="headerlink" title="2.2 修改域属性"></a>2.2 修改域属性</h3><p>然后，右键报错的文字，选择编辑域。在弹出的窗口中保持StyleRef的域名不变，在域属性中找到当前标题使用的样式，在我这里是”标题1”，注意这个和原始的样式不是同一个，中间没有空格，是我自己新建的样式。</p>
+<p><img data-src="/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/%E9%80%89%E6%8B%A9%E6%A0%B7%E5%BC%8F.png" alt="选择样式"></p>
+<h3 id="2-3-更新域"><a href="#2-3-更新域" class="headerlink" title="2.3 更新域"></a>2.3 更新域</h3><p>最后，编号正常。</p>
+<p><img data-src="/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/%E7%BC%96%E5%8F%B7%E6%AD%A3%E5%B8%B8.png" alt="编号正常"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.rimuru.uk/2025/12/04/%E5%9C%A8Hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Rimuru">
+      <meta itemprop="description" content="A tech blog about Hexo, Virtualization, and Programming.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Rimuru's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/12/04/%E5%9C%A8Hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87/" class="post-title-link" itemprop="url">在Hexo博客中插入图片</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-12-04 15:53:49" itemprop="dateCreated datePublished" datetime="2025-12-04T15:53:49+00:00">2025-12-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-12-10 06:24:09" itemprop="dateModified" datetime="2025-12-10T06:24:09+00:00">2025-12-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="在Hexo博客中插入图片"><a href="#在Hexo博客中插入图片" class="headerlink" title="在Hexo博客中插入图片"></a>在Hexo博客中插入图片</h2><p>在Hexo博客中插入图片非常简单,可以选择以下两种方式：</p>
+<ol>
+<li>直接在将所有的图片放在<code>source/images/</code>目录下，然后在Markdown文件中通过相对路径引用图片。</li>
+</ol>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![<span class="string">图片描述</span>](<span class="link">/images/your-image.png</span>)</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>使用Hexo的<code>post_asset_folder</code>功能，将图片与文章放在同一目录下。首先在Hexo配置文件<code>_config.yml</code>中启用<code>post_asset_folder</code>选项：</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>然后在创建新文章时，Hexo会自动为该文章创建一个同名的文件夹，将图片放在该文件夹中。引用图片时，可以使用相对路径：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![<span class="string">图片描述</span>](<span class="link">your-image.png</span>)</span><br></pre></td></tr></table></figure>
+<p>这样，图片就会正确显示在你的Hexo博客文章中。</p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>部分项目会出现图片无法加载的情况，检查后会发现尝试从根目录加载图片，这时需要在Hexo配置文件中添加以下配置，确保图片路径正确解析。</p>
+<p>在<code>_config.yml</code>中添加：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">marked:</span></span><br><span class="line">  <span class="attr">prependRoot:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">postAsset:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>这样可以确保Hexo在渲染Markdown时正确处理图片路径，避免加载失败的问题。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.rimuru.uk/2025/12/04/JetBrains%E5%AD%A6%E7%94%9F%E8%AE%B8%E5%8F%AF%E8%AF%81%E7%BB%AD%E8%AE%A2%E5%A4%B1%E8%B4%A5%E5%A4%84%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Rimuru">
+      <meta itemprop="description" content="A tech blog about Hexo, Virtualization, and Programming.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Rimuru's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/12/04/JetBrains%E5%AD%A6%E7%94%9F%E8%AE%B8%E5%8F%AF%E8%AF%81%E7%BB%AD%E8%AE%A2%E5%A4%B1%E8%B4%A5%E5%A4%84%E7%90%86/" class="post-title-link" itemprop="url">JetBrains学生许可证续订失败处理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-12-04 15:29:57" itemprop="dateCreated datePublished" datetime="2025-12-04T15:29:57+00:00">2025-12-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-12-10 06:24:09" itemprop="dateModified" datetime="2025-12-10T06:24:09+00:00">2025-12-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tech/" itemprop="url" rel="index"><span itemprop="name">疑难杂症</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>链接到新的教育邮箱账户即可。</p>
+<h2 id="1-打开ManageAccount页面"><a href="#1-打开ManageAccount页面" class="headerlink" title="1. 打开ManageAccount页面"></a>1. 打开ManageAccount页面</h2><p><img data-src="/2025/12/04/JetBrains%E5%AD%A6%E7%94%9F%E8%AE%B8%E5%8F%AF%E8%AF%81%E7%BB%AD%E8%AE%A2%E5%A4%B1%E8%B4%A5%E5%A4%84%E7%90%86/step_1.png" alt="ManageAccount页面入口"></p>
+<h2 id="2-新页面点Linked-emails"><a href="#2-新页面点Linked-emails" class="headerlink" title="2. 新页面点Linked emails"></a>2. 新页面点Linked emails</h2><p><img data-src="/2025/12/04/JetBrains%E5%AD%A6%E7%94%9F%E8%AE%B8%E5%8F%AF%E8%AF%81%E7%BB%AD%E8%AE%A2%E5%A4%B1%E8%B4%A5%E5%A4%84%E7%90%86/step_2.png" alt="Linked emails入口"></p>
+<h2 id="3-输入教育邮箱，点击按钮"><a href="#3-输入教育邮箱，点击按钮" class="headerlink" title="3. 输入教育邮箱，点击按钮"></a>3. 输入教育邮箱，点击按钮</h2><p><img data-src="/2025/12/04/JetBrains%E5%AD%A6%E7%94%9F%E8%AE%B8%E5%8F%AF%E8%AF%81%E7%BB%AD%E8%AE%A2%E5%A4%B1%E8%B4%A5%E5%A4%84%E7%90%86/step_3.png" alt="添加教育邮箱"></p>
+<h2 id="4-完成验证"><a href="#4-完成验证" class="headerlink" title="4. 完成验证"></a>4. 完成验证</h2><p>点一下邮件里面的链接，然后就能看到许可证了。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Rimuru</p>
+  <div class="site-description" itemprop="description">A tech blog about Hexo, Virtualization, and Programming.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
         
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
-      }
-    
-    const detectApple = () => {
-      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-        document.documentElement.classList.add('apple')
-      }
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Rimuru</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
     }
-    detectApple()
-    })(window)</script><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Rimuru's Blog" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><div id="toggle-menu"><a class="site-page"><i class="fas fa-grip-vertical"></i></a></div><span id="blog_name"><a id="site-name" href="/"><img src="blob:https://www.bing.com/ee617734-9d1e-4af6-9edb-914eb263e039" width="50" height="50"/><div class="title">Rimuru's Blog</div><i class="fa-solid fa-house"></i></a></span><div class="mask-name-container"><center id="name-container"><a id="page-name" onclick="btf.scrollToDest(0,500)"></a></center><div class="nav-button" id="nav-totop"><a class="totopbtn"><i class="fas fa-arrow-up"></i><span id="percent" onclick="btf.scrollToDest(0,500)">0</span></a></div></div><div id="menus"><div class="nav-button console-button"><a class="link" onclick="heo.showConsole()"><i class="fas fa-circle-plus fa-xl fa-beat"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Rimuru's Blog</h1></div><div id="scroll-down"><i class="fas fa-computer-mouse fa-fade scroll-down-effects"></i></div></header><div id="console"><div class="close-btn" onclick="heo.hideConsole()"><i class="fas fa-circle-xmark"></i></div><div class="console-webinfo"><div class="console-webinfo-card"><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line fa-bounce"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name"><i class="fas fa-folder-open fa-beat"></i><div class="text">文章总数</div></div><div class="item-count">6</div></div><div class="webinfo-item"><div class="item-name"><i class="fas fa-clock fa-shake"></i><div class="text">建站天数</div></div><div class="item-count" id="runtimeshow" data-publishDate="2025-12-10T06:22:12.591Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name"><i class="fas fa-pen-to-square fa-beat"></i><div class="text">全站字数</div></div><div class="item-count">2.8k</div></div><div class="webinfo-item"><div class="item-name"><i class="fas fa-upload fa-shake"></i><div class="text">最后更新</div></div><div class="item-count" id="last-push-date" data-lastPushDate="2025-12-10T06:22:12.591Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" onclick="toRandomPost()" title="随机文章"><i class="fas fa-shuffle fa-beat" style="font-size: 1rem;"></i></a></div><div class="console-btn-item"><a class="assist-btn" target="_blank" rel="noopener" href="https://travellings.cn/go.html" title="友链接力"><i class="fas fa-bus fa-beat" style="font-size: 1rem;"></i></a></div><div class="console-btn-item"><a class="assist-btn" onclick="btf.scrollToDest(0,500), heo.hideConsole()"><i class="fas fa-arrows-up-to-line fa-beat" style="font-size: 1rem;"></i></a></div></div><div class="console-mask"></div></div><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="hometoptext2"><div class="text"> <i class="fas fa-book icon"></i>全部文章</div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%9F%8E%E5%B8%82%E8%A7%84%E5%88%92%E6%8A%80%E5%B7%A7%E6%8C%87%E5%8D%97/" title="天际线2 城市规划技巧指南"><img class="post_bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="天际线2 城市规划技巧指南"></a></div><div class="recent-post-info"><span class="newPost">最新</span><a class="article-title" href="/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%9F%8E%E5%B8%82%E8%A7%84%E5%88%92%E6%8A%80%E5%B7%A7%E6%8C%87%E5%8D%97/" title="天际线2 城市规划技巧指南">天际线2 城市规划技巧指南</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-12-09T09:55:31.000Z" title="发表于 2025-12-09 09:55:31">2025-12-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/gaming/">游戏</a></span></div><div class="content">解决火车完全堵死至消失1. 在繁忙的火车站建立一个环形的等待区在火车站附近建立一个环形的轨道，确保火车可以在此等待而不会堵塞主线。这可以有效地缓解火车站的拥堵问题，特别是繁忙的货运火车站。
-2. 延长对外连接的支线建立等待区延长对外连接的支线，确保火车可以在支线上等待而不会堵塞主线。这可以帮助缓解由于对外连接拥堵导致的火车消失问题。
-解决（缓解）港口&#x2F;货运站车辆堵塞的问题1. 增加港口&#x2F;货运站的数量尽量保证所有的站点的到达的车辆数量相同。游戏中大部分的车辆都是按照就近原则进行分配的，因此避免将某一个站点放在区块的中心或者边缘的中心，尽量放置在四角的位置。
-2. 避免跨越道路后再进入港口&#x2F;货运站跨越道路进入港口&#x2F;货运站会导致车辆在等待时占用道路资源，增加堵塞的可能性。尽量设计直接进入港口&#x2F;货运站的道路。如果车辆必须跨越道路，则延后跨越道路的位置，使得车辆能够快速的完成跨越道路的过程，减少对主路的堵塞。具体而言，将可以跨越的道路修改为带分割线的道路，这样可以将车辆跨越道路的位置从站点附近延后到最近的十字路口，这里掉头造成阻塞的概率更小。
-</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%B8%B8%E8%A7%81BUG%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E6%B1%87%E6%80%BB/" title="天际线2 常见BUG解决方法汇总"><img class="post_bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="天际线2 常见BUG解决方法汇总"></a></div><div class="recent-post-info"><a class="article-title" href="/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%B8%B8%E8%A7%81BUG%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E6%B1%87%E6%80%BB/" title="天际线2 常见BUG解决方法汇总">天际线2 常见BUG解决方法汇总</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-12-09T09:55:14.000Z" title="发表于 2025-12-09 09:55:14">2025-12-09</time></span></div><div class="content">邮局不出车现象部分区块的邮局不出车，其他地方的邮局正常。邮局内有一些信件未被处理。
-解决方法在邮局所属区块附近建立分拣中心，然后等待一段时间，邮局会开始出车处理信件。
-</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2025/12/04/%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%A1%AC%E7%9B%98VMDK%E6%89%A9%E5%AE%B9%E5%92%8C%E7%BC%A9%E5%AE%B9-%E7%A1%AC%E7%9B%98%E7%A9%BA%E9%97%B4%E3%80%81%E5%88%86%E5%8C%BA%E3%80%81%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/" title="虚拟机硬盘VMDK扩容和缩容(硬盘空间、分区、文件系统)"><img class="post_bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="虚拟机硬盘VMDK扩容和缩容(硬盘空间、分区、文件系统)"></a></div><div class="recent-post-info"><a class="article-title" href="/2025/12/04/%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%A1%AC%E7%9B%98VMDK%E6%89%A9%E5%AE%B9%E5%92%8C%E7%BC%A9%E5%AE%B9-%E7%A1%AC%E7%9B%98%E7%A9%BA%E9%97%B4%E3%80%81%E5%88%86%E5%8C%BA%E3%80%81%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/" title="虚拟机硬盘VMDK扩容和缩容(硬盘空间、分区、文件系统)">虚拟机硬盘VMDK扩容和缩容(硬盘空间、分区、文件系统)</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-12-04T16:17:34.000Z" title="发表于 2025-12-04 16:17:34">2025-12-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/virtualization/">虚拟机</a></span></div><div class="content">本教程所使用的分区格式为GPT，文件系统为EXT4。LMV的分区扩容方式与GPT方式不同。
-1. 扩容扩容操作可以在线进行，但缩容操作不可以。扩容分为三个部分。首先是对硬盘进行扩容，此时使用lsblk可以看到硬盘的实际容量变大，但是硬盘下的分区没有变大。之后是对分区进行扩容，此时lsblk可以看到硬盘内的分区也变大，但是df命令看到的可用空间没有变大。最后是对分区内的文件系统进行扩容，此时df命令可以看到分区的可用容量变大。
-1.1 硬盘空间扩容vmdk文件可以直接在虚拟机内修改大小进行扩容。VMWare Workstation Pro以及ESXi都支持这样的操作，但都仅限于对硬盘进行扩容，直接缩小硬盘的大小是不被允许的。
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
 
 
-此时使用lsblk可以看到硬盘被扩容。
-1.2 分区扩容使用parted /dev/&lt;device&gt;命令进行修改，将&lt;device&gt;替换为对应的硬盘设备。操作过程中可能会提示需要修复，按照提示进行修复即可。
-12345678910# 设置显示单位为扇区unit s# 查看分区详情包含为分配的扇区p free# 根据结果选择最后一个分区标号 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/" title="解决 Microsoft Word：错误!文档中没有指定样式的文字"><img class="post_bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="解决 Microsoft Word：错误!文档中没有指定样式的文字"></a></div><div class="recent-post-info"><a class="article-title" href="/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/" title="解决 Microsoft Word：错误!文档中没有指定样式的文字">解决 Microsoft Word：错误!文档中没有指定样式的文字</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-12-04T16:02:53.000Z" title="发表于 2025-12-04 16:02:53">2025-12-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/tech/">疑难杂症</a></span></div><div class="content">该报错一般出现在插入题注时，Word无法找到对应标题的样式而报错。一般有两种情况：
-
-1. 没配置多级列表这种情况比较简单，直接配置多级列表即可，本文不做赘述。
-2. 多级列表制定的样式并非原本的标题样式，对标题使用了自己新建的样式本文主要解决第二种情况，即多级列表指定的样式并非原本的标题样式，对标题使用了自己新建的样式时，插入题注报错的问题。
-2.1 样式链接首先，将对应的原始标题的样式链接到你修改过的样式。原始标题的名称是”标题&lt;空格&gt;&lt;序号&gt;”，将对应等级的编号的样式链接到你当前使用的样式。此时，不会在出现没有制定样式的问题的报错，但是在插入题注后会出现标题中的第二种报错，如图所示。
-
-2.2 修改域属性然后，右键报错的文字，选择编辑域。在弹出的窗口中保持StyleRef的域名不变，在域属性中找到当前标题使用的样式，在我这里是”标题1”，注意这个和原始的样式不是同一个，中间没有空格，是我自己新建的样式。
-
-2.3 更新域最后，编号正常。
-
-</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2025/12/04/%E5%9C%A8Hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87/" title="在Hexo博客中插入图片"><img class="post_bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="在Hexo博客中插入图片"></a></div><div class="recent-post-info"><a class="article-title" href="/2025/12/04/%E5%9C%A8Hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87/" title="在Hexo博客中插入图片">在Hexo博客中插入图片</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-12-04T15:53:49.000Z" title="发表于 2025-12-04 15:53:49">2025-12-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/hexo/">Hexo</a></span></div><div class="content">在Hexo博客中插入图片在Hexo博客中插入图片非常简单,可以选择以下两种方式：
-
-直接在将所有的图片放在source/images/目录下，然后在Markdown文件中通过相对路径引用图片。
-
-1![图片描述](/images/your-image.png)
 
 
-使用Hexo的post_asset_folder功能，将图片与文章放在同一目录下。首先在Hexo配置文件_config.yml中启用post_asset_folder选项：
+  
+  <script data-pjax>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
 
-1post_asset_folder: true
-然后在创建新文章时，Hexo会自动为该文章创建一个同名的文件夹，将图片放在该文件夹中。引用图片时，可以使用相对路径：
-1![图片描述](your-image.png)
-这样，图片就会正确显示在你的Hexo博客文章中。
-注意事项部分项目会出现图片无法加载的情况，检查后会发现尝试从根目录加载图片，这时需要在Hexo配置文件中添加以下配置，确保图片路径正确解析。
-在_config.yml中添加：
-123marked:  prependRoot: true  postAsset: true
-这样可以确保Hexo ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2025/12/04/JetBrains%E5%AD%A6%E7%94%9F%E8%AE%B8%E5%8F%AF%E8%AF%81%E7%BB%AD%E8%AE%A2%E5%A4%B1%E8%B4%A5%E5%A4%84%E7%90%86/" title="JetBrains学生许可证续订失败处理"><img class="post_bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JetBrains学生许可证续订失败处理"></a></div><div class="recent-post-info"><a class="article-title" href="/2025/12/04/JetBrains%E5%AD%A6%E7%94%9F%E8%AE%B8%E5%8F%AF%E8%AF%81%E7%BB%AD%E8%AE%A2%E5%A4%B1%E8%B4%A5%E5%A4%84%E7%90%86/" title="JetBrains学生许可证续订失败处理">JetBrains学生许可证续订失败处理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-12-04T15:29:57.000Z" title="发表于 2025-12-04 15:29:57">2025-12-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/tech/">疑难杂症</a></span></div><div class="content">链接到新的教育邮箱账户即可。
-1. 打开ManageAccount页面
-2. 新页面点Linked emails
-3. 输入教育邮箱，点击按钮
-4. 完成验证点一下邮件里面的链接，然后就能看到许可证了。
-</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div></main><footer id="footer" style="background: transparent"><div id="footer_deal"></div><div id="Jay-footer"><div class="footer-group"><h3 class="footer-title"></h3><div class="footer-links"></div></div><div class="footer-group"><h3 class="footer-title"></h3><div class="footer-links"></div></div><div class="footer-group"><h3 class="footer-title"></h3><div class="footer-links"></div></div><div class="footer-group"><h3 class="footer-title"></h3><div class="footer-links"></div></div></div><div id="footer-banner"><div class="footer-banner-links"><div class="footer-banner-left"><div class="footer-banner-left"><div id="footer-banner-tips"></div></div></div><div class="footer-banner-right"><a class="footer-banner-link" target="_blank" rel="noopener" href="https://hexo.io/zh-cn/" title="Hexo">框架：Hexo</a><a class="footer-banner-link">|</a><a class="footer-banner-link" href="/2023/dimension" title="theme">主题：dimension</a><a class="footer-banner-link">|</a><a class="footer-banner-link" href="/about/" title="about">关于</a><a class="footer-banner-link">|</a><a class="footer-banner-link cc" href="/cc/" title="cc协议"><i class="fab fa-creative-commons"></i><span>协议。</span></a></div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><span id="fps"></span></body></html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+    </div>
+</body>
+</html>
