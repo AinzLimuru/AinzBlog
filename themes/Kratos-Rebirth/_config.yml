@@ -49,15 +49,15 @@ image:
     light: "" # 亮色模式
     dark: "" # 暗色模式
   background: # 站点背景
+    light: "/images/background_light.png" # 亮色模式
+    dark: "/images/background_dark.png" # 暗色模式
+  about: # 介绍卡片
     light: "" # 亮色模式
     dark: "" # 暗色模式
-  about: # 介绍卡片
-    light: "/images/default.webp" # 亮色模式
-    dark: "/images/default.webp" # 暗色模式
 
 # 导航栏配置
 nav:
-  auto_hide: true # 桌面端向上滚动时自动收缩
+  auto_hide: false # 桌面端向上滚动时自动收缩
   items: []
   # - label: # 这个菜单的标签文字
   #   icon: # 这个菜单前的图标，可以不设置。使用来自 fontawesome icons 4.7.0 图标库中的唯一标识；或者插入自定义的 HTML ，例如您可在此放置一串 svg 。
@@ -121,13 +121,13 @@ syntax_highlighter:
 # 侧边栏与小挂件
 sidebar:
   location: right # 侧边栏的位置
-  widgets: [] # 小挂件的顺序
-  # - about # 关于
-  # - splitter # 分割线（这个不是个实际挂件，而是用来切分定位的）
-  # - toc # 目录
-  # - category # 分类列表
-  # - tagcloud # 标签聚合
-  # - posts # 最新文章
+  widgets: # 小挂件的顺序
+  - about # 关于
+  - splitter # 分割线（这个不是个实际挂件，而是用来切分定位的）
+  - toc # 目录
+  - category # 分类列表
+  - tagcloud # 标签聚合
+  - posts # 最新文章
 
 # 分享组件设置
 share:
