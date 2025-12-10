@@ -1,511 +1,465 @@
+
+
+
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 8.1.1">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
   <meta http-equiv="Cache-Control" content="no-transform">
   <meta http-equiv="Cache-Control" content="no-siteapp">
 
-<link rel="stylesheet" href="/css/main.css">
 
+<link rel="alternate" type="application/rss+xml" title="Rimuru's Blog" href="https://blog.rimuru.uk/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="Rimuru's Blog" href="https://blog.rimuru.uk/atom.xml" />
+<link rel="alternate" type="application/json" title="Rimuru's Blog" href="https://blog.rimuru.uk/feed.json" />
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"blog.rimuru.uk","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
-  </script>
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
 
-  <meta name="description" content="解决火车完全堵死至消失1. 在繁忙的火车站建立一个环形的等待区在火车站附近建立一个环形的轨道，确保火车可以在此等待而不会堵塞主线。这可以有效地缓解火车站的拥堵问题，特别是繁忙的货运火车站。 2. 延长对外连接的支线建立等待区延长对外连接的支线，确保火车可以在支线上等待而不会堵塞主线。这可以帮助缓解由于对外连接拥堵导致的火车消失问题。 解决（缓解）港口&#x2F;货运站车辆堵塞的问题1. 增加港口&amp;">
-<meta property="og:type" content="article">
-<meta property="og:title" content="天际线2 城市规划技巧指南">
-<meta property="og:url" content="https://blog.rimuru.uk/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%9F%8E%E5%B8%82%E8%A7%84%E5%88%92%E6%8A%80%E5%B7%A7%E6%8C%87%E5%8D%97/">
-<meta property="og:site_name" content="Rimuru&#39;s Blog">
-<meta property="og:description" content="解决火车完全堵死至消失1. 在繁忙的火车站建立一个环形的等待区在火车站附近建立一个环形的轨道，确保火车可以在此等待而不会堵塞主线。这可以有效地缓解火车站的拥堵问题，特别是繁忙的货运火车站。 2. 延长对外连接的支线建立等待区延长对外连接的支线，确保火车可以在支线上等待而不会堵塞主线。这可以帮助缓解由于对外连接拥堵导致的火车消失问题。 解决（缓解）港口&#x2F;货运站车辆堵塞的问题1. 增加港口&amp;">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.rimuru.uk/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%9F%8E%E5%B8%82%E8%A7%84%E5%88%92%E6%8A%80%E5%B7%A7%E6%8C%87%E5%8D%97/%E7%81%AB%E8%BD%A6%E7%AB%99%E7%AD%89%E5%BE%85%E5%8C%BA%E5%9F%9F.png">
-<meta property="og:image" content="https://blog.rimuru.uk/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%9F%8E%E5%B8%82%E8%A7%84%E5%88%92%E6%8A%80%E5%B7%A7%E6%8C%87%E5%8D%97/%E9%93%81%E8%B7%AF%E5%A4%96%E9%83%A8%E9%93%BE%E6%8E%A5%E7%AD%89%E5%BE%85%E5%8C%BA%E5%9F%9F.png">
-<meta property="og:image" content="https://blog.rimuru.uk/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%9F%8E%E5%B8%82%E8%A7%84%E5%88%92%E6%8A%80%E5%B7%A7%E6%8C%87%E5%8D%97/%E7%AB%99%E7%82%B9%E8%B7%A8%E8%B6%8A%E9%81%93%E8%B7%AF%E8%AE%BE%E8%AE%A1.png">
-<meta property="article:published_time" content="2025-12-09T09:55:31.000Z">
-<meta property="article:modified_time" content="2025-12-10T06:24:09.539Z">
-<meta property="article:author" content="Rimuru">
-<meta property="article:tag" content="天际线2">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blog.rimuru.uk/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%9F%8E%E5%B8%82%E8%A7%84%E5%88%92%E6%8A%80%E5%B7%A7%E6%8C%87%E5%8D%97/%E7%81%AB%E8%BD%A6%E7%AB%99%E7%AD%89%E5%BE%85%E5%8C%BA%E5%9F%9F.png">
+  
+  <meta name="keywords" content="天际线2" />
+
 
 <link rel="canonical" href="https://blog.rimuru.uk/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%9F%8E%E5%B8%82%E8%A7%84%E5%88%92%E6%8A%80%E5%B7%A7%E6%8C%87%E5%8D%97/">
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
-  };
-</script>
 
-  <title>天际线2 城市规划技巧指南 | Rimuru's Blog</title>
-  
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-<link rel="alternate" href="/atom.xml" title="Rimuru's Blog" type="application/atom+xml">
-</head>
-
+  <title>
+天际线2 城市规划技巧指南 - 游戏 |
+Yume Shoka = Rimuru's Blog</title>
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
     </div>
   </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Rimuru's Blog</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-    </div>
-  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">天际线2 城市规划技巧指南
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2025-12-09 09:55:31">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2025-12-09T09:55:31+00:00">2025-12-09</time>
+  </span>
 </div>
 
 
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
-
-  </li>
-  </ul>
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Yume Shoka</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
 </nav>
 
-
-
-
-</div>
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipexj2jgzj20zk0m8b09.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giclgi503lj20zk0m8hdt.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipetlbztpj20zk0m84qp.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipesrnqv3j20zk0m8ava.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gicm07ih54j20zk0m84qp.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giph4fomxoj20zk0m8axp.jpg"></li>
+        </ul>
+      </div>
     </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
           
-
-          <div class="content post posts-expand">
-            
-
+  <div class="article wrap">
     
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.rimuru.uk/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%9F%8E%E5%B8%82%E8%A7%84%E5%88%92%E6%8A%80%E5%B7%A7%E6%8C%87%E5%8D%97/">
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/gaming/" itemprop="item" rel="index" title="分类于 游戏"><span itemprop="name">游戏</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Rimuru">
-      <meta itemprop="description" content="A tech blog about Hexo, Virtualization, and Programming.">
-    </span>
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://blog.rimuru.uk/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%9F%8E%E5%B8%82%E8%A7%84%E5%88%92%E6%8A%80%E5%B7%A7%E6%8C%87%E5%8D%97/">
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Rimuru's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          天际线2 城市规划技巧指南
-        </h1>
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="Rimuru">
+    <meta itemprop="description" content=", A tech blog about Hexo, Virtualization, and Programming.">
+  </span>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Rimuru's Blog">
+  </span>
 
-              <time title="创建时间：2025-12-09 09:55:31" itemprop="dateCreated datePublished" datetime="2025-12-09T09:55:31+00:00">2025-12-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-12-10 06:24:09" itemprop="dateModified" datetime="2025-12-10T06:24:09+00:00">2025-12-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/gaming/" itemprop="url" rel="index"><span itemprop="name">游戏</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
+  <div class="body md" itemprop="articleBody">
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
 
-      
-        <h2 id="解决火车完全堵死至消失"><a href="#解决火车完全堵死至消失" class="headerlink" title="解决火车完全堵死至消失"></a>解决火车完全堵死至消失</h2><h3 id="1-在繁忙的火车站建立一个环形的等待区"><a href="#1-在繁忙的火车站建立一个环形的等待区" class="headerlink" title="1. 在繁忙的火车站建立一个环形的等待区"></a>1. 在繁忙的火车站建立一个环形的等待区</h3><p>在火车站附近建立一个环形的轨道，确保火车可以在此等待而不会堵塞主线。这可以有效地缓解火车站的拥堵问题，特别是繁忙的货运火车站。<br><img data-src="/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%9F%8E%E5%B8%82%E8%A7%84%E5%88%92%E6%8A%80%E5%B7%A7%E6%8C%87%E5%8D%97/%E7%81%AB%E8%BD%A6%E7%AB%99%E7%AD%89%E5%BE%85%E5%8C%BA%E5%9F%9F.png" alt="火车站等待区域"></p>
+    <h2 id="解决火车完全堵死至消失"><a href="#解决火车完全堵死至消失" class="headerlink" title="解决火车完全堵死至消失"></a>解决火车完全堵死至消失</h2><h3 id="1-在繁忙的火车站建立一个环形的等待区"><a href="#1-在繁忙的火车站建立一个环形的等待区" class="headerlink" title="1. 在繁忙的火车站建立一个环形的等待区"></a>1. 在繁忙的火车站建立一个环形的等待区</h3><p>在火车站附近建立一个环形的轨道，确保火车可以在此等待而不会堵塞主线。这可以有效地缓解火车站的拥堵问题，特别是繁忙的货运火车站。<br><img data-src="/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%9F%8E%E5%B8%82%E8%A7%84%E5%88%92%E6%8A%80%E5%B7%A7%E6%8C%87%E5%8D%97/%E7%81%AB%E8%BD%A6%E7%AB%99%E7%AD%89%E5%BE%85%E5%8C%BA%E5%9F%9F.png" alt="火车站等待区域"></p>
 <h3 id="2-延长对外连接的支线建立等待区"><a href="#2-延长对外连接的支线建立等待区" class="headerlink" title="2. 延长对外连接的支线建立等待区"></a>2. 延长对外连接的支线建立等待区</h3><p>延长对外连接的支线，确保火车可以在支线上等待而不会堵塞主线。这可以帮助缓解由于对外连接拥堵导致的火车消失问题。<br><img data-src="/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%9F%8E%E5%B8%82%E8%A7%84%E5%88%92%E6%8A%80%E5%B7%A7%E6%8C%87%E5%8D%97/%E9%93%81%E8%B7%AF%E5%A4%96%E9%83%A8%E9%93%BE%E6%8E%A5%E7%AD%89%E5%BE%85%E5%8C%BA%E5%9F%9F.png" alt="铁路外部链接等待区域"></p>
 <h2 id="解决（缓解）港口-货运站车辆堵塞的问题"><a href="#解决（缓解）港口-货运站车辆堵塞的问题" class="headerlink" title="解决（缓解）港口&#x2F;货运站车辆堵塞的问题"></a>解决（缓解）港口&#x2F;货运站车辆堵塞的问题</h2><h3 id="1-增加港口-货运站的数量"><a href="#1-增加港口-货运站的数量" class="headerlink" title="1. 增加港口&#x2F;货运站的数量"></a>1. 增加港口&#x2F;货运站的数量</h3><p>尽量保证所有的站点的到达的车辆数量相同。游戏中大部分的车辆都是按照就近原则进行分配的，因此避免将某一个站点放在区块的中心或者边缘的中心，尽量放置在四角的位置。</p>
 <h3 id="2-避免跨越道路后再进入港口-货运站"><a href="#2-避免跨越道路后再进入港口-货运站" class="headerlink" title="2. 避免跨越道路后再进入港口&#x2F;货运站"></a>2. 避免跨越道路后再进入港口&#x2F;货运站</h3><p>跨越道路进入港口&#x2F;货运站会导致车辆在等待时占用道路资源，增加堵塞的可能性。尽量设计直接进入港口&#x2F;货运站的道路。如果车辆必须跨越道路，则延后跨越道路的位置，使得车辆能够快速的完成跨越道路的过程，减少对主路的堵塞。<br>具体而言，将可以跨越的道路修改为带分割线的道路，这样可以将车辆跨越道路的位置从站点附近延后到最近的十字路口，这里掉头造成阻塞的概率更小。<br><img data-src="/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%9F%8E%E5%B8%82%E8%A7%84%E5%88%92%E6%8A%80%E5%B7%A7%E6%8C%87%E5%8D%97/%E7%AB%99%E7%82%B9%E8%B7%A8%E8%B6%8A%E9%81%93%E8%B7%AF%E8%AE%BE%E8%AE%A1.png" alt="站点跨越道路设计"></p>
 
+      <div class="tags">
+          <a href="/tags/cities-skylines-2/" rel="tag"><i class="ic i-tag"></i> 天际线2</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2025-12-10 07:27:18" itemprop="dateModified" datetime="2025-12-10T07:27:18+00:00">2025-12-10</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> 赞赏</button>
+  <p>请我喝[茶]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="Rimuru 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="Rimuru 支付宝">
+        <p>支付宝</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="Rimuru 贝宝">
+        <p>贝宝</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>Rimuru <i class="ic i-at"><em>@</em></i>Rimuru's Blog
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://blog.rimuru.uk/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%9F%8E%E5%B8%82%E8%A7%84%E5%88%92%E6%8A%80%E5%B7%A7%E6%8C%87%E5%8D%97/" title="天际线2 城市规划技巧指南">https://blog.rimuru.uk/2025/12/09/天际线2-城市规划技巧指南/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%B8%B8%E8%A7%81BUG%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E6%B1%87%E6%80%BB/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva2.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclxp31goj20zk0m8qv5.jpg" title="天际线2 常见BUG解决方法汇总">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>天际线2 常见BUG解决方法汇总</h3>
+  </a>
+
     </div>
-
-    
-    
-    
-
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/cities-skylines-2/" rel="tag"># 天际线2</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%B8%B8%E8%A7%81BUG%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E6%B1%87%E6%80%BB/" rel="prev" title="天际线2 常见BUG解决方法汇总">
-      <i class="fa fa-chevron-left"></i> 天际线2 常见BUG解决方法汇总
-    </a></div>
-      <div class="post-nav-item"></div>
+    <div class="item right">
     </div>
-      </footer>
-    
-  </article>
+</div>
+
   
-  
-  
+  <div class="wrap" id="comments"></div>
 
-
-
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
 
         </div>
+        <div id="sidebar">
           
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E7%81%AB%E8%BD%A6%E5%AE%8C%E5%85%A8%E5%A0%B5%E6%AD%BB%E8%87%B3%E6%B6%88%E5%A4%B1"><span class="toc-number">1.</span> <span class="toc-text">解决火车完全堵死至消失</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%9C%A8%E7%B9%81%E5%BF%99%E7%9A%84%E7%81%AB%E8%BD%A6%E7%AB%99%E5%BB%BA%E7%AB%8B%E4%B8%80%E4%B8%AA%E7%8E%AF%E5%BD%A2%E7%9A%84%E7%AD%89%E5%BE%85%E5%8C%BA"><span class="toc-number">1.1.</span> <span class="toc-text">1. 在繁忙的火车站建立一个环形的等待区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%BB%B6%E9%95%BF%E5%AF%B9%E5%A4%96%E8%BF%9E%E6%8E%A5%E7%9A%84%E6%94%AF%E7%BA%BF%E5%BB%BA%E7%AB%8B%E7%AD%89%E5%BE%85%E5%8C%BA"><span class="toc-number">1.2.</span> <span class="toc-text">2. 延长对外连接的支线建立等待区</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%EF%BC%88%E7%BC%93%E8%A7%A3%EF%BC%89%E6%B8%AF%E5%8F%A3-%E8%B4%A7%E8%BF%90%E7%AB%99%E8%BD%A6%E8%BE%86%E5%A0%B5%E5%A1%9E%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">解决（缓解）港口&#x2F;货运站车辆堵塞的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%A2%9E%E5%8A%A0%E6%B8%AF%E5%8F%A3-%E8%B4%A7%E8%BF%90%E7%AB%99%E7%9A%84%E6%95%B0%E9%87%8F"><span class="toc-number">2.1.</span> <span class="toc-text">1. 增加港口&#x2F;货运站的数量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%81%BF%E5%85%8D%E8%B7%A8%E8%B6%8A%E9%81%93%E8%B7%AF%E5%90%8E%E5%86%8D%E8%BF%9B%E5%85%A5%E6%B8%AF%E5%8F%A3-%E8%B4%A7%E8%BF%90%E7%AB%99"><span class="toc-number">2.2.</span> <span class="toc-text">2. 避免跨越道路后再进入港口&#x2F;货运站</span></a></li></ol></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li class="active"><a href="/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%9F%8E%E5%B8%82%E8%A7%84%E5%88%92%E6%8A%80%E5%B7%A7%E6%8C%87%E5%8D%97/" rel="bookmark" title="天际线2 城市规划技巧指南">天际线2 城市规划技巧指南</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="Rimuru"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">Rimuru</p>
+  <div class="description" itemprop="description">A tech blog about Hexo, Virtualization, and Programming.</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">6</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">4</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">1</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+</div>
+
+<ul class="menu">
   
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+
+</ul>
+
+      </div>
+    </div>
   </div>
 
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E7%81%AB%E8%BD%A6%E5%AE%8C%E5%85%A8%E5%A0%B5%E6%AD%BB%E8%87%B3%E6%B6%88%E5%A4%B1"><span class="nav-number">1.</span> <span class="nav-text">解决火车完全堵死至消失</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%9C%A8%E7%B9%81%E5%BF%99%E7%9A%84%E7%81%AB%E8%BD%A6%E7%AB%99%E5%BB%BA%E7%AB%8B%E4%B8%80%E4%B8%AA%E7%8E%AF%E5%BD%A2%E7%9A%84%E7%AD%89%E5%BE%85%E5%8C%BA"><span class="nav-number">1.1.</span> <span class="nav-text">1. 在繁忙的火车站建立一个环形的等待区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%BB%B6%E9%95%BF%E5%AF%B9%E5%A4%96%E8%BF%9E%E6%8E%A5%E7%9A%84%E6%94%AF%E7%BA%BF%E5%BB%BA%E7%AB%8B%E7%AD%89%E5%BE%85%E5%8C%BA"><span class="nav-number">1.2.</span> <span class="nav-text">2. 延长对外连接的支线建立等待区</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%EF%BC%88%E7%BC%93%E8%A7%A3%EF%BC%89%E6%B8%AF%E5%8F%A3-%E8%B4%A7%E8%BF%90%E7%AB%99%E8%BD%A6%E8%BE%86%E5%A0%B5%E5%A1%9E%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">解决（缓解）港口&#x2F;货运站车辆堵塞的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%A2%9E%E5%8A%A0%E6%B8%AF%E5%8F%A3-%E8%B4%A7%E8%BF%90%E7%AB%99%E7%9A%84%E6%95%B0%E9%87%8F"><span class="nav-number">2.1.</span> <span class="nav-text">1. 增加港口&#x2F;货运站的数量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E9%81%BF%E5%85%8D%E8%B7%A8%E8%B6%8A%E9%81%93%E8%B7%AF%E5%90%8E%E5%86%8D%E8%BF%9B%E5%85%A5%E6%B8%AF%E5%8F%A3-%E8%B4%A7%E8%BF%90%E7%AB%99"><span class="nav-number">2.2.</span> <span class="nav-text">2. 避免跨越道路后再进入港口&#x2F;货运站</span></a></li></ol></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">Rimuru</p>
-  <div class="site-description" itemprop="description">A tech blog about Hexo, Virtualization, and Programming.</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">6</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">4</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">1</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
+  <ul id="quick">
+    <li class="prev pjax">
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+    </li>
+    <li class="percent"></li>
+  </ul>
 </div>
 
 
-
-      </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
+        </div>
+        <div class="dimmer"></div>
       </div>
     </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2025</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Rimuru</span>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+
+    <span><a href="/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%B8%B8%E8%A7%81BUG%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E6%B1%87%E6%80%BB/" title="天际线2 常见BUG解决方法汇总">天际线2 常见BUG解决方法汇总</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/gaming/" title="分类于 游戏">游戏</a>
+</div>
+
+    <span><a href="/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%9F%8E%E5%B8%82%E8%A7%84%E5%88%92%E6%8A%80%E5%B7%A7%E6%8C%87%E5%8D%97/" title="天际线2 城市规划技巧指南">天际线2 城市规划技巧指南</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/virtualization/" title="分类于 虚拟机">虚拟机</a>
+</div>
+
+    <span><a href="/2025/12/04/%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%A1%AC%E7%9B%98VMDK%E6%89%A9%E5%AE%B9%E5%92%8C%E7%BC%A9%E5%AE%B9-%E7%A1%AC%E7%9B%98%E7%A9%BA%E9%97%B4%E3%80%81%E5%88%86%E5%8C%BA%E3%80%81%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/" title="虚拟机硬盘VMDK扩容和缩容(硬盘空间、分区、文件系统)">虚拟机硬盘VMDK扩容和缩容(硬盘空间、分区、文件系统)</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/hexo/" title="分类于 Hexo">Hexo</a>
+</div>
+
+    <span><a href="/2025/12/04/%E5%9C%A8Hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87/" title="在Hexo博客中插入图片">在Hexo博客中插入图片</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/tech/" title="分类于 疑难杂症">疑难杂症</a>
+</div>
+
+    <span><a href="/2025/12/04/JetBrains%E5%AD%A6%E7%94%9F%E8%AE%B8%E5%8F%AF%E8%AF%81%E7%BB%AD%E8%AE%A2%E5%A4%B1%E8%B4%A5%E5%A4%84%E7%90%86/" title="JetBrains学生许可证续订失败处理">JetBrains学生许可证续订失败处理</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/tech/" title="分类于 疑难杂症">疑难杂症</a>
+</div>
+
+    <span><a href="/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/" title="解决 Microsoft Word：错误!文档中没有指定样式的文字">解决 Microsoft Word：错误!文档中没有指定样式的文字</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Rimuru @ Yume Shoka</span>
   </div>
-
-        
-
-
-
-
-
-
-
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
 
       </div>
     </footer>
   </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/pjax/pjax.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/muse.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-  <script>
-var pjax = new Pjax({
-  selectors: [
-    'head title',
-    '#page-configurations',
-    '.content-wrap',
-    '.post-toc-wrap',
-    '.languages',
-    '#pjax'
-  ],
-  switches: {
-    '.post-toc-wrap': Pjax.switches.innerHTML
-  },
-  analytics: false,
-  cacheBust: false,
-  scrollTo : !CONFIG.bookmark.enable
-});
-
-window.addEventListener('pjax:success', () => {
-  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
-    var code = element.text || element.textContent || element.innerHTML || '';
-    var parent = element.parentNode;
-    parent.removeChild(element);
-    var script = document.createElement('script');
-    if (element.id) {
-      script.id = element.id;
-    }
-    if (element.className) {
-      script.className = element.className;
-    }
-    if (element.type) {
-      script.type = element.type;
-    }
-    if (element.src) {
-      script.src = element.src;
-      // Force synchronous loading of peripheral JS.
-      script.async = false;
-    }
-    if (element.dataset.pjax !== undefined) {
-      script.dataset.pjax = '';
-    }
-    if (code !== '') {
-      script.appendChild(document.createTextNode(code));
-    }
-    parent.appendChild(script);
-  });
-  NexT.boot.refresh();
-  // Define Motion Sequence & Bootstrap Motion.
-  if (CONFIG.motion.enable) {
-    NexT.motion.integrator
-      .init()
-      .add(NexT.motion.middleWares.subMenu)
-      .add(NexT.motion.middleWares.postList)
-      .bootstrap();
-  }
-  NexT.utils.updateSidebarPosition();
-});
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2025/12/09/天际线2-城市规划技巧指南/',
+    favicon: {
+      show: "（●´3｀●）やれやれだぜ",
+      hide: "(´Д｀)大変だ！"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
 </script>
 
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
 
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
 
-
-  
-  <script data-pjax>
-    (function(){
-      var canonicalURL, curProtocol;
-      //Get the <link> tag
-      var x=document.getElementsByTagName("link");
-		//Find the last canonical URL
-		if(x.length > 0){
-			for (i=0;i<x.length;i++){
-				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
-					canonicalURL=x[i].href;
-				}
-			}
-		}
-    //Get protocol
-	    if (!canonicalURL){
-	    	curProtocol = window.location.protocol.split(':')[0];
-	    }
-	    else{
-	    	curProtocol = canonicalURL.split(':')[0];
-	    }
-      //Get current URL if the canonical URL does not exist
-	    if (!canonicalURL) canonicalURL = window.location.href;
-	    //Assign script content. Replace current URL with the canonical URL
-      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
-  </script>
+<script src="/js/app.js?v=0.2.5"></script>
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-    <div id="pjax">
-  
-
-  
-
-    </div>
 </body>
 </html>
