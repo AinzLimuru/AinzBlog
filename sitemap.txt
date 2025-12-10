@@ -8,7 +8,7 @@ https://blog.rimuru.uk/2025/12/04/%E5%9C%A8Hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F
 https://blog.rimuru.uk/2025/12/04/JetBrains%E5%AD%A6%E7%94%9F%E8%AE%B8%E5%8F%AF%E8%AF%81%E7%BB%AD%E8%AE%A2%E5%A4%B1%E8%B4%A5%E5%A4%84%E7%90%86/
 https://blog.rimuru.uk/
 https://blog.rimuru.uk/tags/cities-skylines-2/
+https://blog.rimuru.uk/categories/gaming/
 https://blog.rimuru.uk/categories/tech/
 https://blog.rimuru.uk/categories/hexo/
-https://blog.rimuru.uk/categories/gaming/
 https://blog.rimuru.uk/categories/virtualization/
