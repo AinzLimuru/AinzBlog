@@ -502,9 +502,26 @@
   <script defer src="/js/kr-pjax.min.js"></script>
 
 
-<script defer src="https://webviso.yestool.org/js/index.min.js"></script>
+<script defer src="https://cdn.rimuru.uk/analytics_with_cloudflare/index.min.js" data-base-url="https://cdn.rimuru.uk"></script>
 
 <!-- 额外的追加注入项 -->
+
+
+
+    <script>
+        window.addEventListener('pjax:complete', function() {
+            const scriptUrl = 'https://cdn.rimuru.uk/analytics_with_cloudflare/index.min.js';
+            const oldScript = document.querySelector(`script[src="${scriptUrl}"]`);
+            if (oldScript) {
+                oldScript.remove();
+            }
+            const newScript = document.createElement('script');
+            newScript.src = scriptUrl;
+            newScript.defer = true;
+            newScript.setAttribute('data-base-url', 'https://cdn.rimuru.uk');
+            document.body.appendChild(newScript);
+        });
+    </script>
 
 
     </body>
