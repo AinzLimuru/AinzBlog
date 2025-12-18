@@ -17,8 +17,8 @@ https://blog.rimuru.uk/tags/steam/
 https://blog.rimuru.uk/tags/tutorial/
 https://blog.rimuru.uk/tags/cities-skylines-2/
 https://blog.rimuru.uk/tags/virtualization/
-https://blog.rimuru.uk/categories/tech/
-https://blog.rimuru.uk/categories/tech/
 https://blog.rimuru.uk/categories/troubleshooting/
-https://blog.rimuru.uk/categories/hexo/
+https://blog.rimuru.uk/categories/tech/
+https://blog.rimuru.uk/categories/tech/
 https://blog.rimuru.uk/categories/gaming/
+https://blog.rimuru.uk/categories/hexo/
