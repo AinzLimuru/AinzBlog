@@ -1,0 +1,24 @@
+# Robots.txt for Rimuru's Blog
+# https://blog.rimuru.uk
+
+User-agent: *
+Allow: /
+
+# Sitemap locations
+Sitemap: https://blog.rimuru.uk/sitemap.xml
+Sitemap: https://blog.rimuru.uk/baidusitemap.xml
+
+# Disallow admin and internal paths
+Disallow: /js/
+Disallow: /css/
+Disallow: /vendors/
+
+# Allow search engines to crawl all content
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /

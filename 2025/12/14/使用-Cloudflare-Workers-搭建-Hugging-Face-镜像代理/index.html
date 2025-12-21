@@ -28,16 +28,16 @@
   
     <meta name="keywords" content="Cloudflare, Hugging Face" />
   
-  <meta name="description" content="使用 Cloudflare Workers 搭建 Hugging Face 镜像代理在进行 AI 模型开发和下载时，Hugging Face 是我们绕不开的宝库。然而，由于网络环境的复杂性，直接访问 huggingface.co 及其 CDN 资源（如模型权重文件的下载）有时会遇到速度缓慢甚至连接失败的问题。 为了解决这个问题，我开发了一个基于 Cloudflare Workers (或 Clou">
+  <meta name="description" content="通过 Cloudflare Workers 搭建 Hugging Face 反向代理，解决国内访问速度慢、模型下载超时等问题，支持主站代理和 CDN 资源映射。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用 Cloudflare Workers 搭建 Hugging Face 镜像代理">
 <meta property="og:url" content="https://blog.rimuru.uk/2025/12/14/%E4%BD%BF%E7%94%A8-Cloudflare-Workers-%E6%90%AD%E5%BB%BA-Hugging-Face-%E9%95%9C%E5%83%8F%E4%BB%A3%E7%90%86/">
 <meta property="og:site_name" content="Rimuru&#39;s Blog">
-<meta property="og:description" content="使用 Cloudflare Workers 搭建 Hugging Face 镜像代理在进行 AI 模型开发和下载时，Hugging Face 是我们绕不开的宝库。然而，由于网络环境的复杂性，直接访问 huggingface.co 及其 CDN 资源（如模型权重文件的下载）有时会遇到速度缓慢甚至连接失败的问题。 为了解决这个问题，我开发了一个基于 Cloudflare Workers (或 Clou">
+<meta property="og:description" content="通过 Cloudflare Workers 搭建 Hugging Face 反向代理，解决国内访问速度慢、模型下载超时等问题，支持主站代理和 CDN 资源映射。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog.rimuru.uk/2025/12/14/%E4%BD%BF%E7%94%A8-Cloudflare-Workers-%E6%90%AD%E5%BB%BA-Hugging-Face-%E9%95%9C%E5%83%8F%E4%BB%A3%E7%90%86/cover.png">
 <meta property="article:published_time" content="2025-12-14T21:04:21.000Z">
-<meta property="article:modified_time" content="2025-12-21T13:41:35.422Z">
+<meta property="article:modified_time" content="2025-12-21T14:47:46.281Z">
 <meta property="article:author" content="Rimuru">
 <meta property="article:tag" content="Cloudflare">
 <meta property="article:tag" content="Hugging Face">
@@ -45,6 +45,36 @@
 <meta name="twitter:image" content="https://blog.rimuru.uk/2025/12/14/%E4%BD%BF%E7%94%A8-Cloudflare-Workers-%E6%90%AD%E5%BB%BA-Hugging-Face-%E9%95%9C%E5%83%8F%E4%BB%A3%E7%90%86/cover.png">
   
     <link rel="alternate" href="/atom.xml" title="Rimuru's Blog" type="application/atom+xml">
+  
+  <!-- JSON-LD 结构化数据 -->
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "使用 Cloudflare Workers 搭建 Hugging Face 镜像代理",
+    "description": "通过 Cloudflare Workers 搭建 Hugging Face 反向代理，解决国内访问速度慢、模型下载超时等问题，支持主站代理和 CDN 资源映射。",
+    "image": "https://blog.rimuru.uk/2025/12/14/%E4%BD%BF%E7%94%A8-Cloudflare-Workers-%E6%90%AD%E5%BB%BA-Hugging-Face-%E9%95%9C%E5%83%8F%E4%BB%A3%E7%90%86/cover.png",
+    "author": {
+      "@type": "Person",
+      "name": "Rimuru"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Rimuru's Blog",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://blog.rimuru.uk/images/avatar.png"
+      }
+    },
+    "datePublished": "2025-12-14T21:04:21.000Z",
+    "dateModified": "2025-12-21T14:47:46.281Z",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://blog.rimuru.uk/2025/12/14/%E4%BD%BF%E7%94%A8-Cloudflare-Workers-%E6%90%AD%E5%BB%BA-Hugging-Face-%E9%95%9C%E5%83%8F%E4%BB%A3%E7%90%86/"
+    }
+  }
+  </script>
   
   <!-- 样式表文件 -->
   <link rel="stylesheet" id="kratos-css" href="/css/kr-core.min.css" media="all"></link>
@@ -260,7 +290,7 @@
                     <a class="tag-none-link" href="/tags/cloudflare/" rel="tag">Cloudflare</a>, <a class="tag-none-link" href="/tags/hugging-face/" rel="tag">Hugging Face</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2025-12-21T13:41:35.422Z" itemprop="dateModified">最后编辑：2025-12-21</time>
+                    <time datetime="2025-12-21T14:47:46.281Z" itemprop="dateModified">最后编辑：2025-12-21</time>
                 </div>
             </div>
         </footer>
@@ -317,7 +347,7 @@
                 分类
             </span>
             <span class="count">
-                5
+                4
             </span>
         </a>
         <a class="meta-item" href="/tags/">
@@ -325,7 +355,7 @@
                 标签
             </span>
             <span class="count">
-                9
+                22
             </span>
         </a>
     </div>
@@ -336,7 +366,7 @@
                 
   <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
     <h4 class="widget-title"><i class="fa fa-folder"></i>分类列表</h4>
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tech/">tech</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tech/">技术分享</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/gaming/">游戏</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/troubleshooting/">疑难杂症</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">Hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tech/">技术分享</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/gaming/">游戏</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/troubleshooting/">疑难杂症</a><span class="category-list-count">2</span></li></ul>
   </aside>
 
 
@@ -345,7 +375,7 @@
   <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
     <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
       <div class="tag-clouds">
-        <a href="/tags/cloudflare/" style="font-size: 0.8em;">Cloudflare</a> <a href="/tags/hugging-face/" style="font-size: 0.8em;">Hugging Face</a> <a href="/tags/nextcloud/" style="font-size: 0.6em;">Nextcloud</a> <a href="/tags/steam/" style="font-size: 0.6em;">Steam</a> <a href="/tags/wallpaper-engine/" style="font-size: 0.6em;">Wallpaper Engine</a> <a href="/tags/webdav/" style="font-size: 0.6em;">WebDAV</a> <a href="/tags/cities-skylines-2/" style="font-size: 0.8em;">天际线2</a> <a href="/tags/tutorial/" style="font-size: 0.6em;">教程</a> <a href="/tags/virtualization/" style="font-size: 0.6em;">虚拟机</a>
+        <a href="/tags/bug-fix/" style="font-size: 0.6em;">BUG修复</a> <a href="/tags/cities-skylines-2/" style="font-size: 0.8em;">Cities Skylines 2</a> <a href="/tags/cloudflare/" style="font-size: 0.8em;">Cloudflare</a> <a href="/tags/Hexo/" style="font-size: 0.6em;">Hexo</a> <a href="/tags/hugging-face/" style="font-size: 0.8em;">Hugging Face</a> <a href="/tags/jetbrains/" style="font-size: 0.6em;">JetBrains</a> <a href="/tags/linux/" style="font-size: 0.6em;">Linux</a> <a href="/tags/markdown/" style="font-size: 0.6em;">Markdown</a> <a href="/tags/microsoft-word/" style="font-size: 0.6em;">Microsoft Word</a> <a href="/tags/nextcloud/" style="font-size: 0.6em;">Nextcloud</a> <a href="/tags/office/" style="font-size: 0.6em;">Office</a> <a href="/tags/steam/" style="font-size: 0.6em;">Steam</a> <a href="/tags/vmware/" style="font-size: 0.6em;">VMware</a> <a href="/tags/wallpaper-engine/" style="font-size: 0.6em;">Wallpaper Engine</a> <a href="/tags/webdav/" style="font-size: 0.6em;">WebDAV</a> <a href="/tags/blog-tutorial/" style="font-size: 0.6em;">博客教程</a> <a href="/tags/cities-skylines-2/" style="font-size: 0.8em;">天际线2</a> <a href="/tags/student-license/" style="font-size: 0.6em;">学生许可</a>
       </div>
   </aside>
 

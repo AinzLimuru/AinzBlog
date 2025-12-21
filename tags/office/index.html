@@ -16,8 +16,8 @@
     <link rel="icon" href="/images/favicon.png">
   
   
-  <title>HuggingfaceProxy：Hugging Face 反向代理加速方案 | Rimuru&#39;s Blog</title>
-  <link rel="canonical" href="https://blog.rimuru.uk/2025/12/17/HuggingfaceProxy-%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D%E4%B8%8E%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8D%97/">
+  <title>标签: Office | Rimuru&#39;s Blog</title>
+  <link rel="canonical" href="https://blog.rimuru.uk/tags/office/">
   <meta name="author" content="Rimuru" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -26,55 +26,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <meta name="format-detection" content="telphone=no, email=no" />
   
-    <meta name="keywords" content="Cloudflare, Hugging Face" />
+    <meta name="keywords" content="hexo, blog, tech, virtualization, programming, linux, windows" />
   
-  <meta name="description" content="HuggingfaceProxy 开源项目介绍，基于 Cloudflare Workers 的轻量级 Hugging Face 反向代理，100 行代码实现访问加速。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="HuggingfaceProxy：Hugging Face 反向代理加速方案">
-<meta property="og:url" content="https://blog.rimuru.uk/2025/12/17/HuggingfaceProxy-%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D%E4%B8%8E%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8D%97/">
+  <meta name="description" content="A tech blog about Hexo, Virtualization, and Programming.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="标签: Office">
+<meta property="og:url" content="https://blog.rimuru.uk/tags/office/">
 <meta property="og:site_name" content="Rimuru&#39;s Blog">
-<meta property="og:description" content="HuggingfaceProxy 开源项目介绍，基于 Cloudflare Workers 的轻量级 Hugging Face 反向代理，100 行代码实现访问加速。">
+<meta property="og:description" content="A tech blog about Hexo, Virtualization, and Programming.">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.rimuru.uk/2025/12/17/HuggingfaceProxy-%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D%E4%B8%8E%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8D%97/cover.png">
-<meta property="article:published_time" content="2025-12-17T10:00:00.000Z">
-<meta property="article:modified_time" content="2025-12-21T14:47:46.264Z">
 <meta property="article:author" content="Rimuru">
-<meta property="article:tag" content="Cloudflare">
-<meta property="article:tag" content="Hugging Face">
+<meta property="article:tag" content="hexo, blog, tech, virtualization, programming, linux, windows">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blog.rimuru.uk/2025/12/17/HuggingfaceProxy-%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D%E4%B8%8E%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8D%97/cover.png">
   
     <link rel="alternate" href="/atom.xml" title="Rimuru's Blog" type="application/atom+xml">
   
   <!-- JSON-LD 结构化数据 -->
-  
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": "HuggingfaceProxy：Hugging Face 反向代理加速方案",
-    "description": "HuggingfaceProxy 开源项目介绍，基于 Cloudflare Workers 的轻量级 Hugging Face 反向代理，100 行代码实现访问加速。",
-    "image": "https://blog.rimuru.uk/2025/12/17/HuggingfaceProxy-%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D%E4%B8%8E%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8D%97/cover.png",
-    "author": {
-      "@type": "Person",
-      "name": "Rimuru"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Rimuru's Blog",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://blog.rimuru.uk/images/avatar.png"
-      }
-    },
-    "datePublished": "2025-12-17T10:00:00.000Z",
-    "dateModified": "2025-12-21T14:47:46.264Z",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": "https://blog.rimuru.uk/2025/12/17/HuggingfaceProxy-%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D%E4%B8%8E%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8D%97/"
-    }
-  }
-  </script>
   
   <!-- 样式表文件 -->
   <link rel="stylesheet" id="kratos-css" href="/css/kr-core.min.css" media="all"></link>
@@ -181,126 +148,89 @@
 
         
 
-            <article itemscope itemtype="https://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://blog.rimuru.uk/2025/12/17/HuggingfaceProxy-%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D%E4%B8%8E%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8D%97/">
-    <div class="kratos-hentry kratos-page-inner clearfix">
-        <header class="kratos-page-header">
-            
-                <h1 class="kratos-page-title text-center" itemprop="name headline">HuggingfaceProxy：Hugging Face 反向代理加速方案</h1>
-            
-            <ul class="kratos-page-meta text-center">
-                <li><time datetime="2025-12-17T10:00:00.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2025-12-17</time></li>
-                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
-                    <i class="fa fa-user"></i> 作者 <span itemprop="name">Rimuru</span>
-                </li>
-                
-                    <li>
-                        <i class="fa fa-edit"></i> 
-                        
-                        
-                            ~1.60K
-                        
-                        字
-                    </li>
-                
-                
-                
-            </ul>
-        </header>
-        <div class="kratos-page-content kr-post">
-            
-            
-            
-            <hr />
-            <div itemprop="articleBody"><h2 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h2><p>国内访问 Hugging Face 速度慢？下载模型超时？这个项目帮你解决。</p>
-<p><strong>HuggingfaceProxy</strong> 是一个基于 Cloudflare Workers 的轻量级反向代理，100 行代码搞定 Hugging Face 访问加速。</p>
-<p>项目地址：<a target="_blank" rel="noopener" href="https://github.com/AinzRimuru/HuggingfaceProxy">https://github.com/AinzRimuru/HuggingfaceProxy</a></p>
-<h2 id="核心功能"><a href="#核心功能" class="headerlink" title="核心功能"></a>核心功能</h2><ul>
-<li><strong>主站代理</strong>：<code>hf.yourdomain.com</code> → <code>huggingface.co</code></li>
-<li><strong>CDN 映射</strong>：用 <code>---</code> 替换域名中的 <code>.</code><br>例如：<code>cas-bridge---xethub.yourdomain.com</code> → <code>cas-bridge.xethub.hf.co</code></li>
-<li><strong>重定向重写</strong>：自动拦截 302 重定向，确保下载全程走代理</li>
-<li><strong>零配置</strong>：自动识别域名，无需硬编码</li>
-</ul>
-<h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">请求 → Cloudflare Workers → 解析子域名 → 转发到 HF → 重写重定向 → 返回</span><br></pre></td></tr></table></figure>
+            <!-- Breadcrumb for tag & category page -->
 
-<p>核心逻辑（<code>_worker.js</code>，约 100 行）：</p>
-<ol>
-<li>解析子域名，判断目标（主站&#x2F;CDN）</li>
-<li>重写 URL，转发请求（<code>redirect: &#39;manual&#39;</code>）</li>
-<li>拦截重定向响应，修改 <code>Location</code> 头</li>
-</ol>
-<p>**为什么用 Cloudflare？**免费、快速、全球 CDN、零维护。</p>
-<h2 id="部署步骤"><a href="#部署步骤" class="headerlink" title="部署步骤"></a>部署步骤</h2><h3 id="方法一：Cloudflare-Pages（推荐）"><a href="#方法一：Cloudflare-Pages（推荐）" class="headerlink" title="方法一：Cloudflare Pages（推荐）"></a>方法一：Cloudflare Pages（推荐）</h3><ol>
-<li>Fork <a target="_blank" rel="noopener" href="https://github.com/AinzRimuru/HuggingfaceProxy">项目</a></li>
-<li>Cloudflare Dashboard → Workers &amp; Pages → Pages → Connect to Git</li>
-<li>选择仓库，Framework 选 <code>None</code>，直接部署</li>
-<li>绑定域名，配置 DNS：</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CNAME  hf   your-project.pages.dev</span><br><span class="line">CNAME  *    your-project.pages.dev  (泛域名，支持 CDN)</span><br></pre></td></tr></table></figure>
-
-<h3 id="方法二：Wrangler-CLI"><a href="#方法二：Wrangler-CLI" class="headerlink" title="方法二：Wrangler CLI"></a>方法二：Wrangler CLI</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/AinzRimuru/HuggingfaceProxy.git</span><br><span class="line"><span class="built_in">cd</span> HuggingfaceProxy</span><br><span class="line">npm install</span><br><span class="line">npm run deploy</span><br></pre></td></tr></table></figure>
-
-<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p><strong>设置环境变量</strong>：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> HF_ENDPOINT=https://hf.yourdomain.com</span><br></pre></td></tr></table></figure>
-
-<p><strong>Python</strong>：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.environ[<span class="string">&quot;HF_ENDPOINT&quot;</span>] = <span class="string">&quot;https://hf.yourdomain.com&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> huggingface_hub <span class="keyword">import</span> snapshot_download</span><br><span class="line">snapshot_download(repo_id=<span class="string">&quot;gpt2&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<p><strong>Git 克隆</strong>：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://hf.yourdomain.com/username/repo.git</span><br></pre></td></tr></table></figure>
-
-<p><strong>浏览器</strong>：直接访问 <code>https://hf.yourdomain.com</code></p>
-<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><p><strong>Q: 522 错误？</strong><br>等待 DNS 生效（5-10 分钟），清除缓存。</p>
-<p><strong>Q: 下载失败？</strong><br>检查泛域名解析 <code>*.yourdomain.com</code> 是否配置。</p>
-<p><strong>Q: 大文件慢？</strong><br>使用 <code>aria2c</code> 多线程下载，或升级 Workers Unbound。</p>
-<p><strong>Q: 环境变量不生效？</strong><br>在导入库<strong>之前</strong>设置 <code>HF_ENDPOINT</code>。</p>
-<h2 id="性能数据"><a href="#性能数据" class="headerlink" title="性能数据"></a>性能数据</h2><ul>
-<li>免费版：10 万次&#x2F;天，100MB 单次请求</li>
-<li>实测速度提升：2-10 倍（取决于文件大小）</li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>100 行代码，利用 Cloudflare 免费 CDN，解决 Hugging Face 访问难题。项目完全开源，欢迎 Star。</p>
-<p>项目地址：<a target="_blank" rel="noopener" href="https://github.com/AinzRimuru/HuggingfaceProxy">https://github.com/AinzRimuru/HuggingfaceProxy</a></p>
-</div>
-        </div>
+    <article class="kratos-hentry kratos-entry-border clearfix">
+    <div class="kratos-breadcrumb">
+        <a href="/">
+            <i class="fa fa-home"></i>
+        </a>
+        <i class="fa fa-angle-right"></i>
         
-        <footer class="kratos-entry-footer clearfix">
+            <a href="/tags/">
+                标签
+            </a>
+            <i class="fa fa-angle-right"></i>
+            <a href="/tags/office/">
+                Office
+            </a>
+        
+        
+    </div>
+</article>
+
+
+
+
+    
+    
+        <article class="kratos-hentry clearfix" itemscope itemtype="https://schema.org/Article">
+    <div class="kratos-entry-border clearfix">
+        
+        <div class="kratos-entry-post-main">
             
             
-            
-                <div class="post-actions text-center clearfix" id="post-actions">
-                
-                
-                    <a class="share" href="javascript:;" onclick="krOpenShareModal()"><i class="fa fa-share-alt"></i> 分享</a>
-                
+                <div class="kratos-entry-thumb">
+                    <a href="/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/">
+                        <img class="kratos-entry-thumb-img" src="/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/cover.png" alt="/%E8%A7%A3%E5%86%B3%20Microsoft%20Word%EF%BC%9A%E9%94%99%E8%AF%AF!%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97">
+                    </a>
                 </div>
             
-            <div class="footer-tag clearfix">
-                <div class="pull-left">
-                <i class="fa fa-tags"></i>
-                    <a class="tag-none-link" href="/tags/cloudflare/" rel="tag">Cloudflare</a>, <a class="tag-none-link" href="/tags/hugging-face/" rel="tag">Hugging Face</a>
-                </div>
-                <div class="pull-date">
-                    <time datetime="2025-12-21T14:47:46.264Z" itemprop="dateModified">最后编辑：2025-12-21</time>
+            <div class="kratos-entry-post-inner">
+                <header class="kratos-entry-header">
+                        <a class="label-link" href="/categories/troubleshooting/">疑难杂症</a>
+                    <h2 class="kratos-entry-title"><a href="/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/" itemprop="mainEntityOfPage"><span itemprop="name headline">解决 Microsoft Word：错误!文档中没有指定样式的文字</span></a>
+                </header>
+                <div class="kratos-entry-content">
+                    <p itemProp="description">
+                        
+                            该报错一般出现在插入题注时，Word无法找到对应标题的样式而报错。一般有两种情况：
+
+1. 没配置多级列表这种情况比较简单，直接配置多级列表即可，本文不做赘述。
+2. 多级列表制定的样式并非原本的标题样式，对标题使用了自己新建的样式本...
+                        
+                    </p>
                 </div>
             </div>
+        </div>
+        <footer class="kratos-entry-post-meta">
+            <span class="pull-left">
+                <time datetime="2025-12-04T16:02:53.000Z" itemprop="datePublished">
+                    <a><i class="fa fa-calendar"></i> 2025-12-04</a>
+                </time>
+                <a>
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-none-link" href="/tags/microsoft-word/" rel="tag">Microsoft Word</a>, <a class="tag-none-link" href="/tags/office/" rel="tag">Office</a>, <a class="tag-none-link" href="/tags/problem-solving/" rel="tag">问题解决</a>
+                    
+                </a>
+                
+                
+            </span>
+            <span class="pull-right">
+                <a class="read-more" href="/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/" title="阅读全文">阅读全文<i class="fa fa-chevron-circle-right"></i></a>
+            </span>
         </footer>
     </div>
-    
-        <nav class="navigation post-navigation clearfix" role="navigation">
-            
-            <div class="nav-previous clearfix">
-                <a title=" 使用 Cloudflare Workers 搭建 Hugging Face 镜像代理" href="/2025/12/14/使用-Cloudflare-Workers-搭建-Hugging-Face-镜像代理/"><i class="fa fa-angle-left"></i> 上一篇</a>
-            </div>
-            
-            
-            <div class="nav-next clearfix">
-                <a title=" Nextcloud使用WebDAV访问分享文件夹" href="/2025/12/21/Nextcloud使用WebDAV访问分享文件夹/">下一篇 <i class="fa fa-angle-right"></i></a>
-            </div>
-            
-        </nav>
-    
-    
 </article>
+    
+
+
+
+
+
+
+
 
         
 
@@ -311,6 +241,8 @@
 
 <section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
     <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+        <div class="sticky-area">
     
     
                 <aside id="krw-about" class="widget widget-kratos-about clearfix">
@@ -351,8 +283,6 @@
     </div>
 </aside>
             
-                    <div class="sticky-area">
-                
                 
   <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
     <h4 class="widget-title"><i class="fa fa-folder"></i>分类列表</h4>

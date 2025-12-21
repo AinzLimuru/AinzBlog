@@ -133,6 +133,20 @@
   </url>
   
   <url>
+    <loc>https://blog.rimuru.uk/tags/jetbrains/</loc>
+    <lastmod>2025-12-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.uk/tags/student-license/</loc>
+    <lastmod>2025-12-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.rimuru.uk/tags/nextcloud/</loc>
     <lastmod>2025-12-21</lastmod>
     <changefreq>weekly</changefreq>
@@ -141,20 +155,6 @@
   
   <url>
     <loc>https://blog.rimuru.uk/tags/webdav/</loc>
-    <lastmod>2025-12-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rimuru.uk/tags/cities-skylines-2/</loc>
-    <lastmod>2025-12-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rimuru.uk/tags/virtualization/</loc>
     <lastmod>2025-12-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -181,6 +181,97 @@
     <priority>0.2</priority>
   </url>
   
+  <url>
+    <loc>https://blog.rimuru.uk/tags/Hexo/</loc>
+    <lastmod>2025-12-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.uk/tags/blog-tutorial/</loc>
+    <lastmod>2025-12-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.uk/tags/markdown/</loc>
+    <lastmod>2025-12-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.uk/tags/cities-skylines-2/</loc>
+    <lastmod>2025-12-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.uk/tags/cities-skylines-2/</loc>
+    <lastmod>2025-12-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.uk/tags/game-guide/</loc>
+    <lastmod>2025-12-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.uk/tags/virtualization/</loc>
+    <lastmod>2025-12-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.uk/tags/vmware/</loc>
+    <lastmod>2025-12-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.uk/tags/linux/</loc>
+    <lastmod>2025-12-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.uk/tags/microsoft-word/</loc>
+    <lastmod>2025-12-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.uk/tags/office/</loc>
+    <lastmod>2025-12-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.uk/tags/problem-solving/</loc>
+    <lastmod>2025-12-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.uk/tags/bug-fix/</loc>
+    <lastmod>2025-12-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
   
   <url>
@@ -192,13 +283,6 @@
   
   <url>
     <loc>https://blog.rimuru.uk/categories/troubleshooting/</loc>
-    <lastmod>2025-12-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rimuru.uk/categories/tech/</loc>
     <lastmod>2025-12-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
