@@ -1,13 +1,16 @@
 ---
 title: 天际线2 常见BUG解决方法汇总
-date: 2025-12-09 09:55:14
-description: Cities Skylines 2 常见 BUG 解决方法汇总，包括邮局不出车等问题的临时解决方案。
+date: 2025-12-09T09:55:14.000Z
+description: 本文汇总了《城市：天际线2》(Cities Skylines 2) 中的常见BUG及解决方法，重点针对邮局不出车、信件堆积等物流系统问题提供了实用的解决方案。通过建立分拣中心等策略，帮助玩家优化城市运行效率，解决游戏过程中的逻辑故障，是天际线2玩家必备的故障排除指南。
 categories:
   - 游戏
 tags:
-  - 天际线2
   - Cities Skylines 2
   - BUG修复
+  - 游戏攻略
+  - 天际线2
+  - 城市建设
+  - 游戏优化
 cover: cover.png
 ---
 ## 邮局不出车

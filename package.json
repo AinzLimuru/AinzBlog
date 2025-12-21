@@ -6,7 +6,11 @@
     "build": "hexo generate",
     "clean": "hexo clean",
     "deploy": "hexo deploy",
-    "server": "hexo server"
+    "server": "hexo server",
+    "generate-metadata": "node tools/generate_metadata.js",
+    "generate-metadata:all": "node tools/generate_metadata.js --all",
+    "generate-metadata:dry": "node tools/generate_metadata.js --all --dry-run",
+    "sync-tags": "npx hexo sync-tags"
   },
   "hexo": {
     "version": "8.1.1"

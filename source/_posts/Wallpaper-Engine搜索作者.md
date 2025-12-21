@@ -1,16 +1,19 @@
 ---
 title: Wallpaper Engine 搜索作者教程
-date: 2025-12-10 22:24:09
-description: 详细教程：如何在 Wallpaper Engine 创意工坊中通过作者名称找到其所有作品，包括通过 Steam ID 构建创意工坊链接的方法。
+date: 2025-12-10T22:24:09.000Z
+description: Wallpaper Engine不支持直接根据名称搜索作者？本教程手把手教你如何通过作者的Steam ID或用户搜索功能，快速构建并访问特定作者的创意工坊主页。涵盖从已知壁纸查找、Steam用户搜索到链接构建的详细步骤，助你轻松获取心仪作者的所有动态壁纸资源。
 categories:
   - 技术分享
-tags: 
+tags:
   - Wallpaper Engine
   - Steam
   - 教程
+  - 问题解决
+  - 创意工坊
+  - Steam ID
+  - 壁纸搜索
 cover: cover.jpg
 ---
-
 ## 前言
 
 Wallpaper Engine 本身并不支持根据名称直接搜索作者，但我们可以通过作者的 Steam 账号编号来访问其创意工坊主页。本文将介绍如何通过作者名称找到其创意工坊。

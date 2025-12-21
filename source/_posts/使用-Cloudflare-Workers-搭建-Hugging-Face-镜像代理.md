@@ -1,15 +1,20 @@
 ---
 title: 使用 Cloudflare Workers 搭建 Hugging Face 镜像代理
-date: 2025-12-14 21:04:21
-description: 通过 Cloudflare Workers 搭建 Hugging Face 反向代理，解决国内访问速度慢、模型下载超时等问题，支持主站代理和 CDN 资源映射。
+date: 2025-12-14T21:04:21.000Z
+description: 本文详细介绍了如何使用 Cloudflare Workers/Pages 搭建 HuggingfaceProxy 镜像代理。通过该开源项目，开发者可以利用 Cloudflare 全球边缘网络解决 Hugging Face 访问缓慢及模型下载失败的问题。文章涵盖了核心特性、智能 CDN 映射原理、详细的部署步骤以及如何通过环境变量配置加速，是优化 AI 开发环境的实用技术教程。
 tags:
   - Cloudflare
   - Hugging Face
+  - 博客教程
+  - 教程
+  - 问题解决
+  - 反向代理
+  - Serverless
+  - AI工具
 categories:
   - 技术分享
 cover: cover.png
 ---
-
 # 使用 Cloudflare Workers 搭建 Hugging Face 镜像代理
 
 在进行 AI 模型开发和下载时，Hugging Face 是我们绕不开的宝库。然而，由于网络环境的复杂性，直接访问 `huggingface.co` 及其 CDN 资源（如模型权重文件的下载）有时会遇到速度缓慢甚至连接失败的问题。

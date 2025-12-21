@@ -6,6 +6,7 @@ yarn.lock
 package-lock.json
 node_modules/
 .vscode
+.env
 
 # Ignore optional external libraries
 source/lib/*
