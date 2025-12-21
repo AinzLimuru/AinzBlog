@@ -1,9 +1,13 @@
 ---
 title: 虚拟机硬盘VMDK扩容和缩容(硬盘空间、分区、文件系统)
 date: 2025-12-04 16:17:34
+description: 详细讲解 VMware VMDK 虚拟硬盘的扩容和缩容操作，包括硬盘空间、GPT 分区和 EXT4 文件系统的完整操作步骤。
 categories:
   - 技术分享
-tags: 虚拟机
+tags:
+  - 虚拟机
+  - VMware
+  - Linux
 cover: cover.png
 ---
 本教程所使用的分区格式为GPT，文件系统为EXT4。LMV的分区扩容方式与GPT方式不同。

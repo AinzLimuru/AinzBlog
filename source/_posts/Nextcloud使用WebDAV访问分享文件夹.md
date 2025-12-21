@@ -1,6 +1,7 @@
 ---
 title: Nextcloud使用WebDAV访问分享文件夹
 date: 2025-12-21 21:22:27
+description: 介绍如何通过 WebDAV 协议访问 Nextcloud 分享文件夹，包括 URL 格式、用户名密码设置及 Windows 映射网络驱动器方法。
 tags: 
   - Nextcloud
   - WebDAV

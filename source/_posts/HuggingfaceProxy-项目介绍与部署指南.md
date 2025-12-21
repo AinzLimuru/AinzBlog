@@ -1,11 +1,12 @@
 ---
 title: HuggingfaceProxy：Hugging Face 反向代理加速方案
 date: 2025-12-17 10:00:00
+description: HuggingfaceProxy 开源项目介绍，基于 Cloudflare Workers 的轻量级 Hugging Face 反向代理，100 行代码实现访问加速。
 tags:
   - Cloudflare
   - Hugging Face
 categories:
-  - tech
+  - 技术分享
 cover: cover.png
 ---
 

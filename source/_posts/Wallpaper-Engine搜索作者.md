@@ -1,6 +1,7 @@
 ---
 title: Wallpaper Engine 搜索作者教程
 date: 2025-12-10 22:24:09
+description: 详细教程：如何在 Wallpaper Engine 创意工坊中通过作者名称找到其所有作品，包括通过 Steam ID 构建创意工坊链接的方法。
 categories:
   - 技术分享
 tags: 

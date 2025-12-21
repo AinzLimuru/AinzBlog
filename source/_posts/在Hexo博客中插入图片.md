@@ -1,8 +1,13 @@
 ---
 title: 在Hexo博客中插入图片
 date: 2025-12-04 15:53:49
+description: Hexo 博客插入图片的两种方法：使用 source/images 目录或 post_asset_folder 功能，并解决图片加载失败问题。
 categories:
   - Hexo
+tags:
+  - Hexo
+  - 博客教程
+  - Markdown
 cover: cover.png
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: 使用 Cloudflare Workers 搭建 Hugging Face 镜像代理
 date: 2025-12-14 21:04:21
+description: 通过 Cloudflare Workers 搭建 Hugging Face 反向代理，解决国内访问速度慢、模型下载超时等问题，支持主站代理和 CDN 资源映射。
 tags:
   - Cloudflare
   - Hugging Face

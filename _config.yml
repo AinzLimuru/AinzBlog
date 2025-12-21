@@ -76,9 +76,21 @@ category_map:
   技术分享: tech
   Hexo: hexo
   游戏: gaming
-tag_map:  Nextcloud: nextcloud
+tag_map:
+  JetBrains: jetbrains
+  学生许可: student-license
+  博客教程: blog-tutorial
+  Markdown: markdown
+  Cities Skylines 2: cities-skylines-2
+  BUG修复: bug-fix
+  游戏攻略: game-guide
+  VMware: vmware
+  Linux: linux
+  Microsoft Word: microsoft-word
+  Office: office
+  问题解决: problem-solving
+  Nextcloud: nextcloud
   WebDAV: webdav
-
   天际线2: cities-skylines-2
   虚拟机: virtualization
   Wallpaper Engine: wallpaper-engine
