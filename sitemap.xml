@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.rimuru.uk/terms/</loc>
+    
+    <lastmod>2025-12-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.rimuru.uk/privacy/</loc>
     
     <lastmod>2025-12-24</lastmod>
@@ -20,7 +29,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rimuru.uk/terms/</loc>
+    <loc>https://blog.rimuru.uk/categories/</loc>
     
     <lastmod>2025-12-24</lastmod>
     
@@ -30,15 +39,6 @@
   
   <url>
     <loc>https://blog.rimuru.uk/about/</loc>
-    
-    <lastmod>2025-12-24</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rimuru.uk/categories/</loc>
     
     <lastmod>2025-12-24</lastmod>
     
@@ -74,7 +74,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rimuru.uk/2025/12/10/Wallpaper-Engine%E6%90%9C%E7%B4%A2%E4%BD%9C%E8%80%85/</loc>
+    <loc>https://blog.rimuru.uk/2025/12/21/Nextcloud%E4%BD%BF%E7%94%A8WebDAV%E8%AE%BF%E9%97%AE%E5%88%86%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9/</loc>
     
     <lastmod>2025-12-21</lastmod>
     
@@ -83,7 +83,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rimuru.uk/2025/12/21/Nextcloud%E4%BD%BF%E7%94%A8WebDAV%E8%AE%BF%E9%97%AE%E5%88%86%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9/</loc>
+    <loc>https://blog.rimuru.uk/2025/12/10/Wallpaper-Engine%E6%90%9C%E7%B4%A2%E4%BD%9C%E8%80%85/</loc>
     
     <lastmod>2025-12-21</lastmod>
     
@@ -101,7 +101,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rimuru.uk/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%B8%B8%E8%A7%81BUG%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E6%B1%87%E6%80%BB/</loc>
+    <loc>https://blog.rimuru.uk/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%9F%8E%E5%B8%82%E8%A7%84%E5%88%92%E6%8A%80%E5%B7%A7%E6%8C%87%E5%8D%97/</loc>
     
     <lastmod>2025-12-21</lastmod>
     
@@ -110,7 +110,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rimuru.uk/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%9F%8E%E5%B8%82%E8%A7%84%E5%88%92%E6%8A%80%E5%B7%A7%E6%8C%87%E5%8D%97/</loc>
+    <loc>https://blog.rimuru.uk/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%B8%B8%E8%A7%81BUG%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E6%B1%87%E6%80%BB/</loc>
     
     <lastmod>2025-12-21</lastmod>
     
@@ -216,41 +216,6 @@
   </url>
   
   <url>
-    <loc>https://blog.rimuru.uk/tags/wallpaper-engine/</loc>
-    <lastmod>2025-12-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rimuru.uk/tags/steam/</loc>
-    <lastmod>2025-12-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rimuru.uk/tags/workshop/</loc>
-    <lastmod>2025-12-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rimuru.uk/tags/steam-id/</loc>
-    <lastmod>2025-12-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rimuru.uk/tags/wallpaper-search/</loc>
-    <lastmod>2025-12-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.rimuru.uk/tags/nextcloud/</loc>
     <lastmod>2025-12-24</lastmod>
     <changefreq>weekly</changefreq>
@@ -280,6 +245,41 @@
   
   <url>
     <loc>https://blog.rimuru.uk/tags/windows-11/</loc>
+    <lastmod>2025-12-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.uk/tags/wallpaper-engine/</loc>
+    <lastmod>2025-12-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.uk/tags/steam/</loc>
+    <lastmod>2025-12-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.uk/tags/workshop/</loc>
+    <lastmod>2025-12-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.uk/tags/steam-id/</loc>
+    <lastmod>2025-12-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.uk/tags/wallpaper-search/</loc>
     <lastmod>2025-12-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -342,7 +342,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rimuru.uk/tags/bug-fix/</loc>
+    <loc>https://blog.rimuru.uk/tags/cities-skylines-2/</loc>
     <lastmod>2025-12-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -356,7 +356,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rimuru.uk/tags/cities-skylines-2/</loc>
+    <loc>https://blog.rimuru.uk/tags/traffic-planning/</loc>
     <lastmod>2025-12-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -370,21 +370,21 @@
   </url>
   
   <url>
-    <loc>https://blog.rimuru.uk/tags/game-optimization/</loc>
-    <lastmod>2025-12-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rimuru.uk/tags/traffic-planning/</loc>
-    <lastmod>2025-12-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.rimuru.uk/tags/logistics-optimization/</loc>
+    <lastmod>2025-12-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.uk/tags/bug-fix/</loc>
+    <lastmod>2025-12-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.uk/tags/game-optimization/</loc>
     <lastmod>2025-12-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
