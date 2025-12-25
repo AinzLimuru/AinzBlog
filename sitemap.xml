@@ -110,7 +110,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rimuru.uk/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/</loc>
+    <loc>https://blog.rimuru.uk/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%B8%B8%E8%A7%81BUG%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E6%B1%87%E6%80%BB/</loc>
     
     <lastmod>2025-12-21</lastmod>
     
@@ -128,7 +128,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rimuru.uk/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%B8%B8%E8%A7%81BUG%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E6%B1%87%E6%80%BB/</loc>
+    <loc>https://blog.rimuru.uk/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/</loc>
     
     <lastmod>2025-12-21</lastmod>
     
@@ -251,20 +251,6 @@
   </url>
   
   <url>
-    <loc>https://blog.rimuru.uk/tags/serverless/</loc>
-    <lastmod>2025-12-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rimuru.uk/tags/ai-tools/</loc>
-    <lastmod>2025-12-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.rimuru.uk/tags/wallpaper-engine/</loc>
     <lastmod>2025-12-25</lastmod>
     <changefreq>weekly</changefreq>
@@ -294,6 +280,20 @@
   
   <url>
     <loc>https://blog.rimuru.uk/tags/wallpaper-search/</loc>
+    <lastmod>2025-12-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.uk/tags/serverless/</loc>
+    <lastmod>2025-12-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.uk/tags/ai-tools/</loc>
     <lastmod>2025-12-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -377,35 +377,14 @@
   </url>
   
   <url>
-    <loc>https://blog.rimuru.uk/tags/microsoft-word/</loc>
+    <loc>https://blog.rimuru.uk/tags/bug-fix/</loc>
     <lastmod>2025-12-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.rimuru.uk/tags/office/</loc>
-    <lastmod>2025-12-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rimuru.uk/tags/word-tips/</loc>
-    <lastmod>2025-12-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rimuru.uk/tags/typography-error/</loc>
-    <lastmod>2025-12-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rimuru.uk/tags/the-caption-is-incorrect/</loc>
+    <loc>https://blog.rimuru.uk/tags/game-optimization/</loc>
     <lastmod>2025-12-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -454,14 +433,35 @@
   </url>
   
   <url>
-    <loc>https://blog.rimuru.uk/tags/bug-fix/</loc>
+    <loc>https://blog.rimuru.uk/tags/microsoft-word/</loc>
     <lastmod>2025-12-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.rimuru.uk/tags/game-optimization/</loc>
+    <loc>https://blog.rimuru.uk/tags/office/</loc>
+    <lastmod>2025-12-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.uk/tags/word-tips/</loc>
+    <lastmod>2025-12-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.uk/tags/typography-error/</loc>
+    <lastmod>2025-12-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.uk/tags/the-caption-is-incorrect/</loc>
     <lastmod>2025-12-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
