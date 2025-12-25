@@ -5,6 +5,9 @@
   <meta name="google-adsense-account" content="ca-pub-9760626627924711">
   <!-- 元数据 -->
   <meta charset="utf-8">
+  <!-- Preconnect hints for faster resource loading -->
+  <link rel="preconnect" href="https://cdn.rimuru.uk" crossorigin>
+  <link rel="dns-prefetch" href="https://cdn.rimuru.uk">
   
     <link rel="icon" href="/cdn-cgi/image/format=auto,quality=85,fit=contain,width=128,height=128/images/favicon.png">
   
@@ -53,6 +56,12 @@
   
   <!-- 自定义站点横幅和背景 -->
   <style>
+    /* Font-display swap for FontAwesome to prevent invisible text during loading */
+    @font-face {
+      font-family: 'FontAwesome';
+      src: local('FontAwesome');
+      font-display: swap;
+    }
     
       .kratos-cover.kratos-cover-2 {
         background-image: url('');

@@ -5,6 +5,9 @@
   <meta name="google-adsense-account" content="ca-pub-9760626627924711">
   <!-- 元数据 -->
   <meta charset="utf-8">
+  <!-- Preconnect hints for faster resource loading -->
+  <link rel="preconnect" href="https://cdn.rimuru.uk" crossorigin>
+  <link rel="dns-prefetch" href="https://cdn.rimuru.uk">
   
     <link rel="icon" href="/cdn-cgi/image/format=auto,quality=85,fit=contain,width=128,height=128/images/favicon.png">
   
@@ -55,6 +58,12 @@
   
   <!-- 自定义站点横幅和背景 -->
   <style>
+    /* Font-display swap for FontAwesome to prevent invisible text during loading */
+    @font-face {
+      font-family: 'FontAwesome';
+      src: local('FontAwesome');
+      font-display: swap;
+    }
     
       .kratos-cover.kratos-cover-2 {
         background-image: url('');
@@ -163,6 +172,7 @@
 
 
 
+
     
     
         <article class="kratos-hentry clearfix" itemscope itemtype="https://schema.org/Article">
@@ -173,7 +183,10 @@
             
                 <div class="kratos-entry-thumb">
                     <a href="/2025/12/21/Nextcloud%E4%BD%BF%E7%94%A8WebDAV%E8%AE%BF%E9%97%AE%E5%88%86%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9/">
-                        <img class="kratos-entry-thumb-img" src="/cdn-cgi/image/format=auto,quality=80,fit=scale-down,width=800/2025/12/21/Nextcloud%E4%BD%BF%E7%94%A8WebDAV%E8%AE%BF%E9%97%AE%E5%88%86%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9/cover.png" alt="Nextcloud使用WebDAV访问分享文件夹" loading="lazy" width="770" height="380" decoding="async">
+                        
+                        
+                        <img class="kratos-entry-thumb-img" src="/cdn-cgi/image/format=auto,quality=80,fit=scale-down,width=800/2025/12/21/Nextcloud%E4%BD%BF%E7%94%A8WebDAV%E8%AE%BF%E9%97%AE%E5%88%86%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9/cover.png" alt="Nextcloud使用WebDAV访问分享文件夹" fetchpriority="high" width="770" height="380" decoding="async">
+                        
                     </a>
                 </div>
             
@@ -211,6 +224,7 @@
         </footer>
     </div>
 </article>
+    
     
 
 

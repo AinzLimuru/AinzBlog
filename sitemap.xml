@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.rimuru.uk/privacy/</loc>
+    <loc>https://blog.rimuru.uk/terms/</loc>
     
     <lastmod>2025-12-25</lastmod>
     
@@ -20,7 +20,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rimuru.uk/terms/</loc>
+    <loc>https://blog.rimuru.uk/privacy/</loc>
     
     <lastmod>2025-12-25</lastmod>
     
@@ -251,6 +251,20 @@
   </url>
   
   <url>
+    <loc>https://blog.rimuru.uk/tags/serverless/</loc>
+    <lastmod>2025-12-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.uk/tags/ai-tools/</loc>
+    <lastmod>2025-12-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.rimuru.uk/tags/wallpaper-engine/</loc>
     <lastmod>2025-12-25</lastmod>
     <changefreq>weekly</changefreq>
@@ -280,20 +294,6 @@
   
   <url>
     <loc>https://blog.rimuru.uk/tags/wallpaper-search/</loc>
-    <lastmod>2025-12-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rimuru.uk/tags/serverless/</loc>
-    <lastmod>2025-12-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rimuru.uk/tags/ai-tools/</loc>
     <lastmod>2025-12-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

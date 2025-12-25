@@ -5,6 +5,9 @@
   <meta name="google-adsense-account" content="ca-pub-9760626627924711">
   <!-- 元数据 -->
   <meta charset="utf-8">
+  <!-- Preconnect hints for faster resource loading -->
+  <link rel="preconnect" href="https://cdn.rimuru.uk" crossorigin>
+  <link rel="dns-prefetch" href="https://cdn.rimuru.uk">
   
     <link rel="icon" href="/cdn-cgi/image/format=auto,quality=85,fit=contain,width=128,height=128/images/favicon.png">
   
@@ -55,6 +58,12 @@
   
   <!-- 自定义站点横幅和背景 -->
   <style>
+    /* Font-display swap for FontAwesome to prevent invisible text during loading */
+    @font-face {
+      font-family: 'FontAwesome';
+      src: local('FontAwesome');
+      font-display: swap;
+    }
     
       .kratos-cover.kratos-cover-2 {
         background-image: url('');
@@ -163,6 +172,7 @@
 
 
 
+
     
     
         <article class="kratos-hentry clearfix" itemscope itemtype="https://schema.org/Article">
@@ -173,7 +183,10 @@
             
                 <div class="kratos-entry-thumb">
                     <a href="/2025/12/04/JetBrains%E5%AD%A6%E7%94%9F%E8%AE%B8%E5%8F%AF%E8%AF%81%E7%BB%AD%E8%AE%A2%E5%A4%B1%E8%B4%A5%E5%A4%84%E7%90%86/">
-                        <img class="kratos-entry-thumb-img" src="/cdn-cgi/image/format=auto,quality=80,fit=scale-down,width=800/2025/12/04/JetBrains%E5%AD%A6%E7%94%9F%E8%AE%B8%E5%8F%AF%E8%AF%81%E7%BB%AD%E8%AE%A2%E5%A4%B1%E8%B4%A5%E5%A4%84%E7%90%86/cover.png" alt="JetBrains学生许可证续订失败处理" loading="lazy" width="770" height="380" decoding="async">
+                        
+                        
+                        <img class="kratos-entry-thumb-img" src="/cdn-cgi/image/format=auto,quality=80,fit=scale-down,width=800/2025/12/04/JetBrains%E5%AD%A6%E7%94%9F%E8%AE%B8%E5%8F%AF%E8%AF%81%E7%BB%AD%E8%AE%A2%E5%A4%B1%E8%B4%A5%E5%A4%84%E7%90%86/cover.png" alt="JetBrains学生许可证续订失败处理" fetchpriority="high" width="770" height="380" decoding="async">
+                        
                     </a>
                 </div>
             
@@ -216,6 +229,7 @@
         </footer>
     </div>
 </article>
+    
     
 
 
