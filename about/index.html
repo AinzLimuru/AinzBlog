@@ -42,7 +42,7 @@
 <meta property="og:description" content="👋 欢迎来到 Rimuru’s Blog你好！我是 Rimuru，一名热爱技术的博主。这个博客是我分享技术心得、解决方案和个人见解的地方。 🎯 博客内容本博客主要涵盖以下领域：  技术分享 - 编程技巧、开发工具、最佳实践 疑难杂症 - 技术问题的排查与解决方案 虚拟化技术 - VMware、Docker 等虚拟化相关内容 游戏 - 游戏攻略、优化技巧  💻 技术栈本博客使用以下技术构建：">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-12-24T22:20:00.000Z">
-<meta property="article:modified_time" content="2025-12-25T14:15:42.318Z">
+<meta property="article:modified_time" content="2025-12-25T14:21:56.451Z">
 <meta property="article:author" content="Rimuru">
 <meta property="article:tag" content="hexo, blog, tech, virtualization, programming, linux, windows">
 <meta name="twitter:card" content="summary">
@@ -52,11 +52,17 @@
   <!-- JSON-LD 结构化数据 -->
   
   <!-- 样式表文件 -->
+  <!-- 预加载关键 CSS 资源（让浏览器更早发现） -->
+  <link rel="preload" href="/css/kr-core.min.css" as="style" crossorigin>
+  <link rel="preload" href="/css/kr-theme/light.min.css" as="style" crossorigin>
   <!-- 核心样式 - 同步加载（首屏必需） -->
   <link rel="stylesheet" id="kratos-css" href="/css/kr-core.min.css" media="all"></link>
   <link rel="stylesheet" id="theme-light-css" href="/css/kr-theme/light.min.css" media="all"></link>
   <link rel="stylesheet" id="theme-dark-css" href="/css/kr-theme/dark.min.css" media="(prefers-color-scheme: dark)"></link>
-  <script src="/js/kr-theme.min.js"></script>
+  <!-- 主题切换脚本 - 内联以避免网络延迟导致的主题闪烁 -->
+  <script>
+  (()=>{const e=document.getElementById("theme-dark-css"),t="user-color-scheme",o=e=>{try{localStorage.setItem(e,arguments.length>1&&void 0!==arguments[1]?arguments[1]:void 0)}catch(e){}},c=t=>{try{localStorage.removeItem(t)}catch(e){}},n=e=>{try{return localStorage.getItem(e)}catch(e){return null}},a=()=>window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light",r={dark:!0,light:!0},s=o=>{let s=o||n(t);const i=a();document.documentElement.setAttribute("data-theme",s||i),r[s]&&s!==i||(c(t),s=null),"dark"===s?(e.setAttribute("media","all"),e.removeAttribute("disabled")):"light"===s?e.setAttribute("disabled","disabled"):(e.setAttribute("media","(prefers-color-scheme: dark)"),e.removeAttribute("disabled"))},i={dark:"light",light:"dark"},d=()=>{let e=n(t);return e=r[e]?i[e]:i[a()],o(t,e),e};s();const l=()=>{document.removeEventListener("DOMContentLoaded",l,!1),window.removeEventListener("load",l,!1),document.getElementById("theme-toggle").addEventListener("click",(()=>{s(d())}))};"complete"===document.readyState?setTimeout(l):(document.addEventListener("DOMContentLoaded",l,!1),window.addEventListener("load",l,!1))})();
+  </script>
   <!-- 非关键样式 - 异步加载（不阻塞渲染） -->
   
     <link rel="stylesheet" id="highlight-css" href="/css/highlight/highlight.js/night-eighties.min.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/css/highlight/highlight.js/night-eighties.min.css" media="all"></noscript>
@@ -202,7 +208,7 @@
             
             <div class="footer-tag clearfix">
                 <div class="pull-date">
-                    <time datetime="2025-12-25T14:15:42.318Z" itemprop="dateModified">最后编辑：2025-12-25</time>
+                    <time datetime="2025-12-25T14:21:56.451Z" itemprop="dateModified">最后编辑：2025-12-25</time>
                 </div>
             </div>
         </footer>
