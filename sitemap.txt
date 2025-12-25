@@ -1,6 +1,6 @@
-https://blog.rimuru.uk/terms/
-https://blog.rimuru.uk/tags/
 https://blog.rimuru.uk/privacy/
+https://blog.rimuru.uk/tags/
+https://blog.rimuru.uk/terms/
 https://blog.rimuru.uk/about/
 https://blog.rimuru.uk/categories/
 https://blog.rimuru.uk/2025/12/22/HuggingfaceProxy-%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D%E4%B8%8E%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8D%97/
@@ -29,13 +29,13 @@ https://blog.rimuru.uk/tags/webdav/
 https://blog.rimuru.uk/tags/network-drives/
 https://blog.rimuru.uk/tags/shared-files/
 https://blog.rimuru.uk/tags/windows-11/
-https://blog.rimuru.uk/tags/serverless/
-https://blog.rimuru.uk/tags/ai-tools/
 https://blog.rimuru.uk/tags/wallpaper-engine/
 https://blog.rimuru.uk/tags/steam/
 https://blog.rimuru.uk/tags/workshop/
 https://blog.rimuru.uk/tags/steam-id/
 https://blog.rimuru.uk/tags/wallpaper-search/
+https://blog.rimuru.uk/tags/serverless/
+https://blog.rimuru.uk/tags/ai-tools/
 https://blog.rimuru.uk/tags/blog-tutorial/
 https://blog.rimuru.uk/tags/markdown/
 https://blog.rimuru.uk/tags/hexo/
