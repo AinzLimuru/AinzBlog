@@ -1,22 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
     <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PKP8Z0FC73"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-PKP8Z0FC73');
-  </script>
-  <!-- Google AdSense -->
+  <!-- Google AdSense Account Verification (scripts moved to footer for performance) -->
   <meta name="google-adsense-account" content="ca-pub-9760626627924711">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9760626627924711" crossorigin="anonymous"></script>
   <!-- 元数据 -->
   <meta charset="utf-8">
   
-    <link rel="icon" href="/cdn-cgi/image/format=auto,quality=85,fit=scale-down/images/favicon.png">
+    <link rel="icon" href="/cdn-cgi/image/format=auto,quality=85,fit=contain,width=128,height=128/images/favicon.png">
   
   
   <title>关于 | Rimuru&#39;s Blog</title>
@@ -39,7 +29,7 @@
 <meta property="og:description" content="👋 欢迎来到 Rimuru’s Blog你好！我是 Rimuru，一名热爱技术的博主。这个博客是我分享技术心得、解决方案和个人见解的地方。 🎯 博客内容本博客主要涵盖以下领域：  技术分享 - 编程技巧、开发工具、最佳实践 疑难杂症 - 技术问题的排查与解决方案 虚拟化技术 - VMware、Docker 等虚拟化相关内容 游戏 - 游戏攻略、优化技巧  💻 技术栈本博客使用以下技术构建：">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-12-24T22:20:00.000Z">
-<meta property="article:modified_time" content="2025-12-25T11:14:28.563Z">
+<meta property="article:modified_time" content="2025-12-25T12:03:03.087Z">
 <meta property="article:author" content="Rimuru">
 <meta property="article:tag" content="hexo, blog, tech, virtualization, programming, linux, windows">
 <meta name="twitter:card" content="summary">
@@ -63,10 +53,6 @@
   
     <link rel="stylesheet" href="/vendors/viewerjs@1.11.6/dist/viewer.min.css"></link>
   
-  <!-- 不得不预先加载的一些JS文件 -->
-  
-    <script src="/vendors/qr-code-styling@1.6.0-rc.1/lib/qr-code-styling.js"></script>
-  
   <!-- 自定义站点横幅和背景 -->
   <style>
     
@@ -80,10 +66,10 @@
     
       @media(min-width:768px) {
         body.custom-background {
-          background-image: url("/cdn-cgi/image/format=auto,quality=85,fit=scale-down/images/background_light.png");
+          background-image: url("/cdn-cgi/image/format=auto,quality=80,fit=scale-down,width=1920/images/background_light.png");
         }
         html[data-theme="dark"] body.custom-background {
-          background-image: url("/cdn-cgi/image/format=auto,quality=85,fit=scale-down/images/background_dark.png");
+          background-image: url("/cdn-cgi/image/format=auto,quality=80,fit=scale-down,width=1920/images/background_dark.png");
         }
       }
     
@@ -201,7 +187,7 @@
             
             <div class="footer-tag clearfix">
                 <div class="pull-date">
-                    <time datetime="2025-12-25T11:14:28.563Z" itemprop="dateModified">最后编辑：2025-12-25</time>
+                    <time datetime="2025-12-25T12:03:03.087Z" itemprop="dateModified">最后编辑：2025-12-25</time>
                 </div>
             </div>
         </footer>
@@ -224,7 +210,7 @@
     <div class="photo-background"></div>
     <div class="photo-wrapper clearfix">
         <div class="photo-wrapper-tip text-center">
-            <img class="about-photo" src="/cdn-cgi/image/format=auto,quality=85,fit=scale-down/images/avatar.png" alt="Rimuru" loading="lazy" decoding="auto" />
+            <img class="about-photo" src="/cdn-cgi/image/format=auto,quality=85,fit=cover,width=200,height=200/images/avatar.png" alt="Rimuru" loading="lazy" decoding="auto" />
         </div>
     </div>
     <div class="textwidget">
@@ -445,6 +431,23 @@
 
 
 <script defer src="https://cdn.rimuru.uk/analytics_with_cloudflare/index.min.js" data-base-url="https://analytics.rimuru.uk"></script>
+
+<!-- Google Analytics (moved from head for performance) -->
+<script defer src="https://www.googletagmanager.com/gtag/js?id=G-PKP8Z0FC73"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-PKP8Z0FC73');
+</script>
+
+<!-- Google AdSense (moved from head for performance) -->
+<script defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9760626627924711" crossorigin="anonymous"></script>
+
+<!-- QR Code Styling (moved from head, defer loaded to reduce TBT) -->
+
+  <script defer src="/vendors/qr-code-styling@1.6.0-rc.1/lib/qr-code-styling.js"></script>
+
 
 <!-- 额外的追加注入项 -->
 
