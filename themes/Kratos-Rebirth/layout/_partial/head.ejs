@@ -93,19 +93,21 @@
   </script>
   <% } %>
   <!-- 样式表文件 -->
+  <!-- 核心样式 - 同步加载（首屏必需） -->
   <%- css_theme_cdn('css/kr-core.min.css', {id: "kratos-css", media:"all"}) %>
-  <% if (config.syntax_highlighter && theme.syntax_highlighter.theme) { %>
-    <%- css_theme_cdn(`css/highlight/${config.syntax_highlighter}/${theme.syntax_highlighter.theme}.min.css`, {id: "highlight-css", media:"all"}) %>
-  <% } %>
   <%- css_theme_cdn('css/kr-theme/light.min.css', {id: "theme-light-css", media:"all"}) %>
   <%- css_theme_cdn('css/kr-theme/dark.min.css', {id: "theme-dark-css", media:"(prefers-color-scheme: dark)"}) %>
   <%- js_theme_cdn('js/kr-theme.min.js') %>
-  <%- css_npm_cdn('font-awesome', 'css/font-awesome.min.css', {id:"fontawe-css", media:"all"}) %>
+  <!-- 非关键样式 - 异步加载（不阻塞渲染） -->
+  <% if (config.syntax_highlighter && theme.syntax_highlighter.theme) { %>
+    <%- css_theme_cdn_async(`css/highlight/${config.syntax_highlighter}/${theme.syntax_highlighter.theme}.min.css`, {id: "highlight-css", media:"all"}) %>
+  <% } %>
+  <%- css_npm_cdn_async('font-awesome', 'css/font-awesome.min.css', {id:"fontawe-css", media:"all"}) %>
   <% if (theme.pjax || theme.search.provider === "local") { %>
-    <%- css_npm_cdn('nprogress', 'nprogress.css', {id:"nprogress-css", media:"all"}) %>
+    <%- css_npm_cdn_async('nprogress', 'nprogress.css', {id:"nprogress-css", media:"all"}) %>
   <% } %>
   <% if (page.type !== '404' && theme.viewerjs) { %>
-    <%- css_npm_cdn('viewerjs', 'dist/viewer.min.css', {defer: true}) %>
+    <%- css_npm_cdn_async('viewerjs', 'dist/viewer.min.css') %>
   <% } %>
   <!-- 自定义站点横幅和背景 -->
   <style>
