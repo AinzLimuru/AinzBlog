@@ -169,6 +169,16 @@ function createImageProcessor(hexoConfig) {
       }
     );
     
+    // Transform <link> tag href attributes for image resources (favicon, apple-touch-icon, etc.)
+    // Matches: <link ... href="....(png|jpg|jpeg|gif|webp|avif|ico)" ...>
+    result = result.replace(
+      /(<link\s+[^>]*\bhref\s*=\s*["'])([^"']+\.(png|jpg|jpeg|gif|webp|avif))([^"']*["'][^>]*>)/gi,
+      (match, before, url, ext, after) => {
+        const transformedUrl = transformImageUrl(url.trim());
+        return before + transformedUrl + after;
+      }
+    );
+    
     // Transform <img> tag srcset attributes
     // Matches srcset with multiple sources
     result = result.replace(
