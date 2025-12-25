@@ -12,6 +12,7 @@
  * - Supports img tags and background images in inline styles
  * - Preserves original URLs for external images (optional)
  * - Configurable via _config.yml
+ * - Supports per-URL custom options via path_options dictionary
  * 
  * Configuration in _config.yml:
  * cloudflare_image:
@@ -21,10 +22,19 @@
  *     format: auto
  *     quality: 85
  *     fit: scale-down
+ *   path_options:  # URL-specific options (merged with defaults)
+ *     /images/favicon:
+ *       width: 128
+ *       height: 128
+ *     /images/avatar:
+ *       width: 200
+ *       height: 200
+ *     /images/background:
+ *       quality: 80
+ *       width: 1920
  *   allowed_domains:
  *     - your-domain.com
  *   exclude_paths:
- *     - /favicon
  *     - .ico
  *     - .svg
  */
@@ -66,13 +76,15 @@ function createImageProcessor(hexoConfig) {
   
   // Default configuration
   const zone = config.zone || hexoConfig.url?.replace(/^https?:\/\//, '').split('/')[0] || '';
-  const options = config.options || {
+  const defaultOptions = config.options || {
     format: 'auto',
     quality: 85,
     fit: 'scale-down',
   };
+  // Path-specific options dictionary: { '/path/pattern': { width: 200, ... } }
+  const pathOptions = config.path_options || {};
   const allowedDomains = config.allowed_domains || [zone];
-  const excludePaths = config.exclude_paths || ['/favicon', '.ico', '.svg'];
+  const excludePaths = config.exclude_paths || ['.ico', '.svg'];
 
   /**
    * Check if the URL should be excluded from transformation
@@ -108,6 +120,21 @@ function createImageProcessor(hexoConfig) {
   }
 
   /**
+   * Get custom options for a specific URL path
+   * Matches URL against path_options patterns and returns merged options
+   */
+  function getPathSpecificOptions(urlPath) {
+    // Check each path pattern in path_options
+    for (const [pattern, opts] of Object.entries(pathOptions)) {
+      // Support both exact match and pattern matching
+      if (urlPath.includes(pattern) || urlPath.toLowerCase().includes(pattern.toLowerCase())) {
+        return opts;
+      }
+    }
+    return {};
+  }
+
+  /**
    * Transform an image URL to use Cloudflare's image optimization
    */
   function transformImageUrl(originalUrl, customOptions = {}) {
@@ -115,8 +142,11 @@ function createImageProcessor(hexoConfig) {
       return originalUrl;
     }
     
-    // Merge default options with custom options
-    const mergedOptions = { ...options, ...customOptions };
+    // Get path-specific options for this URL
+    const pathSpecificOpts = getPathSpecificOptions(originalUrl);
+    
+    // Merge: defaults < path-specific < custom options (custom has highest priority)
+    const mergedOptions = { ...defaultOptions, ...pathSpecificOpts, ...customOptions };
     const optionsString = buildOptionsString(mergedOptions);
     
     let sourceImage = originalUrl;

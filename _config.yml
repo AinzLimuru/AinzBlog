@@ -169,11 +169,38 @@ cloudflare_image:
     format: auto      # Auto-select best format (WebP, AVIF, etc.)
     quality: 85       # Image quality (1-100)
     fit: scale-down   # Don't upscale images
+  # URL-specific options (merged with defaults, pattern matching)
+  # These address the large images identified by PageSpeed Insights
+  path_options:
+    # Favicon: 4.8MB -> ~10KB (128x128 is sufficient for favicons)
+    /images/favicon:
+      width: 128
+      height: 128
+      fit: contain
+    # Avatar: 1.5MB -> ~20KB (200x200 for sidebar display)
+    /images/avatar:
+      width: 200
+      height: 200
+      fit: cover
+    # Background images: 6MB+ -> ~200KB (1920px width for desktop)
+    /images/background:
+      width: 1920
+      quality: 80
+    # Default cover image
+    /images/default:
+      width: 800
+      quality: 80
+    # Article cover images (typically displayed at ~643x359)
+    cover.png:
+      width: 800
+      quality: 80
+    cover.jpg:
+      width: 800
+      quality: 80
   # Only transform images from these domains (your own domain is always included)
   allowed_domains:
     - blog.rimuru.uk
   # Paths to exclude from transformation
   exclude_paths:
-    # - /favicon
-    # - .ico
+    - .ico
     - .svg

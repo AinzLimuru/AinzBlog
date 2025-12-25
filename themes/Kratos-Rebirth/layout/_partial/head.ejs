@@ -1,16 +1,6 @@
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PKP8Z0FC73"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-PKP8Z0FC73');
-  </script>
-  <!-- Google AdSense -->
+  <!-- Google AdSense Account Verification (scripts moved to footer for performance) -->
   <meta name="google-adsense-account" content="ca-pub-9760626627924711">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9760626627924711" crossorigin="anonymous"></script>
   <!-- 元数据 -->
   <meta charset="utf-8">
   <% if (theme.image.favicon) { %>
@@ -116,10 +106,6 @@
   <% } %>
   <% if (page.type !== '404' && theme.viewerjs) { %>
     <%- css_npm_cdn('viewerjs', 'dist/viewer.min.css', {defer: true}) %>
-  <% } %>
-  <!-- 不得不预先加载的一些JS文件 -->
-  <% if (theme.share.enable || theme.donate.enable) { %>
-    <%- js_npm_cdn('qr-code-styling', 'lib/qr-code-styling.js') %>
   <% } %>
   <!-- 自定义站点横幅和背景 -->
   <style>
