@@ -1,8 +1,8 @@
 https://blog.rimuru.uk/privacy/
 https://blog.rimuru.uk/tags/
 https://blog.rimuru.uk/terms/
-https://blog.rimuru.uk/about/
 https://blog.rimuru.uk/categories/
+https://blog.rimuru.uk/about/
 https://blog.rimuru.uk/2025/12/26/Overleaf-Sharelatex-%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E6%97%A0%E9%9C%80%E9%82%AE%E7%AE%B1%E9%87%8D%E7%BD%AE%E7%AE%A1%E7%90%86%E5%91%98%E5%AF%86%E7%A0%81/
 https://blog.rimuru.uk/2025/12/22/HuggingfaceProxy-%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D%E4%B8%8E%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8D%97/
 https://blog.rimuru.uk/2025/12/14/%E4%BD%BF%E7%94%A8-Cloudflare-Workers-%E6%90%AD%E5%BB%BA-Hugging-Face-%E9%95%9C%E5%83%8F%E4%BB%A3%E7%90%86/
@@ -39,6 +39,8 @@ https://blog.rimuru.uk/tags/steam/
 https://blog.rimuru.uk/tags/workshop/
 https://blog.rimuru.uk/tags/steam-id/
 https://blog.rimuru.uk/tags/wallpaper-search/
+https://blog.rimuru.uk/tags/serverless/
+https://blog.rimuru.uk/tags/ai-tools/
 https://blog.rimuru.uk/tags/blog-tutorial/
 https://blog.rimuru.uk/tags/markdown/
 https://blog.rimuru.uk/tags/hexo/
@@ -52,8 +54,6 @@ https://blog.rimuru.uk/tags/city-build/
 https://blog.rimuru.uk/tags/logistics-optimization/
 https://blog.rimuru.uk/tags/bug-fix/
 https://blog.rimuru.uk/tags/game-optimization/
-https://blog.rimuru.uk/tags/serverless/
-https://blog.rimuru.uk/tags/ai-tools/
 https://blog.rimuru.uk/tags/virtualization/
 https://blog.rimuru.uk/tags/vmware/
 https://blog.rimuru.uk/tags/managing-disks/
