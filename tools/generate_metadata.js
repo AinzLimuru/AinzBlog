@@ -5,7 +5,7 @@
  * for blog posts using an OpenAI-compatible API.
  * 
  * Usage:
- *   node scripts/generate_metadata.js [--file <filename>] [--all] [--dry-run] [--force]
+ *   node tools/generate_metadata.js [--file <filename>] [--all] [--dry-run] [--force]
  * 
  * Options:
  *   --file <filename>  Process a specific post file
@@ -407,8 +407,6 @@ async function main() {
     console.log(`\nNew tags added: ${[...results.newTags].join(', ')}`);
     console.log('\nDon\'t forget to run sync_tags to add new tags to tag_map:');
     console.log('  npx hexo sync-tags');
-    console.log('  OR');
-    console.log('  npx hexo generate (sync_tags runs automatically)');
   }
 }
 

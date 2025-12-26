@@ -123,6 +123,9 @@ tag_map:
   Word技巧: word-tips
   排版排错: typography-error
   题注报错: the-caption-is-incorrect
+  Overleaf: overleaf
+  Docker: docker
+  ShareLaTeX: sharelatex
 # Metadata elements
 ## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
 meta_generator: true
