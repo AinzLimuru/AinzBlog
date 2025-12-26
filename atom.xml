@@ -6,7 +6,7 @@
   <link href="https://blog.rimuru.uk/atom.xml" rel="self"/>
   
   <link href="https://blog.rimuru.uk/"/>
-  <updated>2025-12-26T16:07:40.315Z</updated>
+  <updated>2025-12-26T16:08:02.419Z</updated>
   <id>https://blog.rimuru.uk/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://blog.rimuru.uk/2025/12/26/Overleaf-Sharelatex-%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E6%97%A0%E9%9C%80%E9%82%AE%E7%AE%B1%E9%87%8D%E7%BD%AE%E7%AE%A1%E7%90%86%E5%91%98%E5%AF%86%E7%A0%81/"/>
     <id>https://blog.rimuru.uk/2025/12/26/Overleaf-Sharelatex-%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E6%97%A0%E9%9C%80%E9%82%AE%E7%AE%B1%E9%87%8D%E7%BD%AE%E7%AE%A1%E7%90%86%E5%91%98%E5%AF%86%E7%A0%81/</id>
     <published>2025-12-26T23:40:39.000Z</published>
-    <updated>2025-12-26T16:07:40.315Z</updated>
+    <updated>2025-12-26T16:08:02.419Z</updated>
     
     <content type="html"><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>通过从Overleaf的日志中获取重置密码的链接并重置密码，实现无需邮箱重置管理员密码。</p><h1 id="尝试发送重置密码邮件"><a href="#尝试发送重置密码邮件" class="headerlink" title="尝试发送重置密码邮件"></a>尝试发送重置密码邮件</h1><p>在登录界面点击<code>Forgot your password?</code>，然后输入邮箱地址，点击<code>Reset password</code>。</p><h1 id="获取重置密码链接"><a href="#获取重置密码链接" class="headerlink" title="获取重置密码链接"></a>获取重置密码链接</h1><p>运行下面的语句从Overleaf的log中获取重置密码的链接：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> &lt;container_name&gt; bash -c <span class="string">&quot;cd /var/log/overleaf/ &amp;&amp; cat web.log&quot;</span> | grep -oP <span class="string">&#x27;https?://[^\\]+&#x27;</span> | grep password</span><br></pre></td></tr></table></figure><h1 id="替换域名（可选）"><a href="#替换域名（可选）" class="headerlink" title="替换域名（可选）"></a>替换域名（可选）</h1><p>在没有设置Overleaf的域名时，重置密码的链接会包含<code>localhost</code>，需要替换为实际的域名。</p><h1 id="重置密码"><a href="#重置密码" class="headerlink" title="重置密码"></a>重置密码</h1><p>打开获取到的重置密码链接，然后输入新密码，点击<code>Set new password</code>。</p>]]></content>
     
