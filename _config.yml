@@ -126,6 +126,9 @@ tag_map:
   Overleaf: overleaf
   Docker: docker
   ShareLaTeX: sharelatex
+  运维命令: om-orders
+  Kubernetes: kubernetes
+  系统监控: system-monitoring
 # Metadata elements
 ## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
 meta_generator: true
