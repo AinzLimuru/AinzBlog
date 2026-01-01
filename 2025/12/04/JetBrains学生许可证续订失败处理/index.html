@@ -41,36 +41,6 @@
   
     <link rel="alternate" href="/atom.xml" title="Rimuru's Blog" type="application/atom+xml">
   
-  <!-- JSON-LD 结构化数据 -->
-  
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": "JetBrains学生许可证续订失败处理",
-    "description": "本文详细介绍了JetBrains学生许可证续订失败的解决办法。通过Manage Account页面关联（Linked emails）新的教育邮箱并完成验证，即可快速找回并激活你的JetBrains全家桶学生授权。适用于许可证过期或无法直接续订的场景。",
-    "image": "https://blog.rimuru.uk/2025/12/04/JetBrains%E5%AD%A6%E7%94%9F%E8%AE%B8%E5%8F%AF%E8%AF%81%E7%BB%AD%E8%AE%A2%E5%A4%B1%E8%B4%A5%E5%A4%84%E7%90%86/cover.png",
-    "author": {
-      "@type": "Person",
-      "name": "Rimuru"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Rimuru's Blog",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://blog.rimuru.uk/images/avatar.png"
-      }
-    },
-    "datePublished": "2025-12-04T15:29:57.000Z",
-    "dateModified": "2025-12-21T15:30:12.000Z",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": "https://blog.rimuru.uk/2025/12/04/JetBrains%E5%AD%A6%E7%94%9F%E8%AE%B8%E5%8F%AF%E8%AF%81%E7%BB%AD%E8%AE%A2%E5%A4%B1%E8%B4%A5%E5%A4%84%E7%90%86/"
-    }
-  }
-  </script>
-  
   <!-- 样式表文件 -->
   <link rel="stylesheet" id="kratos-css" href="/css/kr-core.min.css" media="all"></link>
   
@@ -78,9 +48,7 @@
   
   <link rel="stylesheet" id="theme-light-css" href="/css/kr-theme/light.min.css" media="all"></link>
   <link rel="stylesheet" id="theme-dark-css" href="/css/kr-theme/dark.min.css" media="(prefers-color-scheme: dark)"></link>
-  <!-- 主题切换脚本 - 内联以避免网络延迟导致的主题闪烁 -->
-  <script>(()=>{(()=>{let r=document.getElementById("theme-dark-css"),d="user-color-scheme",m=(e,t)=>{try{localStorage.setItem(e,t)}catch(a){}},u=e=>{try{localStorage.removeItem(e)}catch(t){}},n=e=>{try{return localStorage.getItem(e)}catch(t){return null}},s=()=>window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light",c={dark:!0,light:!0},l=e=>{let t=e||n(d),a=s();switch(document.documentElement.setAttribute("data-theme",t||a),(!c[t]||t===a)&&(u(d),t=null),t){case"dark":r.setAttribute("media","all"),r.removeAttribute("disabled");break;case"light":r.setAttribute("disabled","disabled");break;default:r.setAttribute("media","(prefers-color-scheme: dark)"),r.removeAttribute("disabled");break}},i={dark:"light",light:"dark"},g=()=>{let e=n(d);return c[e]?e=i[e]:e=i[s()],m(d,e),e};l();let o=()=>{document.removeEventListener("DOMContentLoaded",o,!1),window.removeEventListener("load",o,!1),document.getElementById("theme-toggle").addEventListener("click",()=>{l(g())})};document.readyState==="complete"?setTimeout(o):(document.addEventListener("DOMContentLoaded",o,!1),window.addEventListener("load",o,!1))})();})();
-</script>
+  <script src="/js/kr-theme.min.js"></script>
   <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></link>
   
     <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></link>

@@ -42,36 +42,6 @@
   
     <link rel="alternate" href="/atom.xml" title="Rimuru's Blog" type="application/atom+xml">
   
-  <!-- JSON-LD 结构化数据 -->
-  
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": "Wallpaper Engine 搜索作者教程",
-    "description": "Wallpaper Engine不支持直接根据名称搜索作者？本教程手把手教你如何通过作者的Steam ID或用户搜索功能，快速构建并访问特定作者的创意工坊主页。涵盖从已知壁纸查找、Steam用户搜索到链接构建的详细步骤，助你轻松获取心仪作者的所有动态壁纸资源。",
-    "image": "https://blog.rimuru.uk/2025/12/10/Wallpaper-Engine%E6%90%9C%E7%B4%A2%E4%BD%9C%E8%80%85/cover.jpg",
-    "author": {
-      "@type": "Person",
-      "name": "Rimuru"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Rimuru's Blog",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://blog.rimuru.uk/images/avatar.png"
-      }
-    },
-    "datePublished": "2025-12-10T22:24:09.000Z",
-    "dateModified": "2025-12-21T15:30:12.000Z",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": "https://blog.rimuru.uk/2025/12/10/Wallpaper-Engine%E6%90%9C%E7%B4%A2%E4%BD%9C%E8%80%85/"
-    }
-  }
-  </script>
-  
   <!-- 样式表文件 -->
   <link rel="stylesheet" id="kratos-css" href="/css/kr-core.min.css" media="all"></link>
   
@@ -79,9 +49,7 @@
   
   <link rel="stylesheet" id="theme-light-css" href="/css/kr-theme/light.min.css" media="all"></link>
   <link rel="stylesheet" id="theme-dark-css" href="/css/kr-theme/dark.min.css" media="(prefers-color-scheme: dark)"></link>
-  <!-- 主题切换脚本 - 内联以避免网络延迟导致的主题闪烁 -->
-  <script>(()=>{(()=>{let r=document.getElementById("theme-dark-css"),d="user-color-scheme",m=(e,t)=>{try{localStorage.setItem(e,t)}catch(a){}},u=e=>{try{localStorage.removeItem(e)}catch(t){}},n=e=>{try{return localStorage.getItem(e)}catch(t){return null}},s=()=>window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light",c={dark:!0,light:!0},l=e=>{let t=e||n(d),a=s();switch(document.documentElement.setAttribute("data-theme",t||a),(!c[t]||t===a)&&(u(d),t=null),t){case"dark":r.setAttribute("media","all"),r.removeAttribute("disabled");break;case"light":r.setAttribute("disabled","disabled");break;default:r.setAttribute("media","(prefers-color-scheme: dark)"),r.removeAttribute("disabled");break}},i={dark:"light",light:"dark"},g=()=>{let e=n(d);return c[e]?e=i[e]:e=i[s()],m(d,e),e};l();let o=()=>{document.removeEventListener("DOMContentLoaded",o,!1),window.removeEventListener("load",o,!1),document.getElementById("theme-toggle").addEventListener("click",()=>{l(g())})};document.readyState==="complete"?setTimeout(o):(document.addEventListener("DOMContentLoaded",o,!1),window.addEventListener("load",o,!1))})();})();
-</script>
+  <script src="/js/kr-theme.min.js"></script>
   <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></link>
   
     <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></link>

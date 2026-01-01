@@ -32,8 +32,6 @@
   
     <link rel="alternate" href="/atom.xml" title="Rimuru's Blog" type="application/atom+xml">
   
-  <!-- JSON-LD 结构化数据 -->
-  
   <!-- 样式表文件 -->
   <link rel="stylesheet" id="kratos-css" href="/css/kr-core.min.css" media="all"></link>
   
@@ -41,9 +39,7 @@
   
   <link rel="stylesheet" id="theme-light-css" href="/css/kr-theme/light.min.css" media="all"></link>
   <link rel="stylesheet" id="theme-dark-css" href="/css/kr-theme/dark.min.css" media="(prefers-color-scheme: dark)"></link>
-  <!-- 主题切换脚本 - 内联以避免网络延迟导致的主题闪烁 -->
-  <script>(()=>{(()=>{let r=document.getElementById("theme-dark-css"),d="user-color-scheme",m=(e,t)=>{try{localStorage.setItem(e,t)}catch(a){}},u=e=>{try{localStorage.removeItem(e)}catch(t){}},n=e=>{try{return localStorage.getItem(e)}catch(t){return null}},s=()=>window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light",c={dark:!0,light:!0},l=e=>{let t=e||n(d),a=s();switch(document.documentElement.setAttribute("data-theme",t||a),(!c[t]||t===a)&&(u(d),t=null),t){case"dark":r.setAttribute("media","all"),r.removeAttribute("disabled");break;case"light":r.setAttribute("disabled","disabled");break;default:r.setAttribute("media","(prefers-color-scheme: dark)"),r.removeAttribute("disabled");break}},i={dark:"light",light:"dark"},g=()=>{let e=n(d);return c[e]?e=i[e]:e=i[s()],m(d,e),e};l();let o=()=>{document.removeEventListener("DOMContentLoaded",o,!1),window.removeEventListener("load",o,!1),document.getElementById("theme-toggle").addEventListener("click",()=>{l(g())})};document.readyState==="complete"?setTimeout(o):(document.addEventListener("DOMContentLoaded",o,!1),window.addEventListener("load",o,!1))})();})();
-</script>
+  <script src="/js/kr-theme.min.js"></script>
   <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></link>
   
     <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></link>
@@ -249,7 +245,6 @@
 
 
 
-
     
     
         <article class="kratos-hentry clearfix" itemscope itemtype="https://schema.org/Article">
@@ -260,10 +255,7 @@
             
                 <div class="kratos-entry-thumb">
                     <a href="/2025/12/22/HuggingfaceProxy-%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D%E4%B8%8E%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8D%97/">
-                        
-                        
-                        <img class="kratos-entry-thumb-img" src="/cdn-cgi/image/format=auto,quality=80,fit=scale-down,width=800/2025/12/22/HuggingfaceProxy-%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D%E4%B8%8E%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8D%97/cover.png" alt="HuggingfaceProxy：Hugging Face 反向代理加速方案" loading="lazy" width="770" height="380" decoding="async">
-                        
+                        <img class="kratos-entry-thumb-img" src="/cdn-cgi/image/format=auto,quality=80,fit=scale-down,width=800/2025/12/22/HuggingfaceProxy-%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D%E4%B8%8E%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8D%97/cover.png" alt="HuggingfaceProxy：Hugging Face 反向代理加速方案">
                     </a>
                 </div>
             
@@ -303,7 +295,6 @@ HuggingfaceProxy 是一个基于 Cloudflare Workers 的轻量级反向代理，�
     </div>
 </article>
     
-    
 
     
     
@@ -315,10 +306,7 @@ HuggingfaceProxy 是一个基于 Cloudflare Workers 的轻量级反向代理，�
             
                 <div class="kratos-entry-thumb">
                     <a href="/2025/12/14/%E4%BD%BF%E7%94%A8-Cloudflare-Workers-%E6%90%AD%E5%BB%BA-Hugging-Face-%E9%95%9C%E5%83%8F%E4%BB%A3%E7%90%86/">
-                        
-                        
-                        <img class="kratos-entry-thumb-img" src="/cdn-cgi/image/format=auto,quality=80,fit=scale-down,width=800/2025/12/14/%E4%BD%BF%E7%94%A8-Cloudflare-Workers-%E6%90%AD%E5%BB%BA-Hugging-Face-%E9%95%9C%E5%83%8F%E4%BB%A3%E7%90%86/cover.png" alt="使用 Cloudflare Workers 搭建 Hugging Face 镜像代理" loading="lazy" width="770" height="380" decoding="async">
-                        
+                        <img class="kratos-entry-thumb-img" src="/cdn-cgi/image/format=auto,quality=80,fit=scale-down,width=800/2025/12/14/%E4%BD%BF%E7%94%A8-Cloudflare-Workers-%E6%90%AD%E5%BB%BA-Hugging-Face-%E9%95%9C%E5%83%8F%E4%BB%A3%E7%90%86/cover.png" alt="使用 Cloudflare Workers 搭建 Hugging Face 镜像代理">
                     </a>
                 </div>
             
@@ -356,7 +344,6 @@ HuggingfaceProxy 是一个基于 Cloudflare Workers 的轻量级反向代理，�
         </footer>
     </div>
 </article>
-    
     
 
 
