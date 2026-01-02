@@ -32,20 +32,31 @@
   
     <link rel="alternate" href="/atom.xml" title="Rimuru's Blog" type="application/atom+xml">
   
+  <!-- 关键 CSS 预加载 -->
+  <link rel="preload" href="/css/kr-core.min.css" as="style" crossorigin>
+  <link rel="preload" href="/css/kr-theme/light.min.css" as="style" crossorigin>
+  <link rel="preload" href="/css/kr-theme/dark.min.css" as="style" crossorigin>
+
+  <!-- JSON-LD 结构化数据 -->
+  
+
   <!-- 样式表文件 -->
   <link rel="stylesheet" id="kratos-css" href="/css/kr-core.min.css" media="all"></link>
   
-    <link rel="stylesheet" id="highlight-css" href="/css/highlight/highlight.js/night-eighties.min.css" media="all"></link>
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/highlight.js/night-eighties.min.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/css/highlight/highlight.js/night-eighties.min.css"></noscript>
   
   <link rel="stylesheet" id="theme-light-css" href="/css/kr-theme/light.min.css" media="all"></link>
   <link rel="stylesheet" id="theme-dark-css" href="/css/kr-theme/dark.min.css" media="(prefers-color-scheme: dark)"></link>
-  <script src="/js/kr-theme.min.js"></script>
-  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></link>
+
+  <!-- 主题切换脚本 - 内联以避免网络延迟导致的主题闪烁 -->
+  <script>(()=>{(()=>{let r=document.getElementById("theme-dark-css"),d="user-color-scheme",m=(e,t)=>{try{localStorage.setItem(e,t)}catch(a){}},u=e=>{try{localStorage.removeItem(e)}catch(t){}},n=e=>{try{return localStorage.getItem(e)}catch(t){return null}},s=()=>window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light",c={dark:!0,light:!0},l=e=>{let t=e||n(d),a=s();switch(document.documentElement.setAttribute("data-theme",t||a),(!c[t]||t===a)&&(u(d),t=null),t){case"dark":r.setAttribute("media","all"),r.removeAttribute("disabled");break;case"light":r.setAttribute("disabled","disabled");break;default:r.setAttribute("media","(prefers-color-scheme: dark)"),r.removeAttribute("disabled");break}},i={dark:"light",light:"dark"},g=()=>{let e=n(d);return c[e]?e=i[e]:e=i[s()],m(d,e),e};l();let o=()=>{document.removeEventListener("DOMContentLoaded",o,!1),window.removeEventListener("load",o,!1),document.getElementById("theme-toggle").addEventListener("click",()=>{l(g())})};document.readyState==="complete"?setTimeout(o):(document.addEventListener("DOMContentLoaded",o,!1),window.addEventListener("load",o,!1))})();})();
+</script>
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css"></noscript>
   
-    <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></link>
+    <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/vendors/nprogress@0.2.0/nprogress.css"></noscript>
   
   
-    <link rel="stylesheet" href="/vendors/viewerjs@1.11.6/dist/viewer.min.css"></link>
+    <link rel="stylesheet" href="/vendors/viewerjs@1.11.6/dist/viewer.min.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/vendors/viewerjs@1.11.6/dist/viewer.min.css"></noscript>
   
   <!-- 不得不预先加载的一些JS文件 -->
   
@@ -245,6 +256,7 @@
 
 
 
+
     
     
         <article class="kratos-hentry clearfix" itemscope itemtype="https://schema.org/Article">
@@ -255,7 +267,10 @@
             
                 <div class="kratos-entry-thumb">
                     <a href="/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%9F%8E%E5%B8%82%E8%A7%84%E5%88%92%E6%8A%80%E5%B7%A7%E6%8C%87%E5%8D%97/">
-                        <img class="kratos-entry-thumb-img" src="/cdn-cgi/image/format=auto,quality=80,fit=scale-down,width=800/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%9F%8E%E5%B8%82%E8%A7%84%E5%88%92%E6%8A%80%E5%B7%A7%E6%8C%87%E5%8D%97/cover.png" alt="天际线2 城市规划技巧指南">
+                        
+                        
+                        <img class="kratos-entry-thumb-img" src="/cdn-cgi/image/format=auto,quality=80,fit=scale-down,width=800/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%9F%8E%E5%B8%82%E8%A7%84%E5%88%92%E6%8A%80%E5%B7%A7%E6%8C%87%E5%8D%97/cover.png" alt="天际线2 城市规划技巧指南" loading="lazy" width="770" height="380" decoding="async">
+                        
                     </a>
                 </div>
             
@@ -294,6 +309,7 @@
         </footer>
     </div>
 </article>
+    
     
 
 
