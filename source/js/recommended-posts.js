@@ -10,7 +10,8 @@
     numRecommended: 5,           // 推荐文章数量
     containerSelector: '.post-navigation', // 插入位置（在导航后面）
     fallbackSelector: '.kratos-entry-footer', // 备用插入位置
-    dataPath: '/js/posts-data.json' // 文章数据路径
+    dataBasePath: '/js/posts-data/', // 文章数据基础路径
+    indexPath: '/js/posts-data/index.json' // 索引文件路径
   };
 
   // 注入样式
@@ -177,40 +178,45 @@
     return container;
   }
 
+  // 将路径转换为数据文件名
+  function pathToDataFileName(path) {
+    return path
+      .replace(/^\/+|\/+$/g, '') // 移除首尾斜杠
+      .replace(/\//g, '-') // 替换斜杠为连字符
+      .replace(/\.html?$/, '') // 移除 .html 后缀
+      + '.json';
+  }
+
   // 渲染推荐文章列表
-  function renderPosts(container, posts) {
+  function renderPosts(container, postData, indexData) {
     const currentPath = getCurrentPath();
-    // 尝试标准化路径以匹配 JSON 中的 path (通常 JSON 中 path 不带前导斜杠)
-    // window.location.pathname 通常带前导斜杠
     const normalizedCurrentPath = currentPath.replace(/^\//, '');
 
     let recommended = [];
 
-    // 1. 尝试查找当前文章并获取预计算的推荐
-    const currentPost = posts.find(p => p.path === normalizedCurrentPath || p.path === currentPath);
-    
-    if (currentPost && currentPost.recommendations && currentPost.recommendations.length > 0) {
+    // 1. 尝试使用当前文章的预计算推荐
+    if (postData && postData.recommendations && postData.recommendations.length > 0) {
       // 从 recommendations 中取前 numRecommended - 1 个
-      const numFromRecommendations = Math.min(currentPost.recommendations.length, CONFIG.numRecommended - 1);
-      recommended = currentPost.recommendations.slice(0, numFromRecommendations);
+      const numFromRecommendations = Math.min(postData.recommendations.length, CONFIG.numRecommended - 1);
+      recommended = postData.recommendations.slice(0, numFromRecommendations);
       
-      // 已选中的路径集合
-      const selectedPaths = new Set(recommended.map(p => p.path));
-      selectedPaths.add(normalizedCurrentPath);
-      selectedPaths.add(currentPath);
-      
-      // 从所有文章中随机补齐
-      const remaining = CONFIG.numRecommended - recommended.length;
-      if (remaining > 0) {
-        const pool = posts.filter(p => !selectedPaths.has(p.path));
-        const shuffled = shuffleArray(pool);
-        const extra = shuffled.slice(0, remaining);
-        recommended = recommended.concat(extra);
+      // 从索引中随机补齐剩余位置
+      if (indexData && indexData.length > 0) {
+        const selectedPaths = new Set(recommended.map(p => p.path));
+        selectedPaths.add(normalizedCurrentPath);
+        selectedPaths.add(currentPath);
+        
+        const remaining = CONFIG.numRecommended - recommended.length;
+        if (remaining > 0) {
+          const pool = indexData.filter(p => !selectedPaths.has(p.path));
+          const shuffled = shuffleArray(pool);
+          const extra = shuffled.slice(0, remaining);
+          recommended = recommended.concat(extra);
+        }
       }
-    } else {
-      // 2. 降级方案：随机抽取
-      // 过滤掉当前文章
-      const filteredPosts = posts.filter(post => {
+    } else if (indexData && indexData.length > 0) {
+      // 2. 降级方案：从索引中随机抽取
+      const filteredPosts = indexData.filter(post => {
         const postPath = post.path.startsWith('/') ? post.path : '/' + post.path;
         return postPath !== currentPath && !currentPath.endsWith(post.path);
       });
@@ -283,19 +289,38 @@
     return false;
   }
 
-  // 加载文章数据
-  async function loadPostsData() {
+  // 加载当前文章的数据文件
+  async function loadCurrentPostData() {
     try {
       const siteRoot = window.kr?.siteRoot || '/';
-      const dataUrl = siteRoot.replace(/\/$/, '') + CONFIG.dataPath;
+      const currentPath = getCurrentPath();
+      const dataFileName = pathToDataFileName(currentPath);
+      const dataUrl = siteRoot.replace(/\/$/, '') + CONFIG.dataBasePath + dataFileName;
       
       const response = await fetch(dataUrl);
+      if (!response.ok) {
+        return null; // 文件不存在是正常情况，静默返回
+      }
+      return await response.json();
+    } catch (error) {
+      console.warn('[推荐阅读] 无法加载当前文章数据:', error);
+      return null;
+    }
+  }
+
+  // 加载索引文件（用于回退和随机推荐）
+  async function loadIndexData() {
+    try {
+      const siteRoot = window.kr?.siteRoot || '/';
+      const indexUrl = siteRoot.replace(/\/$/, '') + CONFIG.indexPath;
+      
+      const response = await fetch(indexUrl);
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}`);
       }
       return await response.json();
     } catch (error) {
-      console.warn('[推荐阅读] 无法加载文章数据:', error);
+      console.warn('[推荐阅读] 无法加载索引数据:', error);
       return null;
     }
   }
@@ -359,10 +384,15 @@
       return;
     }
     
-    // 加载数据并渲染
-    const posts = await loadPostsData();
-    if (posts && posts.length > 0) {
-      renderPosts(container, posts);
+    // 并行加载当前文章数据和索引
+    const [postData, indexData] = await Promise.all([
+      loadCurrentPostData(),
+      loadIndexData()
+    ]);
+    
+    // 渲染推荐文章
+    if (postData || (indexData && indexData.length > 0)) {
+      renderPosts(container, postData, indexData);
     } else {
       const loading = container.querySelector('.recommended-posts-loading');
       if (loading) {

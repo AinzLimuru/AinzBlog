@@ -181,7 +181,12 @@ hexo.extend.generator.register('posts-data', async function(locals) {
   }
 
   // 2. 计算相似度并生成最终数据
-  const finalData = processedPosts.map(item => {
+  const generatedFiles = [];
+  
+  // 用于存储所有文章的基本信息（用于回退/随机推荐）
+  const indexData = [];
+
+  for (const item of processedPosts) {
     const currentPost = item.post;
     const currentEmbedding = item.embedding;
     let recommendations = [];
@@ -202,8 +207,8 @@ hexo.extend.generator.register('posts-data', async function(locals) {
       recommendations = candidates;
     }
 
-    // 构建输出对象 (不包含 embedding)
-    return {
+    // 构建单篇文章的数据对象
+    const postData = {
       title: currentPost.title || '(无标题)',
       path: currentPost.path,
       date: currentPost.date.toISOString(),
@@ -211,10 +216,35 @@ hexo.extend.generator.register('posts-data', async function(locals) {
       tags: currentPost.tags?.map(tag => tag.name) || [],
       recommendations: recommendations // 包含 Top 5
     };
+
+    // 生成文件路径：将 path 转换为安全的文件名
+    // 例如 "2024/01/01/my-post/" -> "2024-01-01-my-post.json"
+    const safeFileName = currentPost.path
+      .replace(/^\/+|\/+$/g, '') // 移除首尾斜杠
+      .replace(/\//g, '-') // 替换斜杠为连字符
+      .replace(/\.html?$/, '') // 移除 .html 后缀
+      + '.json';
+
+    // 添加到生成文件列表
+    generatedFiles.push({
+      path: `js/posts-data/${safeFileName}`,
+      data: JSON.stringify(postData)
+    });
+
+    // 添加到索引（简化版，用于回退和随机推荐）
+    indexData.push({
+      title: postData.title,
+      path: postData.path,
+      date: postData.date,
+      dataFile: safeFileName // 指向单独的数据文件
+    });
+  }
+
+  // 添加索引文件
+  generatedFiles.push({
+    path: 'js/posts-data/index.json',
+    data: JSON.stringify(indexData)
   });
 
-  return {
-    path: 'js/posts-data.json',
-    data: JSON.stringify(finalData)
-  };
+  return generatedFiles;
 });

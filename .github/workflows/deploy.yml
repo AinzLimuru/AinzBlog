@@ -55,15 +55,25 @@ jobs:
           publish_dir: ./public
           publish_branch: gh-pages
 
-      - name: Commit timestamp updates
+      - name: Commit auto-generated updates
         run: |
-          if git diff --quiet; then
-            echo "No timestamp changes to commit."
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          # 添加时间戳更新（source/_posts/ 中的 updated 字段变更）
+          git add source/_posts/
+          
+          # 添加 embeddings 缓存（如果存在）
+          CACHE_FILE="embeddings_store/cache.json"
+          if [ -f "$CACHE_FILE" ]; then
+            git add "$CACHE_FILE"
+          fi
+          
+          # 检查是否有需要提交的变更
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
           else
-            git config --local user.email "github-actions[bot]@users.noreply.github.com"
-            git config --local user.name "github-actions[bot]"
-            git add -A
-            git commit -m "chore: auto update post timestamps [skip ci]"
+            git commit -m "chore: auto update timestamps and embeddings cache [skip ci]"
             git push
-            echo "Timestamp updates committed."
+            echo "Auto-generated updates committed."
           fi
