@@ -129,6 +129,9 @@ tag_map:
   运维命令: om-orders
   Kubernetes: kubernetes
   系统监控: system-monitoring
+  JavaScript: javascript
+  OpenAI: openai
+  博客优化: blog-optimization
 # Metadata elements
 ## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
 meta_generator: true
