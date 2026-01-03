@@ -1853,6 +1853,63 @@ hexo clean && hexo generate
 
 
 
+### 4. GitHub Actions 自动化配置（可选）
+
+
+
+如果你使用 GitHub Actions 进行自动部署，可以按以下步骤配置：
+
+
+
+#### 配置 Repository Secrets
+
+在 GitHub 仓库的 **Settings → Secrets and variables → Actions** 中添加以下 Secrets：
+
+- `OPENAI_API_KEY`：OpenAI API 密钥
+- `OPENAI_BASE_URL`：API 端点（可选，默认为 `https://api.openai.com/v1`）
+- `OPENAI_EMBEDDING_MODEL`：Embedding 模型名称
+
+
+
+#### 更新 Workflow 文件
+
+在你的 GitHub Actions workflow 文件中，为构建步骤添加环境变量：
+
+```yaml
+- name: Build Hexo
+  env:
+    OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+    OPENAI_BASE_URL: ${{ secrets.OPENAI_BASE_URL }}
+    OPENAI_EMBEDDING_MODEL: ${{ secrets.OPENAI_EMBEDDING_MODEL }}
+  run: |
+    npx hexo clean
+    npx hexo generate
+```
+
+
+
+#### 缓存持久化（推荐）
+
+为了避免每次构建都重新计算所有 Embedding，建议在 workflow 中添加缓存提交步骤：
+
+```yaml
+- name: Commit embedding cache
+  run: |
+    git config --local user.email "github-actions[bot]@users.noreply.github.com"
+    git config --local user.name "github-actions[bot]"
+    git add embeddings_store/cache.json || true
+    git diff --staged --quiet || git commit -m "chore: update embedding cache [skip ci]"
+    git push || true
+```
+
+> **提示**：`[skip ci]` 标记可以避免缓存提交触发新的构建。
+
+
+### Embedding模型选择（仅供参考）
+
+推荐OpenRouter的[qwen/qwen3-embedding-8b](https://openrouter.ai/models/qwen/qwen3-embedding-8b)模型，1M输入仅需$0.01，性价比极高。
+
+
 ## 效果展示
 
 
