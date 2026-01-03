@@ -6,5 +6,9 @@
 friends:
   - title: "未知文明"
     description: "专注科技前沿资讯与电脑系统相关技术的专业平台。每日科技前言领域最新动态，同时分享免费实用软件、开源工具、电脑系统疑难杂症解决教程及统优化等实用方案，帮助用户快速攻克技术难题，紧跟科技浪潮。"
-    image: "/images/friend_link/xwenming.png"
+    image: "/images/friend_link/未知文明.png"
     link: "https://www.xwenming.com/"
+  - title: "龙星划空"
+    description: "人生近看是悲剧，远看是喜剧"
+    image: "/images/friend_link/龙星划空.png"
+    link: "https://blog.245179.xyz/"
