@@ -1,6 +1,7 @@
 ---
 title: 解决高延迟场景中OpenVPN速度缓慢的问题
 date: 2026-01-03T22:08:11.000Z
+updated: 2026-01-03T15:07:31.000Z
 cover: cover.png
 tags:
   - 问题解决
