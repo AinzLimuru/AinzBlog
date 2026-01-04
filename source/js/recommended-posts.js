@@ -25,6 +25,7 @@
         margin: 20px 0;
         box-shadow: 0 2px 12px rgba(0,0,0,0.08);
         transition: all 0.3s ease;
+        overflow: hidden;
       }
       
       .recommended-posts:hover {
@@ -55,12 +56,17 @@
         margin: 0;
         display: grid;
         gap: 10px;
+        overflow: hidden;
+        width: 100%;
       }
       
       .recommended-posts-item {
         position: relative;
         padding-left: 0;
         transition: all 0.2s ease;
+        overflow: hidden;
+        min-width: 0;
+        max-width: 100%;
       }
       
       .recommended-posts-item a {
@@ -74,6 +80,8 @@
         text-decoration: none;
         transition: all 0.25s ease;
         border-left: 3px solid transparent;
+        overflow: hidden;
+        min-width: 0;
       }
       
       .recommended-posts-item a:hover {
@@ -95,6 +103,7 @@
       
       .recommended-posts-item .post-title-text {
         flex: 1;
+        min-width: 0;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -128,6 +137,11 @@
         
         .recommended-posts-item a {
           padding: 10px 12px;
+          gap: 8px;
+        }
+        
+        .recommended-posts-item .post-title-text {
+          font-size: 0.9rem;
         }
         
         .recommended-posts-item .post-date {
@@ -261,6 +275,36 @@
     });
     
     container.appendChild(list);
+    
+    // 调整标题字体大小以适应容器
+    adjustTitleFontSizes(container);
+  }
+
+  // 调整标题字体大小
+  function adjustTitleFontSizes(container) {
+    const titleElements = container.querySelectorAll('.post-title-text');
+    const minFontSize = 0.75; // rem，最小字体
+    const defaultFontSize = 1; // rem，默认字体
+    const step = 0.05; // 每次缩小的步长
+
+    titleElements.forEach(titleEl => {
+      // 保持 overflow hidden 用于省略号
+      titleEl.style.overflow = 'hidden';
+      titleEl.style.textOverflow = 'ellipsis';
+      titleEl.style.whiteSpace = 'nowrap';
+      
+      // 重置为默认字体
+      titleEl.style.fontSize = defaultFontSize + 'rem';
+      
+      let currentSize = defaultFontSize;
+      
+      // 使用 scrollWidth 和 clientWidth 比较检测溢出
+      // 在 overflow: hidden 下，scrollWidth 仍然会返回内容的完整宽度
+      while (titleEl.scrollWidth > titleEl.clientWidth && currentSize > minFontSize) {
+        currentSize -= step;
+        titleEl.style.fontSize = currentSize.toFixed(2) + 'rem';
+      }
+    });
   }
 
   // 插入到页面
@@ -393,6 +437,15 @@
     // 渲染推荐文章
     if (postData || (indexData && indexData.length > 0)) {
       renderPosts(container, postData, indexData);
+      
+      // 监听窗口大小变化，重新调整字体
+      let resizeTimeout;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+          adjustTitleFontSizes(container);
+        }, 100);
+      });
     } else {
       const loading = container.querySelector('.recommended-posts-loading');
       if (loading) {

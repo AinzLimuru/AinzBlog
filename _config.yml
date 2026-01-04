@@ -132,6 +132,9 @@ tag_map:
   JavaScript: javascript
   OpenAI: openai
   博客优化: blog-optimization
+  OpenVPN: openvpn
+  网络优化: network-optimization
+  BBR: bbr
 # Metadata elements
 ## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
 meta_generator: true
