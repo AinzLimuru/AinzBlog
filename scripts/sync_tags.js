@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const https = require('https');
 const yaml = require('js-yaml');
 
 // Check if a string contains Chinese characters
@@ -7,12 +8,28 @@ function containsChinese(str) {
   return /[\u4e00-\u9fff]/.test(str);
 }
 
+// Make HTTPS request (promisified)
+function httpsGet(url) {
+  return new Promise((resolve, reject) => {
+    https.get(url, (res) => {
+      let data = '';
+      res.on('data', (chunk) => { data += chunk; });
+      res.on('end', () => {
+        try {
+          resolve(JSON.parse(data));
+        } catch (e) {
+          reject(new Error('Failed to parse JSON response'));
+        }
+      });
+    }).on('error', reject);
+  });
+}
+
 // Translate Chinese text to English using MyMemory API
 async function translateToEnglish(text, hexoLog) {
   try {
     const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=zh-CN|en`;
-    const response = await fetch(url);
-    const data = await response.json();
+    const data = await httpsGet(url);
     
     if (data.responseStatus === 200 && data.responseData && data.responseData.translatedText) {
       const translated = data.responseData.translatedText;

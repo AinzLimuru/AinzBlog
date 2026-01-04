@@ -136,8 +136,8 @@ tag_map:
   网络优化: network-optimization
   BBR: bbr
   Claude Code: claude-code
-  环境变量: 环境变量
-  代理配置: 代理配置
+  环境变量: environment-vars
+  代理配置: proxy-configuration
 # Metadata elements
 ## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
 meta_generator: true

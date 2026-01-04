@@ -25,12 +25,12 @@ description: 本文详细介绍了在 Windows 环境下为 Claude Code 配置网
 3. 输出的路径可能是`/cygdrive/c/...`，去掉`/cygdrive/c`,使用`%HOMEDRIVE%/`拼接后面的内容
 4. 在资源管理器的路径中输入修改后的内容回车，选择用记事本/VSCode打开输出目录中的`claude`文件
 5. 在`#!/bin/sh`下面追加
-`$Env:HTTP_PROXY="http://<ip>:<port>";$Env:HTTPS_PROXY="http://<ip>:<port>;"`
+`export HTTP_PROXY="http://<ip>:<port>";export HTTPS_PROXY="http://<ip>:<port>"`
 修改后的文件如下所示：
 ```bash
 #!/bin/sh
-$Env:HTTP_PROXY="http://<ip>:<port>"; # 这两行是新增的(替换为你的代理ip和端口)
-$Env:HTTPS_PROXY="http://<ip>:<port>"; # 这两行是新增的(替换为你的代理ip和端口)
+export HTTP_PROXY="http://<ip>:<port>"; # 这两行是新增的(替换为你的代理ip和端口)
+export HTTPS_PROXY="http://<ip>:<port>"; # 这两行是新增的(替换为你的代理ip和端口)
 basedir=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
 ...
 ```
