@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.rimuru.uk/privacy/</loc>
+    <loc>https://blog.rimuru.uk/terms/</loc>
     
     <lastmod>2026-01-05</lastmod>
     
@@ -11,7 +11,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rimuru.uk/terms/</loc>
+    <loc>https://blog.rimuru.uk/privacy/</loc>
     
     <lastmod>2026-01-05</lastmod>
     
@@ -29,7 +29,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rimuru.uk/about/</loc>
+    <loc>https://blog.rimuru.uk/categories/</loc>
     
     <lastmod>2026-01-05</lastmod>
     
@@ -38,7 +38,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rimuru.uk/categories/</loc>
+    <loc>https://blog.rimuru.uk/about/</loc>
     
     <lastmod>2026-01-05</lastmod>
     
@@ -173,7 +173,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rimuru.uk/2025/12/04/%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%A1%AC%E7%9B%98VMDK%E6%89%A9%E5%AE%B9%E5%92%8C%E7%BC%A9%E5%AE%B9-%E7%A1%AC%E7%9B%98%E7%A9%BA%E9%97%B4%E3%80%81%E5%88%86%E5%8C%BA%E3%80%81%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/</loc>
+    <loc>https://blog.rimuru.uk/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%B8%B8%E8%A7%81BUG%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E6%B1%87%E6%80%BB/</loc>
     
     <lastmod>2025-12-21</lastmod>
     
@@ -191,7 +191,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rimuru.uk/2025/12/09/%E5%A4%A9%E9%99%85%E7%BA%BF2-%E5%B8%B8%E8%A7%81BUG%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E6%B1%87%E6%80%BB/</loc>
+    <loc>https://blog.rimuru.uk/2025/12/04/%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%A1%AC%E7%9B%98VMDK%E6%89%A9%E5%AE%B9%E5%92%8C%E7%BC%A9%E5%AE%B9-%E7%A1%AC%E7%9B%98%E7%A9%BA%E9%97%B4%E3%80%81%E5%88%86%E5%8C%BA%E3%80%81%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/</loc>
     
     <lastmod>2025-12-21</lastmod>
     
@@ -210,6 +210,34 @@
   
   <url>
     <loc>https://blog.rimuru.uk/tags/cloudflare/</loc>
+    <lastmod>2026-01-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.uk/tags/hugging-face/</loc>
+    <lastmod>2026-01-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.uk/tags/tutorial/</loc>
+    <lastmod>2026-01-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.uk/tags/options/</loc>
+    <lastmod>2026-01-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.uk/tags/model-download/</loc>
     <lastmod>2026-01-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -265,28 +293,21 @@
   </url>
   
   <url>
-    <loc>https://blog.rimuru.uk/tags/hugging-face/</loc>
+    <loc>https://blog.rimuru.uk/tags/hexo/</loc>
     <lastmod>2026-01-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.rimuru.uk/tags/tutorial/</loc>
+    <loc>https://blog.rimuru.uk/tags/javascript/</loc>
     <lastmod>2026-01-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.rimuru.uk/tags/options/</loc>
-    <lastmod>2026-01-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rimuru.uk/tags/model-download/</loc>
+    <loc>https://blog.rimuru.uk/tags/openai/</loc>
     <lastmod>2026-01-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -363,21 +384,14 @@
   </url>
   
   <url>
-    <loc>https://blog.rimuru.uk/tags/hexo/</loc>
+    <loc>https://blog.rimuru.uk/tags/overleaf/</loc>
     <lastmod>2026-01-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.rimuru.uk/tags/javascript/</loc>
-    <lastmod>2026-01-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rimuru.uk/tags/openai/</loc>
+    <loc>https://blog.rimuru.uk/tags/sharelatex/</loc>
     <lastmod>2026-01-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -454,13 +468,6 @@
   </url>
   
   <url>
-    <loc>https://blog.rimuru.uk/tags/serverless/</loc>
-    <lastmod>2026-01-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.rimuru.uk/tags/ai-tools/</loc>
     <lastmod>2026-01-05</lastmod>
     <changefreq>weekly</changefreq>
@@ -468,14 +475,28 @@
   </url>
   
   <url>
-    <loc>https://blog.rimuru.uk/tags/overleaf/</loc>
+    <loc>https://blog.rimuru.uk/tags/claude-code/</loc>
     <lastmod>2026-01-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.rimuru.uk/tags/sharelatex/</loc>
+    <loc>https://blog.rimuru.uk/tags/environment-vars/</loc>
+    <lastmod>2026-01-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.uk/tags/proxy-configuration/</loc>
+    <lastmod>2026-01-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.uk/tags/serverless/</loc>
     <lastmod>2026-01-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -504,27 +525,6 @@
   
   <url>
     <loc>https://blog.rimuru.uk/tags/static-blog/</loc>
-    <lastmod>2026-01-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rimuru.uk/tags/claude-code/</loc>
-    <lastmod>2026-01-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rimuru.uk/tags/environment-vars/</loc>
-    <lastmod>2026-01-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rimuru.uk/tags/proxy-configuration/</loc>
     <lastmod>2026-01-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -573,28 +573,14 @@
   </url>
   
   <url>
-    <loc>https://blog.rimuru.uk/tags/virtualization/</loc>
+    <loc>https://blog.rimuru.uk/tags/bug-fix/</loc>
     <lastmod>2026-01-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.rimuru.uk/tags/vmware/</loc>
-    <lastmod>2026-01-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rimuru.uk/tags/ext4/</loc>
-    <lastmod>2026-01-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rimuru.uk/tags/partition-expansion/</loc>
+    <loc>https://blog.rimuru.uk/tags/game-optimization/</loc>
     <lastmod>2026-01-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -636,20 +622,6 @@
   </url>
   
   <url>
-    <loc>https://blog.rimuru.uk/tags/bug-fix/</loc>
-    <lastmod>2026-01-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rimuru.uk/tags/game-optimization/</loc>
-    <lastmod>2026-01-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.rimuru.uk/tags/openvpn/</loc>
     <lastmod>2026-01-05</lastmod>
     <changefreq>weekly</changefreq>
@@ -658,6 +630,34 @@
   
   <url>
     <loc>https://blog.rimuru.uk/tags/bbr/</loc>
+    <lastmod>2026-01-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.uk/tags/virtualization/</loc>
+    <lastmod>2026-01-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.uk/tags/vmware/</loc>
+    <lastmod>2026-01-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.uk/tags/ext4/</loc>
+    <lastmod>2026-01-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.uk/tags/partition-expansion/</loc>
     <lastmod>2026-01-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -673,14 +673,14 @@
   </url>
   
   <url>
-    <loc>https://blog.rimuru.uk/categories/troubleshooting/</loc>
+    <loc>https://blog.rimuru.uk/categories/%E6%8A%80%E6%9C%AF/</loc>
     <lastmod>2026-01-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.rimuru.uk/categories/%E6%8A%80%E6%9C%AF/</loc>
+    <loc>https://blog.rimuru.uk/categories/troubleshooting/</loc>
     <lastmod>2026-01-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

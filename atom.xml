@@ -6,7 +6,7 @@
   <link href="https://blog.rimuru.uk/atom.xml" rel="self"/>
   
   <link href="https://blog.rimuru.uk/"/>
-  <updated>2026-01-05T15:03:25.339Z</updated>
+  <updated>2026-01-05T15:07:03.958Z</updated>
   <id>https://blog.rimuru.uk/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://blog.rimuru.uk/2026/01/05/Cloudflare%E4%BB%A3%E7%90%86%E7%BD%91%E9%A1%B5%E5%AF%BC%E8%87%B4%E9%A1%B5%E9%9D%A2%E8%B7%B3%E8%BD%AC%E5%87%BA%E7%8E%B0503%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/"/>
     <id>https://blog.rimuru.uk/2026/01/05/Cloudflare%E4%BB%A3%E7%90%86%E7%BD%91%E9%A1%B5%E5%AF%BC%E8%87%B4%E9%A1%B5%E9%9D%A2%E8%B7%B3%E8%BD%AC%E5%87%BA%E7%8E%B0503%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</id>
     <published>2026-01-05T22:35:22.000Z</published>
-    <updated>2026-01-05T15:03:25.339Z</updated>
+    <updated>2026-01-05T15:07:03.958Z</updated>
     
     <content type="html"><![CDATA[<h2 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h2><p>不用处理</p><h2 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h2><p>Cloudflare代理网页时，如果页面跳转出现503并且对应的是prefetch的请求，那么该错误极大可能是因为Cloudflare的Speed Brain智能加速功能导致的。该加速功能会默认启用，通过在html中添加各种header来提示浏览器预加载页面，但这些加载请求不会被转发到源服务器，如果Cloudflare没有缓存相关的页面或资源，那么就会返回503错误，并伴随着一个响应头<code>cf-speculation-refused: prefetch refused: not eligible</code>。而当你回到跳转前的页面再次尝试跳转时，这个503的请求就不见了，因为Cloudflare已经缓存了这个页面，能够正常命中缓存。</p><h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>虽然这个报错不会影响到用户，但是如果执意要处理，那么可以禁用Cloudflare的Speed Brain智能加速功能。<br>入口在域名管理页面的”速度”&gt;”设置”&gt;”内容优化”</p>]]></content>
     
@@ -64,11 +64,11 @@
     
     
     
+    <category term="教程" scheme="https://blog.rimuru.uk/tags/tutorial/"/>
+    
     <category term="问题解决" scheme="https://blog.rimuru.uk/tags/problem-solving/"/>
     
     <category term="网络优化" scheme="https://blog.rimuru.uk/tags/network-optimization/"/>
-    
-    <category term="教程" scheme="https://blog.rimuru.uk/tags/tutorial/"/>
     
     <category term="Windows 11" scheme="https://blog.rimuru.uk/tags/windows-11/"/>
     
@@ -97,13 +97,13 @@
     
     
     
-    <category term="问题解决" scheme="https://blog.rimuru.uk/tags/problem-solving/"/>
-    
-    <category term="网络优化" scheme="https://blog.rimuru.uk/tags/network-optimization/"/>
-    
     <category term="教程" scheme="https://blog.rimuru.uk/tags/tutorial/"/>
     
     <category term="反向代理" scheme="https://blog.rimuru.uk/tags/options/"/>
+    
+    <category term="问题解决" scheme="https://blog.rimuru.uk/tags/problem-solving/"/>
+    
+    <category term="网络优化" scheme="https://blog.rimuru.uk/tags/network-optimization/"/>
     
     <category term="Linux" scheme="https://blog.rimuru.uk/tags/linux/"/>
     
@@ -149,7 +149,7 @@
     <link href="https://blog.rimuru.uk/2025/12/27/Linux-%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%EF%BC%9A%E9%AB%98%E9%A2%91%E8%BF%90%E7%BB%B4%E5%9C%BA%E6%99%AF%E7%9A%84%E4%B8%80%E9%94%AE%E5%91%BD%E4%BB%A4%E5%90%88%E9%9B%86/"/>
     <id>https://blog.rimuru.uk/2025/12/27/Linux-%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%EF%BC%9A%E9%AB%98%E9%A2%91%E8%BF%90%E7%BB%B4%E5%9C%BA%E6%99%AF%E7%9A%84%E4%B8%80%E9%94%AE%E5%91%BD%E4%BB%A4%E5%90%88%E9%9B%86/</id>
     <published>2025-12-27T16:45:03.000Z</published>
-    <updated>2026-01-05T15:03:25.363Z</updated>
+    <updated>2026-01-05T15:07:03.982Z</updated>
     
     <content type="html"><![CDATA[<h2 id="查看所有硬盘的SMART详细信息"><a href="#查看所有硬盘的SMART详细信息" class="headerlink" title="查看所有硬盘的SMART详细信息"></a>查看所有硬盘的SMART详细信息</h2><h3 id="依赖包安装"><a href="#依赖包安装" class="headerlink" title="依赖包安装"></a>依赖包安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install smartmontools</span><br></pre></td></tr></table></figure><h3 id="命令介绍"><a href="#命令介绍" class="headerlink" title="命令介绍"></a>命令介绍</h3><p>首先使用<code>lsblk</code>获取所有的存储设备，然后使用<code>grep</code>过滤出<code>sd</code>、<code>hd</code>、<code>nvme</code>、<code>vd</code>开头的设备，最后使用<code>xargs</code>和<code>smartctl</code>获取每个设备的SMART信息。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsblk -d -o NAME | grep -E <span class="string">&#x27;^(sd|hd|nvme|vd)&#x27;</span> | xargs -I &#123;&#125; <span class="built_in">sudo</span> smartctl -a <span class="string">&quot;/dev/&#123;&#125;&quot;</span></span><br></pre></td></tr></table></figure><h2 id="查看所有硬盘的SMART详细信息（极简输出）"><a href="#查看所有硬盘的SMART详细信息（极简输出）" class="headerlink" title="查看所有硬盘的SMART详细信息（极简输出）"></a>查看所有硬盘的SMART详细信息（极简输出）</h2><h3 id="依赖包安装-1"><a href="#依赖包安装-1" class="headerlink" title="依赖包安装"></a>依赖包安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install smartmontools</span><br></pre></td></tr></table></figure><h3 id="命令介绍-1"><a href="#命令介绍-1" class="headerlink" title="命令介绍"></a>命令介绍</h3><p>流程同上</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsblk -d -o NAME | grep -E <span class="string">&#x27;^(sd|hd|nvme|vd)&#x27;</span> | xargs -I &#123;&#125; <span class="built_in">sudo</span> smartctl -H <span class="string">&quot;/dev/&#123;&#125;&quot;</span></span><br></pre></td></tr></table></figure><h2 id="定位进程所属容器-Pod"><a href="#定位进程所属容器-Pod" class="headerlink" title="定位进程所属容器&#x2F;Pod"></a>定位进程所属容器&#x2F;Pod</h2><h3 id="依赖包安装-2"><a href="#依赖包安装-2" class="headerlink" title="依赖包安装"></a>依赖包安装</h3><p>定位pod需要crictl</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install crictl</span><br></pre></td></tr></table></figure><h3 id="命令介绍-2"><a href="#命令介绍-2" class="headerlink" title="命令介绍"></a>命令介绍</h3><h4 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h4><p>首先使用<code>cat</code>和<code>grep</code>获取进程所属的cgroup，然后使用<code>docker ps</code>和<code>grep</code>获取容器ID。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps | grep $(<span class="built_in">sudo</span> <span class="built_in">cat</span> /proc/&lt;pid&gt;/cgroup | grep -oP <span class="string">&#x27;docker-\K[a-f0-9]+&#x27;</span> | <span class="built_in">head</span> -c 12)</span><br></pre></td></tr></table></figure><h4 id="ctr-containerd"><a href="#ctr-containerd" class="headerlink" title="ctr(containerd)"></a>ctr(containerd)</h4><p>首先使用<code>cat</code>和<code>grep</code>获取进程所属的cgroup，然后选取包含pids的一行以去掉重复数据，直接从最后的信息中提取命名空间和容器名称。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">cat</span> /proc/&lt;pid&gt;/cgroup | grep pids | awk -F<span class="string">&#x27;/&#x27;</span> <span class="string">&#x27;&#123;print $(NF-1), $NF&#125;&#x27;</span></span><br></pre></td></tr></table></figure><h4 id="Kubernetes获取容器id"><a href="#Kubernetes获取容器id" class="headerlink" title="Kubernetes获取容器id"></a>Kubernetes获取容器id</h4><p>首先使用<code>cat</code>和<code>grep</code>获取进程所属的cgroup, 然后选取包含pids的一行以去掉重复数据，从行中解析最后一级的前12位。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">cat</span> /proc/&lt;pid&gt;/cgroup | grep pids | awk -F<span class="string">&#x27;/&#x27;</span> <span class="string">&#x27;&#123;print substr($NF,1,12)&#125;&#x27;</span></span><br></pre></td></tr></table></figure><h4 id="Kubernetes获取Pod名称"><a href="#Kubernetes获取Pod名称" class="headerlink" title="Kubernetes获取Pod名称"></a>Kubernetes获取Pod名称</h4><p>使用<code>crictl</code>根据容器ID获取Pod名称。其中容器ID为上一步获取到的12位ID。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crictl inspect -o go-template --template=<span class="string">&#x27;&#123;&#123;index .status.labels &quot;io.kubernetes.pod.name&quot;&#125;&#125;&#x27;</span> $(<span class="built_in">sudo</span> <span class="built_in">cat</span> /proc/&lt;pid&gt;/cgroup | grep pids | awk -F<span class="string">&#x27;/&#x27;</span> <span class="string">&#x27;&#123;print substr($NF,1,12)&#125;&#x27;</span>)</span><br></pre></td></tr></table></figure>]]></content>
     
@@ -159,9 +159,9 @@
     
     
     
-    <category term="问题解决" scheme="https://blog.rimuru.uk/tags/problem-solving/"/>
-    
     <category term="教程" scheme="https://blog.rimuru.uk/tags/tutorial/"/>
+    
+    <category term="问题解决" scheme="https://blog.rimuru.uk/tags/problem-solving/"/>
     
     <category term="Linux" scheme="https://blog.rimuru.uk/tags/linux/"/>
     
@@ -192,9 +192,9 @@
     
     
     
-    <category term="问题解决" scheme="https://blog.rimuru.uk/tags/problem-solving/"/>
-    
     <category term="教程" scheme="https://blog.rimuru.uk/tags/tutorial/"/>
+    
+    <category term="问题解决" scheme="https://blog.rimuru.uk/tags/problem-solving/"/>
     
     <category term="Linux" scheme="https://blog.rimuru.uk/tags/linux/"/>
     
@@ -252,9 +252,9 @@
     <category term="技术分享" scheme="https://blog.rimuru.uk/categories/tech/"/>
     
     
-    <category term="问题解决" scheme="https://blog.rimuru.uk/tags/problem-solving/"/>
-    
     <category term="教程" scheme="https://blog.rimuru.uk/tags/tutorial/"/>
+    
+    <category term="问题解决" scheme="https://blog.rimuru.uk/tags/problem-solving/"/>
     
     <category term="Nextcloud" scheme="https://blog.rimuru.uk/tags/nextcloud/"/>
     
@@ -293,9 +293,9 @@
     
     <category term="反向代理" scheme="https://blog.rimuru.uk/tags/options/"/>
     
-    <category term="Serverless" scheme="https://blog.rimuru.uk/tags/serverless/"/>
-    
     <category term="AI工具" scheme="https://blog.rimuru.uk/tags/ai-tools/"/>
+    
+    <category term="Serverless" scheme="https://blog.rimuru.uk/tags/serverless/"/>
     
   </entry>
   
@@ -316,9 +316,9 @@
     <category term="技术分享" scheme="https://blog.rimuru.uk/categories/tech/"/>
     
     
-    <category term="问题解决" scheme="https://blog.rimuru.uk/tags/problem-solving/"/>
-    
     <category term="教程" scheme="https://blog.rimuru.uk/tags/tutorial/"/>
+    
+    <category term="问题解决" scheme="https://blog.rimuru.uk/tags/problem-solving/"/>
     
     <category term="Wallpaper Engine" scheme="https://blog.rimuru.uk/tags/wallpaper-engine/"/>
     
@@ -413,9 +413,9 @@
     <category term="技术分享" scheme="https://blog.rimuru.uk/categories/tech/"/>
     
     
-    <category term="问题解决" scheme="https://blog.rimuru.uk/tags/problem-solving/"/>
-    
     <category term="教程" scheme="https://blog.rimuru.uk/tags/tutorial/"/>
+    
+    <category term="问题解决" scheme="https://blog.rimuru.uk/tags/problem-solving/"/>
     
     <category term="Linux" scheme="https://blog.rimuru.uk/tags/linux/"/>
     
@@ -448,9 +448,9 @@
     <category term="疑难杂症" scheme="https://blog.rimuru.uk/categories/troubleshooting/"/>
     
     
-    <category term="问题解决" scheme="https://blog.rimuru.uk/tags/problem-solving/"/>
-    
     <category term="教程" scheme="https://blog.rimuru.uk/tags/tutorial/"/>
+    
+    <category term="问题解决" scheme="https://blog.rimuru.uk/tags/problem-solving/"/>
     
     <category term="Microsoft Word" scheme="https://blog.rimuru.uk/tags/microsoft-word/"/>
     
@@ -512,9 +512,9 @@
     <category term="疑难杂症" scheme="https://blog.rimuru.uk/categories/troubleshooting/"/>
     
     
-    <category term="问题解决" scheme="https://blog.rimuru.uk/tags/problem-solving/"/>
-    
     <category term="教程" scheme="https://blog.rimuru.uk/tags/tutorial/"/>
+    
+    <category term="问题解决" scheme="https://blog.rimuru.uk/tags/problem-solving/"/>
     
     <category term="JetBrains" scheme="https://blog.rimuru.uk/tags/jetbrains/"/>
     
