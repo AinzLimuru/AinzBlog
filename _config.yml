@@ -75,72 +75,7 @@ category_map:
   疑难杂症: troubleshooting
   技术分享: tech
   游戏: gaming
-tag_map:
-  JetBrains: jetbrains
-  学生许可: student-license
-  博客教程: blog-tutorial
-  Markdown: markdown
-  Cities Skylines 2: cities-skylines-2
-  BUG修复: bug-fix
-  游戏攻略: game-guide
-  VMware: vmware
-  Linux: linux
-  Microsoft Word: microsoft-word
-  Office: office
-  问题解决: problem-solving
-  Nextcloud: nextcloud
-  WebDAV: webdav
-  天际线2: cities-skylines-2
-  虚拟机: virtualization
-  Wallpaper Engine: wallpaper-engine
-  Steam: steam
-  教程: tutorial
-  Cloudflare: cloudflare
-  Hugging Face: hugging-face
-  教育优惠: educational-discount
-  账号关联: account-linking
-  反向代理: options
-  CDN加速: cdn
-  模型下载: model-download
-  Hexo: hexo
-  图片配置: picture-configuration
-  静态博客: static-blog
-  Serverless: serverless
-  AI工具: ai-tools
-  城市建设: city-build
-  游戏优化: game-optimization
-  交通规划: traffic-planning
-  物流优化: logistics-optimization
-  网络驱动器: network-drives
-  文件共享: shared-files
-  Windows 11: windows-11
-  磁盘管理: managing-disks
-  EXT4: ext4
-  分区扩容: partition-expansion
-  创意工坊: workshop
-  Steam ID: steam-id
-  壁纸搜索: wallpaper-search
-  Word技巧: word-tips
-  排版排错: typography-error
-  题注报错: the-caption-is-incorrect
-  Overleaf: overleaf
-  Docker: docker
-  ShareLaTeX: sharelatex
-  运维命令: om-orders
-  Kubernetes: kubernetes
-  系统监控: system-monitoring
-  JavaScript: javascript
-  OpenAI: openai
-  博客优化: blog-optimization
-  OpenVPN: openvpn
-  网络优化: network-optimization
-  BBR: bbr
-  Claude Code: claude-code
-  环境变量: environment-vars
-  代理配置: proxy-configuration
-  Speed Brain: speed-brain
-  503错误: 503-error
-  网页预加载: page-preloader
+# tag_map 已抽离到 _config.tag_map.yml
 # Metadata elements
 ## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
 meta_generator: true

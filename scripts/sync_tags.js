@@ -70,8 +70,15 @@ async function syncTags(hexoInstance) {
     });
   });
 
-  const configPath = path.join(hexoInstance.base_dir, '_config.yml');
-  const configContent = fs.readFileSync(configPath, 'utf8');
+  const configPath = path.join(hexoInstance.base_dir, '_config.tag_map.yml');
+  
+  // Check if file exists, create if not
+  let configContent;
+  if (fs.existsSync(configPath)) {
+    configContent = fs.readFileSync(configPath, 'utf8');
+  } else {
+    configContent = '# Tag Map Configuration\n# 将中文标签映射到 URL 友好的英文 slug\n# 此文件由 sync_tags 脚本自动维护\n\ntag_map:\n';
+  }
 
   // Detect line ending style (CRLF or LF)
   const lineEnding = configContent.includes('\r\n') ? '\r\n' : '\n';
@@ -79,9 +86,9 @@ async function syncTags(hexoInstance) {
   // Parse YAML to get existing tag_map
   let config;
   try {
-    config = yaml.load(configContent);
+    config = yaml.load(configContent) || {};
   } catch (e) {
-    hexoInstance.log.error(`[Sync Tags] Failed to parse _config.yml: ${e.message}`);
+    hexoInstance.log.error(`[Sync Tags] Failed to parse _config.tag_map.yml: ${e.message}`);
     return;
   }
 
@@ -112,71 +119,27 @@ async function syncTags(hexoInstance) {
     updatedTagMap[tag] = slug;
   });
 
-  // Update config object
-  config.tag_map = updatedTagMap;
+  // Build the complete file content
+  const tagMapLines = [
+    '# Tag Map Configuration',
+    '# 将中文标签映射到 URL 友好的英文 slug',
+    '# 此文件由 sync_tags 脚本自动维护',
+    '',
+    'tag_map:'
+  ];
+  Object.entries(updatedTagMap).forEach(([key, value]) => {
+    tagMapLines.push(`  ${key}: ${value}`);
+  });
+  
+  let updatedContent = tagMapLines.join('\n') + '\n';
 
-  // Normalize content to LF for easier processing
-  const normalizedContent = configContent.replace(/\r\n/g, '\n');
-
-  // Find and replace the tag_map section using regex
-  // This regex matches from "tag_map:" to the next unindented non-empty line or end of file
-  const tagMapRegex = /^tag_map:[ \t]*(?:\n(?:[ \t]+[^\n]*)?)*\n?/m;
-  const match = normalizedContent.match(tagMapRegex);
-
-  let updatedContent;
-
-  if (match) {
-    // Build new tag_map section
-    const tagMapLines = ['tag_map:'];
-    Object.entries(updatedTagMap).forEach(([key, value]) => {
-      tagMapLines.push(`  ${key}: ${value}`);
-    });
-    const newTagMapSection = tagMapLines.join('\n') + '\n';
-
-    // Replace the old tag_map section
-    updatedContent = normalizedContent.slice(0, match.index) + 
-                     newTagMapSection + 
-                     normalizedContent.slice(match.index + match[0].length);
-  } else {
-    // tag_map doesn't exist, find a good place to insert it
-    // Try to insert after category_map or at the end of Category & Tag section
-    const categoryTagSection = /# Category & Tag\n/;
-    const sectionMatch = normalizedContent.match(categoryTagSection);
-    
-    if (sectionMatch) {
-      // Find the end of this section (next # comment or end of file)
-      const afterSection = normalizedContent.slice(sectionMatch.index + sectionMatch[0].length);
-      const nextSectionMatch = afterSection.match(/\n# /);
-      const insertPoint = nextSectionMatch 
-        ? sectionMatch.index + sectionMatch[0].length + nextSectionMatch.index
-        : normalizedContent.length;
-      
-      const tagMapLines = ['tag_map:'];
-      Object.entries(updatedTagMap).forEach(([key, value]) => {
-        tagMapLines.push(`  ${key}: ${value}`);
-      });
-      const newTagMapSection = tagMapLines.join('\n') + '\n';
-      
-      updatedContent = normalizedContent.slice(0, insertPoint) + 
-                       newTagMapSection + 
-                       normalizedContent.slice(insertPoint);
-    } else {
-      // Fallback: append at the end
-      const tagMapLines = ['tag_map:'];
-      Object.entries(updatedTagMap).forEach(([key, value]) => {
-        tagMapLines.push(`  ${key}: ${value}`);
-      });
-      updatedContent = normalizedContent + '\n' + tagMapLines.join('\n') + '\n';
-    }
-  }
-
-  // Convert back to original line ending style if needed
+  // Convert to original line ending style if needed
   if (lineEnding === '\r\n') {
     updatedContent = updatedContent.replace(/\n/g, '\r\n');
   }
 
   fs.writeFileSync(configPath, updatedContent, 'utf8');
-  hexoInstance.log.info(`[Sync Tags] Added ${newTags.length} new tags to _config.yml: ${newTags.join(', ')}`);
+  hexoInstance.log.info(`[Sync Tags] Added ${newTags.length} new tags to _config.tag_map.yml: ${newTags.join(', ')}`);
 
   // Update in-memory config so it applies to the current build
   if (!hexoInstance.config.tag_map) hexoInstance.config.tag_map = {};
@@ -185,7 +148,7 @@ async function syncTags(hexoInstance) {
   });
 }
 
-hexo.extend.console.register('sync-tags', 'Sync tags from posts to _config.yml tag_map', async function(args) {
+hexo.extend.console.register('sync-tags', 'Sync tags from posts to _config.tag_map.yml tag_map', async function(args) {
   await this.load();
   await syncTags(this);
 });
