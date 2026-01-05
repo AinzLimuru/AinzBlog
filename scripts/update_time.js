@@ -47,14 +47,19 @@ function parseFrontMatter(content) {
 }
 
 /**
- * 格式化时间为 ISO 格式
+ * 格式化时间为 ISO 格式（中国时区 UTC+8）
  * @param {string} isoTime - ISO 时间字符串
  * @returns {string}
  */
 function formatTime(isoTime) {
-  // 保持 ISO 格式，但转换为 UTC 并设置毫秒为 000
   const date = new Date(isoTime);
-  return date.toISOString().replace(/\.\d{3}Z$/, '.000Z');
+  
+  // 转换为中国时区 (UTC+8)
+  const offset = 8 * 60; // 中国时区偏移量（分钟）
+  const localTime = new Date(date.getTime() + offset * 60 * 1000);
+  
+  // 格式化为与原格式一致的 .000Z 风格
+  return localTime.toISOString().replace(/\.\d{3}Z$/, '.000Z');
 }
 
 /**
