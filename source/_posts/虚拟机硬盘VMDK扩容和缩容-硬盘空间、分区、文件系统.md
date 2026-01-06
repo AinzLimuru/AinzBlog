@@ -1,7 +1,7 @@
 ---
 title: 虚拟机硬盘VMDK扩容和缩容(硬盘空间、分区、文件系统)
 date: 2025-12-04T16:17:34.000Z
-updated: 2025-12-21T23:30:12.000Z
+updated: 2026-01-06T20:59:45.000Z
 description: 本教程详细介绍了虚拟机VMDK硬盘的扩容与缩容操作，涵盖GPT分区表与EXT4文件系统。内容包括使用VMware/ESXi调整硬件空间、利用parted进行分区扩容、resize2fs调整文件系统大小，以及通过dd命令和UUID修改实现安全的硬盘缩容与数据迁移，旨在解决Linux虚拟机磁盘空间不足或过大的问题。
 categories:
   - 技术分享
