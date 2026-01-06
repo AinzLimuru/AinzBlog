@@ -1,7 +1,7 @@
 ---
 title: Hexo博客智能推荐阅读功能：基于OpenAI Embedding的实现
 date: 2026-01-03T18:45:00.000Z
-updated: 2026-01-04T09:12:40.000Z
+updated: 2026-01-06T21:28:54.000Z
 cover: cover.png
 categories:
   - 技术分享
