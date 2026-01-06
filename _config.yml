@@ -70,7 +70,7 @@ index_generator:
   order_by: -date
 
 # Category & Tag
-default_category: uncategorized
+default_category: 技术分享
 category_map:
   疑难杂症: troubleshooting
   技术分享: tech
