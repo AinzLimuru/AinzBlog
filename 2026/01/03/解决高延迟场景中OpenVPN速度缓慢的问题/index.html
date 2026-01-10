@@ -8,7 +8,7 @@
   
   
   <title>解决高延迟场景中OpenVPN速度缓慢的问题 | Rimuru&#39;s Blog</title>
-  <link rel="canonical" href="https://blog.rimuru.uk/2026/01/03/%E8%A7%A3%E5%86%B3%E9%AB%98%E5%BB%B6%E8%BF%9F%E5%9C%BA%E6%99%AF%E4%B8%ADOpenVPN%E9%80%9F%E5%BA%A6%E7%BC%93%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98/">
+  <link rel="canonical" href="https://blog.rimuru.cc/2026/01/03/%E8%A7%A3%E5%86%B3%E9%AB%98%E5%BB%B6%E8%BF%9F%E5%9C%BA%E6%99%AF%E4%B8%ADOpenVPN%E9%80%9F%E5%BA%A6%E7%BC%93%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98/">
   <meta name="author" content="Rimuru" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -22,11 +22,11 @@
   <meta name="description" content="针对高延迟场景下的OpenVPN速度缓慢问题，本文提供了全方位的性能调优方案。涵盖了强制UDP协议、计算并优化sndbuf&#x2F;rcvbuf缓冲区、调整Linux内核sysctl参数以及启用BBR拥塞控制算法。此外还介绍了如何通过Nginx配置HTTP&#x2F;3和QUIC缓冲区，以显著提升高延迟网络环境下的吞吐量和稳定性。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="解决高延迟场景中OpenVPN速度缓慢的问题">
-<meta property="og:url" content="https://blog.rimuru.uk/2026/01/03/%E8%A7%A3%E5%86%B3%E9%AB%98%E5%BB%B6%E8%BF%9F%E5%9C%BA%E6%99%AF%E4%B8%ADOpenVPN%E9%80%9F%E5%BA%A6%E7%BC%93%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98/">
+<meta property="og:url" content="https://blog.rimuru.cc/2026/01/03/%E8%A7%A3%E5%86%B3%E9%AB%98%E5%BB%B6%E8%BF%9F%E5%9C%BA%E6%99%AF%E4%B8%ADOpenVPN%E9%80%9F%E5%BA%A6%E7%BC%93%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98/">
 <meta property="og:site_name" content="Rimuru&#39;s Blog">
 <meta property="og:description" content="针对高延迟场景下的OpenVPN速度缓慢问题，本文提供了全方位的性能调优方案。涵盖了强制UDP协议、计算并优化sndbuf&#x2F;rcvbuf缓冲区、调整Linux内核sysctl参数以及启用BBR拥塞控制算法。此外还介绍了如何通过Nginx配置HTTP&#x2F;3和QUIC缓冲区，以显著提升高延迟网络环境下的吞吐量和稳定性。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.rimuru.uk/2026/01/03/%E8%A7%A3%E5%86%B3%E9%AB%98%E5%BB%B6%E8%BF%9F%E5%9C%BA%E6%99%AF%E4%B8%ADOpenVPN%E9%80%9F%E5%BA%A6%E7%BC%93%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98/cover.png">
+<meta property="og:image" content="https://blog.rimuru.cc/2026/01/03/%E8%A7%A3%E5%86%B3%E9%AB%98%E5%BB%B6%E8%BF%9F%E5%9C%BA%E6%99%AF%E4%B8%ADOpenVPN%E9%80%9F%E5%BA%A6%E7%BC%93%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98/cover.png">
 <meta property="article:published_time" content="2026-01-03T22:08:11.000Z">
 <meta property="article:modified_time" content="2026-01-03T23:08:39.000Z">
 <meta property="article:author" content="Rimuru">
@@ -40,7 +40,7 @@
 <meta property="article:tag" content="运维命令">
 <meta property="article:tag" content="问题解决">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blog.rimuru.uk/2026/01/03/%E8%A7%A3%E5%86%B3%E9%AB%98%E5%BB%B6%E8%BF%9F%E5%9C%BA%E6%99%AF%E4%B8%ADOpenVPN%E9%80%9F%E5%BA%A6%E7%BC%93%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98/cover.png">
+<meta name="twitter:image" content="https://blog.rimuru.cc/2026/01/03/%E8%A7%A3%E5%86%B3%E9%AB%98%E5%BB%B6%E8%BF%9F%E5%9C%BA%E6%99%AF%E4%B8%ADOpenVPN%E9%80%9F%E5%BA%A6%E7%BC%93%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98/cover.png">
   
     <link rel="alternate" href="/atom.xml" title="Rimuru's Blog" type="application/atom+xml">
   
@@ -48,7 +48,7 @@
   
   
     <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"BlogPosting","headline":"解决高延迟场景中OpenVPN速度缓慢的问题","description":"针对高延迟场景下的OpenVPN速度缓慢问题，本文提供了全方位的性能调优方案。涵盖了强制UDP协议、计算并优化sndbuf/rcvbuf缓冲区、调整Linux内核sysctl参数以及启用BBR拥塞控制算法。此外还介绍了如何通过Nginx配置HTTP/3和QUIC缓冲区，以显著提升高延迟网络环境下的吞吐量和稳定性。","image":"https://blog.rimuru.uk/2026/01/03/%E8%A7%A3%E5%86%B3%E9%AB%98%E5%BB%B6%E8%BF%9F%E5%9C%BA%E6%99%AF%E4%B8%ADOpenVPN%E9%80%9F%E5%BA%A6%E7%BC%93%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98/cover.png","author":{"@type":"Person","name":"Rimuru"},"publisher":{"@type":"Organization","name":"Rimuru's Blog","logo":{"@type":"ImageObject","url":"https://blog.rimuru.uk/images/avatar.png"}},"datePublished":"2026-01-03T22:08:11.000Z","dateModified":"2026-01-03T23:08:39.000Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.rimuru.uk/2026/01/03/%E8%A7%A3%E5%86%B3%E9%AB%98%E5%BB%B6%E8%BF%9F%E5%9C%BA%E6%99%AF%E4%B8%ADOpenVPN%E9%80%9F%E5%BA%A6%E7%BC%93%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98/"}}
+    {"@context":"https://schema.org","@type":"BlogPosting","headline":"解决高延迟场景中OpenVPN速度缓慢的问题","description":"针对高延迟场景下的OpenVPN速度缓慢问题，本文提供了全方位的性能调优方案。涵盖了强制UDP协议、计算并优化sndbuf/rcvbuf缓冲区、调整Linux内核sysctl参数以及启用BBR拥塞控制算法。此外还介绍了如何通过Nginx配置HTTP/3和QUIC缓冲区，以显著提升高延迟网络环境下的吞吐量和稳定性。","image":"https://blog.rimuru.cc/2026/01/03/%E8%A7%A3%E5%86%B3%E9%AB%98%E5%BB%B6%E8%BF%9F%E5%9C%BA%E6%99%AF%E4%B8%ADOpenVPN%E9%80%9F%E5%BA%A6%E7%BC%93%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98/cover.png","author":{"@type":"Person","name":"Rimuru"},"publisher":{"@type":"Organization","name":"Rimuru's Blog","logo":{"@type":"ImageObject","url":"https://blog.rimuru.cc/images/avatar.png"}},"datePublished":"2026-01-03T22:08:11.000Z","dateModified":"2026-01-03T23:08:39.000Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.rimuru.cc/2026/01/03/%E8%A7%A3%E5%86%B3%E9%AB%98%E5%BB%B6%E8%BF%9F%E5%9C%BA%E6%99%AF%E4%B8%ADOpenVPN%E9%80%9F%E5%BA%A6%E7%BC%93%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98/"}}
     </script>
   
   <!-- 关键 CSS 预加载 -->
@@ -107,10 +107,10 @@
   <!-- 额外的追加注入项 -->
   
     <!-- Preconnect hints for faster resource loading -->
-<link rel="preconnect" href="https://cdn.rimuru.uk" crossorigin>
-<link rel="dns-prefetch" href="https://cdn.rimuru.uk">
-<link rel="preconnect" href="https://analytics.rimuru.uk" crossorigin>
-<link rel="dns-prefetch" href="https://analytics.rimuru.uk">
+<link rel="preconnect" href="https://cdn.rimuru.cc" crossorigin>
+<link rel="dns-prefetch" href="https://cdn.rimuru.cc">
+<link rel="preconnect" href="https://analytics.rimuru.cc" crossorigin>
+<link rel="dns-prefetch" href="https://analytics.rimuru.cc">
 <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
 <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
@@ -245,7 +245,7 @@
         
 
             <article itemscope itemtype="https://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://blog.rimuru.uk/2026/01/03/%E8%A7%A3%E5%86%B3%E9%AB%98%E5%BB%B6%E8%BF%9F%E5%9C%BA%E6%99%AF%E4%B8%ADOpenVPN%E9%80%9F%E5%BA%A6%E7%BC%93%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98/">
+    <link itemprop="mainEntityOfPage" href="https://blog.rimuru.cc/2026/01/03/%E8%A7%A3%E5%86%B3%E9%AB%98%E5%BB%B6%E8%BF%9F%E5%9C%BA%E6%99%AF%E4%B8%ADOpenVPN%E9%80%9F%E5%BA%A6%E7%BC%93%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98/">
     <div class="kratos-hentry kratos-page-inner clearfix">
         <header class="kratos-page-header">
             
@@ -484,7 +484,7 @@
                         </div>
                         <div>
                             <li>自豪地使用 <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a> 主题</li>
-                            <li>站点由 <a href="https://blog.rimuru.uk" target="_blank">Rimuru</a> 用 <i class="fa fa-heart" style="color:#d43f57"></i> 搭建</li>
+                            <li>站点由 <a href="https://blog.rimuru.cc" target="_blank">Rimuru</a> 用 <i class="fa fa-heart" style="color:#d43f57"></i> 搭建</li>
                         </div>
                         <!-- 额外的追加注入项 -->
                         
@@ -588,7 +588,7 @@
   <!-- 推荐阅读功能 -->
 <script defer src="/js/recommended-posts.js"></script>
 <!-- Self-hosted analytics -->
-<script defer src="https://cdn.rimuru.uk/analytics_with_cloudflare/index.min.js" data-base-url="https://analytics.rimuru.uk"></script>
+<script defer src="https://cdn.rimuru.cc/analytics_with_cloudflare/index.min.js" data-base-url="https://analytics.rimuru.cc"></script>
 <!-- Google Analytics -->
 <script defer src="https://www.googletagmanager.com/gtag/js?id=G-PKP8Z0FC73"></script>
 <script>
@@ -602,13 +602,13 @@
 <!-- PJAX analytics reload handler -->
 <script>
   window.addEventListener('pjax:complete', function() {
-    const scriptUrl = 'https://cdn.rimuru.uk/analytics_with_cloudflare/index.min.js';
+    const scriptUrl = 'https://cdn.rimuru.cc/analytics_with_cloudflare/index.min.js';
     const oldScript = document.querySelector('script[src="' + scriptUrl + '"]');
     if (oldScript) oldScript.remove();
     const newScript = document.createElement('script');
     newScript.src = scriptUrl;
     newScript.defer = true;
-    newScript.setAttribute('data-base-url', 'https://analytics.rimuru.uk');
+    newScript.setAttribute('data-base-url', 'https://analytics.rimuru.cc');
     document.body.appendChild(newScript);
   });
 </script>

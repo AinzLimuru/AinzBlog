@@ -8,7 +8,7 @@
   
   
   <title>解决 Microsoft Word：错误!文档中没有指定样式的文字 | Rimuru&#39;s Blog</title>
-  <link rel="canonical" href="https://blog.rimuru.uk/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/">
+  <link rel="canonical" href="https://blog.rimuru.cc/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/">
   <meta name="author" content="Rimuru" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -22,11 +22,11 @@
   <meta name="description" content="本文针对 Microsoft Word 中常见的“错误！文档中没有指定样式的文字”提供详细解决方案。深入分析了多级列表配置缺失及自定义标题样式导致的题注报错问题，通过样式链接、编辑StyleRef域属性及更新域等步骤，手把手教你修复Word文档编号异常，提升办公效率。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="解决 Microsoft Word：错误!文档中没有指定样式的文字">
-<meta property="og:url" content="https://blog.rimuru.uk/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/">
+<meta property="og:url" content="https://blog.rimuru.cc/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/">
 <meta property="og:site_name" content="Rimuru&#39;s Blog">
 <meta property="og:description" content="本文针对 Microsoft Word 中常见的“错误！文档中没有指定样式的文字”提供详细解决方案。深入分析了多级列表配置缺失及自定义标题样式导致的题注报错问题，通过样式链接、编辑StyleRef域属性及更新域等步骤，手把手教你修复Word文档编号异常，提升办公效率。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.rimuru.uk/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/cover.png">
+<meta property="og:image" content="https://blog.rimuru.cc/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/cover.png">
 <meta property="article:published_time" content="2025-12-04T16:02:53.000Z">
 <meta property="article:modified_time" content="2025-12-21T23:30:12.000Z">
 <meta property="article:author" content="Rimuru">
@@ -38,7 +38,7 @@
 <meta property="article:tag" content="问题解决">
 <meta property="article:tag" content="题注报错">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blog.rimuru.uk/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/cover.png">
+<meta name="twitter:image" content="https://blog.rimuru.cc/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/cover.png">
   
     <link rel="alternate" href="/atom.xml" title="Rimuru's Blog" type="application/atom+xml">
   
@@ -46,7 +46,7 @@
   
   
     <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"BlogPosting","headline":"解决 Microsoft Word：错误!文档中没有指定样式的文字","description":"本文针对 Microsoft Word 中常见的“错误！文档中没有指定样式的文字”提供详细解决方案。深入分析了多级列表配置缺失及自定义标题样式导致的题注报错问题，通过样式链接、编辑StyleRef域属性及更新域等步骤，手把手教你修复Word文档编号异常，提升办公效率。","image":"https://blog.rimuru.uk/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/cover.png","author":{"@type":"Person","name":"Rimuru"},"publisher":{"@type":"Organization","name":"Rimuru's Blog","logo":{"@type":"ImageObject","url":"https://blog.rimuru.uk/images/avatar.png"}},"datePublished":"2025-12-04T16:02:53.000Z","dateModified":"2025-12-21T23:30:12.000Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.rimuru.uk/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/"}}
+    {"@context":"https://schema.org","@type":"BlogPosting","headline":"解决 Microsoft Word：错误!文档中没有指定样式的文字","description":"本文针对 Microsoft Word 中常见的“错误！文档中没有指定样式的文字”提供详细解决方案。深入分析了多级列表配置缺失及自定义标题样式导致的题注报错问题，通过样式链接、编辑StyleRef域属性及更新域等步骤，手把手教你修复Word文档编号异常，提升办公效率。","image":"https://blog.rimuru.cc/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/cover.png","author":{"@type":"Person","name":"Rimuru"},"publisher":{"@type":"Organization","name":"Rimuru's Blog","logo":{"@type":"ImageObject","url":"https://blog.rimuru.cc/images/avatar.png"}},"datePublished":"2025-12-04T16:02:53.000Z","dateModified":"2025-12-21T23:30:12.000Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.rimuru.cc/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/"}}
     </script>
   
   <!-- 关键 CSS 预加载 -->
@@ -105,10 +105,10 @@
   <!-- 额外的追加注入项 -->
   
     <!-- Preconnect hints for faster resource loading -->
-<link rel="preconnect" href="https://cdn.rimuru.uk" crossorigin>
-<link rel="dns-prefetch" href="https://cdn.rimuru.uk">
-<link rel="preconnect" href="https://analytics.rimuru.uk" crossorigin>
-<link rel="dns-prefetch" href="https://analytics.rimuru.uk">
+<link rel="preconnect" href="https://cdn.rimuru.cc" crossorigin>
+<link rel="dns-prefetch" href="https://cdn.rimuru.cc">
+<link rel="preconnect" href="https://analytics.rimuru.cc" crossorigin>
+<link rel="dns-prefetch" href="https://analytics.rimuru.cc">
 <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
 <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
@@ -243,7 +243,7 @@
         
 
             <article itemscope itemtype="https://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://blog.rimuru.uk/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/">
+    <link itemprop="mainEntityOfPage" href="https://blog.rimuru.cc/2025/12/04/%E8%A7%A3%E5%86%B3-Microsoft-Word%EF%BC%9A%E9%94%99%E8%AF%AF-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%96%87%E5%AD%97/">
     <div class="kratos-hentry kratos-page-inner clearfix">
         <header class="kratos-page-header">
             
@@ -482,7 +482,7 @@
                         </div>
                         <div>
                             <li>自豪地使用 <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a> 主题</li>
-                            <li>站点由 <a href="https://blog.rimuru.uk" target="_blank">Rimuru</a> 用 <i class="fa fa-heart" style="color:#d43f57"></i> 搭建</li>
+                            <li>站点由 <a href="https://blog.rimuru.cc" target="_blank">Rimuru</a> 用 <i class="fa fa-heart" style="color:#d43f57"></i> 搭建</li>
                         </div>
                         <!-- 额外的追加注入项 -->
                         
@@ -586,7 +586,7 @@
   <!-- 推荐阅读功能 -->
 <script defer src="/js/recommended-posts.js"></script>
 <!-- Self-hosted analytics -->
-<script defer src="https://cdn.rimuru.uk/analytics_with_cloudflare/index.min.js" data-base-url="https://analytics.rimuru.uk"></script>
+<script defer src="https://cdn.rimuru.cc/analytics_with_cloudflare/index.min.js" data-base-url="https://analytics.rimuru.cc"></script>
 <!-- Google Analytics -->
 <script defer src="https://www.googletagmanager.com/gtag/js?id=G-PKP8Z0FC73"></script>
 <script>
@@ -600,13 +600,13 @@
 <!-- PJAX analytics reload handler -->
 <script>
   window.addEventListener('pjax:complete', function() {
-    const scriptUrl = 'https://cdn.rimuru.uk/analytics_with_cloudflare/index.min.js';
+    const scriptUrl = 'https://cdn.rimuru.cc/analytics_with_cloudflare/index.min.js';
     const oldScript = document.querySelector('script[src="' + scriptUrl + '"]');
     if (oldScript) oldScript.remove();
     const newScript = document.createElement('script');
     newScript.src = scriptUrl;
     newScript.defer = true;
-    newScript.setAttribute('data-base-url', 'https://analytics.rimuru.uk');
+    newScript.setAttribute('data-base-url', 'https://analytics.rimuru.cc');
     document.body.appendChild(newScript);
   });
 </script>

@@ -8,7 +8,7 @@
   
   
   <title>使用 Cloudflare Workers 搭建 Hugging Face 镜像代理 | Rimuru&#39;s Blog</title>
-  <link rel="canonical" href="https://blog.rimuru.uk/2025/12/14/%E4%BD%BF%E7%94%A8-Cloudflare-Workers-%E6%90%AD%E5%BB%BA-Hugging-Face-%E9%95%9C%E5%83%8F%E4%BB%A3%E7%90%86/">
+  <link rel="canonical" href="https://blog.rimuru.cc/2025/12/14/%E4%BD%BF%E7%94%A8-Cloudflare-Workers-%E6%90%AD%E5%BB%BA-Hugging-Face-%E9%95%9C%E5%83%8F%E4%BB%A3%E7%90%86/">
   <meta name="author" content="Rimuru" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -22,11 +22,11 @@
   <meta name="description" content="本文详细介绍如何使用 Cloudflare Workers&#x2F;Pages 搭建 HuggingfaceProxy 镜像代理。通过该开源项目，利用 Cloudflare 全球边缘网络解决 Hugging Face 访问缓慢及模型下载失败的问题，包含完整的部署步骤和使用指南。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用 Cloudflare Workers 搭建 Hugging Face 镜像代理">
-<meta property="og:url" content="https://blog.rimuru.uk/2025/12/14/%E4%BD%BF%E7%94%A8-Cloudflare-Workers-%E6%90%AD%E5%BB%BA-Hugging-Face-%E9%95%9C%E5%83%8F%E4%BB%A3%E7%90%86/">
+<meta property="og:url" content="https://blog.rimuru.cc/2025/12/14/%E4%BD%BF%E7%94%A8-Cloudflare-Workers-%E6%90%AD%E5%BB%BA-Hugging-Face-%E9%95%9C%E5%83%8F%E4%BB%A3%E7%90%86/">
 <meta property="og:site_name" content="Rimuru&#39;s Blog">
 <meta property="og:description" content="本文详细介绍如何使用 Cloudflare Workers&#x2F;Pages 搭建 HuggingfaceProxy 镜像代理。通过该开源项目，利用 Cloudflare 全球边缘网络解决 Hugging Face 访问缓慢及模型下载失败的问题，包含完整的部署步骤和使用指南。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.rimuru.uk/2025/12/14/%E4%BD%BF%E7%94%A8-Cloudflare-Workers-%E6%90%AD%E5%BB%BA-Hugging-Face-%E9%95%9C%E5%83%8F%E4%BB%A3%E7%90%86/cover.png">
+<meta property="og:image" content="https://blog.rimuru.cc/2025/12/14/%E4%BD%BF%E7%94%A8-Cloudflare-Workers-%E6%90%AD%E5%BB%BA-Hugging-Face-%E9%95%9C%E5%83%8F%E4%BB%A3%E7%90%86/cover.png">
 <meta property="article:published_time" content="2025-12-14T21:04:21.000Z">
 <meta property="article:modified_time" content="2025-12-22T21:47:32.000Z">
 <meta property="article:author" content="Rimuru">
@@ -37,7 +37,7 @@
 <meta property="article:tag" content="反向代理">
 <meta property="article:tag" content="教程">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blog.rimuru.uk/2025/12/14/%E4%BD%BF%E7%94%A8-Cloudflare-Workers-%E6%90%AD%E5%BB%BA-Hugging-Face-%E9%95%9C%E5%83%8F%E4%BB%A3%E7%90%86/cover.png">
+<meta name="twitter:image" content="https://blog.rimuru.cc/2025/12/14/%E4%BD%BF%E7%94%A8-Cloudflare-Workers-%E6%90%AD%E5%BB%BA-Hugging-Face-%E9%95%9C%E5%83%8F%E4%BB%A3%E7%90%86/cover.png">
   
     <link rel="alternate" href="/atom.xml" title="Rimuru's Blog" type="application/atom+xml">
   
@@ -45,7 +45,7 @@
   
   
     <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"BlogPosting","headline":"使用 Cloudflare Workers 搭建 Hugging Face 镜像代理","description":"本文详细介绍如何使用 Cloudflare Workers/Pages 搭建 HuggingfaceProxy 镜像代理。通过该开源项目，利用 Cloudflare 全球边缘网络解决 Hugging Face 访问缓慢及模型下载失败的问题，包含完整的部署步骤和使用指南。","image":"https://blog.rimuru.uk/2025/12/14/%E4%BD%BF%E7%94%A8-Cloudflare-Workers-%E6%90%AD%E5%BB%BA-Hugging-Face-%E9%95%9C%E5%83%8F%E4%BB%A3%E7%90%86/cover.png","author":{"@type":"Person","name":"Rimuru"},"publisher":{"@type":"Organization","name":"Rimuru's Blog","logo":{"@type":"ImageObject","url":"https://blog.rimuru.uk/images/avatar.png"}},"datePublished":"2025-12-14T21:04:21.000Z","dateModified":"2025-12-22T21:47:32.000Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.rimuru.uk/2025/12/14/%E4%BD%BF%E7%94%A8-Cloudflare-Workers-%E6%90%AD%E5%BB%BA-Hugging-Face-%E9%95%9C%E5%83%8F%E4%BB%A3%E7%90%86/"}}
+    {"@context":"https://schema.org","@type":"BlogPosting","headline":"使用 Cloudflare Workers 搭建 Hugging Face 镜像代理","description":"本文详细介绍如何使用 Cloudflare Workers/Pages 搭建 HuggingfaceProxy 镜像代理。通过该开源项目，利用 Cloudflare 全球边缘网络解决 Hugging Face 访问缓慢及模型下载失败的问题，包含完整的部署步骤和使用指南。","image":"https://blog.rimuru.cc/2025/12/14/%E4%BD%BF%E7%94%A8-Cloudflare-Workers-%E6%90%AD%E5%BB%BA-Hugging-Face-%E9%95%9C%E5%83%8F%E4%BB%A3%E7%90%86/cover.png","author":{"@type":"Person","name":"Rimuru"},"publisher":{"@type":"Organization","name":"Rimuru's Blog","logo":{"@type":"ImageObject","url":"https://blog.rimuru.cc/images/avatar.png"}},"datePublished":"2025-12-14T21:04:21.000Z","dateModified":"2025-12-22T21:47:32.000Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.rimuru.cc/2025/12/14/%E4%BD%BF%E7%94%A8-Cloudflare-Workers-%E6%90%AD%E5%BB%BA-Hugging-Face-%E9%95%9C%E5%83%8F%E4%BB%A3%E7%90%86/"}}
     </script>
   
   <!-- 关键 CSS 预加载 -->
@@ -104,10 +104,10 @@
   <!-- 额外的追加注入项 -->
   
     <!-- Preconnect hints for faster resource loading -->
-<link rel="preconnect" href="https://cdn.rimuru.uk" crossorigin>
-<link rel="dns-prefetch" href="https://cdn.rimuru.uk">
-<link rel="preconnect" href="https://analytics.rimuru.uk" crossorigin>
-<link rel="dns-prefetch" href="https://analytics.rimuru.uk">
+<link rel="preconnect" href="https://cdn.rimuru.cc" crossorigin>
+<link rel="dns-prefetch" href="https://cdn.rimuru.cc">
+<link rel="preconnect" href="https://analytics.rimuru.cc" crossorigin>
+<link rel="dns-prefetch" href="https://analytics.rimuru.cc">
 <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
 <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
@@ -242,7 +242,7 @@
         
 
             <article itemscope itemtype="https://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://blog.rimuru.uk/2025/12/14/%E4%BD%BF%E7%94%A8-Cloudflare-Workers-%E6%90%AD%E5%BB%BA-Hugging-Face-%E9%95%9C%E5%83%8F%E4%BB%A3%E7%90%86/">
+    <link itemprop="mainEntityOfPage" href="https://blog.rimuru.cc/2025/12/14/%E4%BD%BF%E7%94%A8-Cloudflare-Workers-%E6%90%AD%E5%BB%BA-Hugging-Face-%E9%95%9C%E5%83%8F%E4%BB%A3%E7%90%86/">
     <div class="kratos-hentry kratos-page-inner clearfix">
         <header class="kratos-page-header">
             
@@ -514,7 +514,7 @@
                         </div>
                         <div>
                             <li>自豪地使用 <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a> 主题</li>
-                            <li>站点由 <a href="https://blog.rimuru.uk" target="_blank">Rimuru</a> 用 <i class="fa fa-heart" style="color:#d43f57"></i> 搭建</li>
+                            <li>站点由 <a href="https://blog.rimuru.cc" target="_blank">Rimuru</a> 用 <i class="fa fa-heart" style="color:#d43f57"></i> 搭建</li>
                         </div>
                         <!-- 额外的追加注入项 -->
                         
@@ -618,7 +618,7 @@
   <!-- 推荐阅读功能 -->
 <script defer src="/js/recommended-posts.js"></script>
 <!-- Self-hosted analytics -->
-<script defer src="https://cdn.rimuru.uk/analytics_with_cloudflare/index.min.js" data-base-url="https://analytics.rimuru.uk"></script>
+<script defer src="https://cdn.rimuru.cc/analytics_with_cloudflare/index.min.js" data-base-url="https://analytics.rimuru.cc"></script>
 <!-- Google Analytics -->
 <script defer src="https://www.googletagmanager.com/gtag/js?id=G-PKP8Z0FC73"></script>
 <script>
@@ -632,13 +632,13 @@
 <!-- PJAX analytics reload handler -->
 <script>
   window.addEventListener('pjax:complete', function() {
-    const scriptUrl = 'https://cdn.rimuru.uk/analytics_with_cloudflare/index.min.js';
+    const scriptUrl = 'https://cdn.rimuru.cc/analytics_with_cloudflare/index.min.js';
     const oldScript = document.querySelector('script[src="' + scriptUrl + '"]');
     if (oldScript) oldScript.remove();
     const newScript = document.createElement('script');
     newScript.src = scriptUrl;
     newScript.defer = true;
-    newScript.setAttribute('data-base-url', 'https://analytics.rimuru.uk');
+    newScript.setAttribute('data-base-url', 'https://analytics.rimuru.cc');
     document.body.appendChild(newScript);
   });
 </script>
