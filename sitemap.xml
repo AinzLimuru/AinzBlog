@@ -2,15 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.rimuru.cc/tags/</loc>
-    
-    <lastmod>2026-01-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.rimuru.cc/privacy/</loc>
     
     <lastmod>2026-01-10</lastmod>
@@ -20,7 +11,34 @@
   </url>
   
   <url>
+    <loc>https://blog.rimuru.cc/tags/</loc>
+    
+    <lastmod>2026-01-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.rimuru.cc/terms/</loc>
+    
+    <lastmod>2026-01-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.cc/googledf80f028c00869eb</loc>
+    
+    <lastmod>2026-01-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.cc/friends/</loc>
     
     <lastmod>2026-01-10</lastmod>
     
@@ -39,15 +57,6 @@
   
   <url>
     <loc>https://blog.rimuru.cc/categories/</loc>
-    
-    <lastmod>2026-01-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rimuru.cc/friends/</loc>
     
     <lastmod>2026-01-10</lastmod>
     
@@ -146,7 +155,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rimuru.cc/2025/12/21/Nextcloud%E4%BD%BF%E7%94%A8WebDAV%E8%AE%BF%E9%97%AE%E5%88%86%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9/</loc>
+    <loc>https://blog.rimuru.cc/2025/12/10/Wallpaper-Engine%E6%90%9C%E7%B4%A2%E4%BD%9C%E8%80%85/</loc>
     
     <lastmod>2025-12-21</lastmod>
     
@@ -155,7 +164,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rimuru.cc/2025/12/10/Wallpaper-Engine%E6%90%9C%E7%B4%A2%E4%BD%9C%E8%80%85/</loc>
+    <loc>https://blog.rimuru.cc/2025/12/21/Nextcloud%E4%BD%BF%E7%94%A8WebDAV%E8%AE%BF%E9%97%AE%E5%88%86%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9/</loc>
     
     <lastmod>2025-12-21</lastmod>
     
@@ -209,6 +218,34 @@
 
   
   <url>
+    <loc>https://blog.rimuru.cc/tags/hexo/</loc>
+    <lastmod>2026-01-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.cc/tags/javascript/</loc>
+    <lastmod>2026-01-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.cc/tags/openai/</loc>
+    <lastmod>2026-01-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.cc/tags/blog-optimization/</loc>
+    <lastmod>2026-01-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.rimuru.cc/tags/cloudflare/</loc>
     <lastmod>2026-01-10</lastmod>
     <changefreq>weekly</changefreq>
@@ -224,13 +261,6 @@
   
   <url>
     <loc>https://blog.rimuru.cc/tags/problem-solving/</loc>
-    <lastmod>2026-01-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rimuru.cc/tags/blog-optimization/</loc>
     <lastmod>2026-01-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -259,27 +289,6 @@
   
   <url>
     <loc>https://blog.rimuru.cc/tags/page-preloader/</loc>
-    <lastmod>2026-01-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rimuru.cc/tags/hexo/</loc>
-    <lastmod>2026-01-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rimuru.cc/tags/javascript/</loc>
-    <lastmod>2026-01-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rimuru.cc/tags/openai/</loc>
     <lastmod>2026-01-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -384,6 +393,41 @@
   </url>
   
   <url>
+    <loc>https://blog.rimuru.cc/tags/wallpaper-engine/</loc>
+    <lastmod>2026-01-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.cc/tags/steam/</loc>
+    <lastmod>2026-01-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.cc/tags/workshop/</loc>
+    <lastmod>2026-01-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.cc/tags/steam-id/</loc>
+    <lastmod>2026-01-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.cc/tags/wallpaper-search/</loc>
+    <lastmod>2026-01-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.rimuru.cc/tags/nextcloud/</loc>
     <lastmod>2026-01-10</lastmod>
     <changefreq>weekly</changefreq>
@@ -433,35 +477,7 @@
   </url>
   
   <url>
-    <loc>https://blog.rimuru.cc/tags/wallpaper-engine/</loc>
-    <lastmod>2026-01-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rimuru.cc/tags/steam/</loc>
-    <lastmod>2026-01-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rimuru.cc/tags/workshop/</loc>
-    <lastmod>2026-01-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rimuru.cc/tags/steam-id/</loc>
-    <lastmod>2026-01-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rimuru.cc/tags/wallpaper-search/</loc>
+    <loc>https://blog.rimuru.cc/tags/serverless/</loc>
     <lastmod>2026-01-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -469,34 +485,6 @@
   
   <url>
     <loc>https://blog.rimuru.cc/tags/ai-tools/</loc>
-    <lastmod>2026-01-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rimuru.cc/tags/claude-code/</loc>
-    <lastmod>2026-01-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rimuru.cc/tags/environment-vars/</loc>
-    <lastmod>2026-01-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rimuru.cc/tags/proxy-configuration/</loc>
-    <lastmod>2026-01-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rimuru.cc/tags/serverless/</loc>
     <lastmod>2026-01-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -615,6 +603,41 @@
   </url>
   
   <url>
+    <loc>https://blog.rimuru.cc/tags/openvpn/</loc>
+    <lastmod>2026-01-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.cc/tags/bbr/</loc>
+    <lastmod>2026-01-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.cc/tags/claude-code/</loc>
+    <lastmod>2026-01-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.cc/tags/environment-vars/</loc>
+    <lastmod>2026-01-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.rimuru.cc/tags/proxy-configuration/</loc>
+    <lastmod>2026-01-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.rimuru.cc/tags/microsoft-word/</loc>
     <lastmod>2026-01-10</lastmod>
     <changefreq>weekly</changefreq>
@@ -644,20 +667,6 @@
   
   <url>
     <loc>https://blog.rimuru.cc/tags/the-caption-is-incorrect/</loc>
-    <lastmod>2026-01-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rimuru.cc/tags/openvpn/</loc>
-    <lastmod>2026-01-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.rimuru.cc/tags/bbr/</loc>
     <lastmod>2026-01-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
