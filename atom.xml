@@ -6,7 +6,7 @@
   <link href="https://blog.rimuru.cc/atom.xml" rel="self"/>
   
   <link href="https://blog.rimuru.cc/"/>
-  <updated>2026-01-05T23:08:35.000Z</updated>
+  <updated>2026-01-11T15:54:25.639Z</updated>
   <id>https://blog.rimuru.cc/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>基于Cloudflare的内网穿透解决方案（含安全认证及动态IP白名单）</title>
+    <link href="https://blog.rimuru.cc/2026/01/11/%E5%9F%BA%E4%BA%8ECloudflare%E7%9A%84%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%88%E5%90%AB%E5%AE%89%E5%85%A8%E8%AE%A4%E8%AF%81%E5%8F%8A%E5%8A%A8%E6%80%81IP%E7%99%BD%E5%90%8D%E5%8D%95%EF%BC%89/"/>
+    <id>https://blog.rimuru.cc/2026/01/11/%E5%9F%BA%E4%BA%8ECloudflare%E7%9A%84%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%88%E5%90%AB%E5%AE%89%E5%85%A8%E8%AE%A4%E8%AF%81%E5%8F%8A%E5%8A%A8%E6%80%81IP%E7%99%BD%E5%90%8D%E5%8D%95%EF%BC%89/</id>
+    <published>2026-01-11T21:29:43.000Z</published>
+    <updated>2026-01-11T15:54:25.639Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>目前，内网穿透的解决方案有很多，比如frp、ngrok等，但这些方案在安全性和易用性方面仍有提升空间。本文将介绍一种基于Cloudflare的内网穿透解决方案，结合安全认证和动态IP白名单机制，提升内网穿透服务的安全性和可靠性。</p><h2 id="方案概述"><a href="#方案概述" class="headerlink" title="方案概述"></a>方案概述</h2><p>本方案利用Cloudflare的Zero Trust（原Cloudflare Access）和Cloudflare Tunnel（原Argo Tunnel）功能，实现内网服务的安全访问。通过配置安全认证和基于Cloudfare Worker的动态IP白名单，确保只有授权用户能够访问内网资源，同时适配不支持认证的客户端。</p><h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><ol><li>Cloudflare账号及域名</li><li>Docker环境（可选）</li><li>npm环境（用于部署Worker脚本）</li></ol><h2 id="详细步骤"><a href="#详细步骤" class="headerlink" title="详细步骤"></a>详细步骤</h2><h3 id="1-配置Cloudflare-Tunnel"><a href="#1-配置Cloudflare-Tunnel" class="headerlink" title="1. 配置Cloudflare Tunnel"></a>1. 配置Cloudflare Tunnel</h3><ul><li>登录Cloudflare控制台，选择“Zero Trust”。</li><li>导航到“网络” &gt; “连接器”</li><li>选择“创建隧道” &gt; “选择Cloudflared” &gt; 填入名称 &gt; “保存隧道”。</li><li>启动隧道。网页会提供一段命令，复制并在内网服务器上执行以启动Cloudflared隧道。默认显示Windows，可以切换”Mac”,”Debian,”Red Hat”,”Docker”等系统。</li><li>特别提供docker compose方式启动隧道：</li></ul><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">cloudflared:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">cloudflare/cloudflared:latest</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">cloudflared</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">unless-stopped</span></span><br><span class="line">    <span class="attr">command:</span> <span class="string">tunnel</span> <span class="string">--no-autoupdate</span> <span class="string">run</span> <span class="string">--token</span> <span class="string">&lt;YOUR_TUNNEL_TOKEN&gt;</span></span><br></pre></td></tr></table></figure><ul><li>选择“路由隧道”&#x2F;“已发布应用程序路由”添加路由，填写子域名和内网服务地址（如<a href="http://localhost:8080）。注意不要经过nginx等代理，直接填写内网服务地址。">http://localhost:8080）。注意不要经过nginx等代理，直接填写内网服务地址。</a></li></ul><h3 id="2-配置Cloudflare-Access安全认证"><a href="#2-配置Cloudflare-Access安全认证" class="headerlink" title="2. 配置Cloudflare Access安全认证"></a>2. 配置Cloudflare Access安全认证</h3><ul><li>在Cloudflare控制台，导航到“Zero Trust” &gt; “访问控制” &gt; “应用程序” &gt; “添加应用程序”。输入应用名称，添加公共主机名（即上一步配置的子域名）。</li><li>选择“创建新新策略”输入策略名称，操作选择“允许”，选择器类型选择“电子邮件”，输入允许访问的用户邮箱（可根据需要选择其他认证方式，不支持认证的客户端应用等后面介绍处理办法）。保存策略。</li><li>回到应用程序页面，选择现有策略，关联刚创建的策略。</li><li>现在，访问该子域名时会被重定向到Cloudflare的认证页面，只有通过认证的用户才能访问内网服务。</li></ul><h3 id="3-配置动态IP白名单（可选）"><a href="#3-配置动态IP白名单（可选）" class="headerlink" title="3. 配置动态IP白名单（可选）"></a>3. 配置动态IP白名单（可选）</h3><h4 id="3-1-适用场景"><a href="#3-1-适用场景" class="headerlink" title="3.1 适用场景"></a>3.1 适用场景</h4><ul><li>如果应用程序不支持Cloudflare Access认证，或者频繁的认证不便，可以通过Cloudflare Worker实现动态IP白名单功能。</li></ul><h4 id="3-2-部署项目"><a href="#3-2-部署项目" class="headerlink" title="3.2 部署项目"></a>3.2 部署项目</h4><ul><li>使用项目<a href="https://github.com/AinzRimuru/cloudflare_dynamic_ip_list">cloudflare_dynamic_ip_list</a>来实现动态IP白名单功能。</li><li>克隆项目到本地</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/AinzRimuru/cloudflare_dynamic_ip_list.git</span><br></pre></td></tr></table></figure><ul><li>创建KV Namespace用于维护IP的过期状态，运行以下命令创建KV命名空间，并记下返回的ID，填入<code>wrangler.toml</code>中的<code>[[kv_namespaces]]</code>部分的<code>id</code>字段：</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wrangler kv namespace create IP_WHITELIST</span><br></pre></td></tr></table></figure><ul><li>创建List用于存储允许访问的IP地址: 打开<code>ZeroTrust</code> &gt; <code>可重用组件</code> &gt; <code>列表</code> &gt; <code>创建列表</code>，名称无要求，创建后记下列表ID（点开List页面，在URL中可以看到ID，形如<code>********-****-****-****-************</code>）。将该ID填入<code>wrangler.toml</code>中的<code>[vars]</code>部分的<code>LIST_ID</code>字段。</li><li>获取ACCOUNT_ID: 打开<code>计算和AI</code> &gt; <code>Workers和Pages</code>，在右边可以看到<code>Account Details</code>，记下<code>Account ID</code>，填入<code>wrangler.toml</code>中的<code>ACCOUNT_ID</code>字段。</li><li>配置允许的域名（可选）：如果配置了新域名，且希望仅允许该域名访问，可以在<code>wrangler.toml</code>中的<code>[vars]</code>部分的<code>ALLOWED_HOSTS</code>字段添加域名，多个域名用逗号分隔。如果不配置该字段，则允许所有域名访问。</li><li>部署Worker脚本：</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npx wrangler login</span><br><span class="line">npx wrangler deploy --config config/wrangler.toml</span><br></pre></td></tr></table></figure><h4 id="3-3-配置白名单的Bypass策略"><a href="#3-3-配置白名单的Bypass策略" class="headerlink" title="3.3 配置白名单的Bypass策略"></a>3.3 配置白名单的Bypass策略</h4><ul><li>配置白名单Bypass路由：在Cloudflare控制台，导航到<code>Zero Trust</code> &gt; <code>访问控制</code> &gt; <code>策略</code>，创建新策略，名称自定义，操作选择<code>BYPASS</code>，选择器类型选择<code>IP List</code>, 值为刚创建的List名称。保存策略。</li><li>现在，将策略添加到刚刚创建的应用程序中，排名第1位。这样，IP在白名单中的请求将绕过认证直接访问内网服务。</li></ul><h4 id="3-4-IP白名单的注册鉴权（Token方式）"><a href="#3-4-IP白名单的注册鉴权（Token方式）" class="headerlink" title="3.4 IP白名单的注册鉴权（Token方式）"></a>3.4 IP白名单的注册鉴权（Token方式）</h4><ul><li>选择<code>Zero Trust</code> &gt; <code>访问控制</code> &gt; <code>服务凭据</code> &gt; <code>创建凭据</code>，输入名称，创建后记下<code>Client ID</code>和<code>Client Secret</code>。</li><li>新建应用程序，名称自定义，公共主机名填写Worker脚本的域名（如<code>your-worker.your-domain.com</code>）。</li><li>创建新策略，名称自定义，操作选择<code>SERVICE AUTH</code>，选择器类型选择<code>Service Token</code>，值为刚创建的服务凭据名称。保存策略。</li><li>回到Worker的应用程序页面，选择现有策略，关联刚创建的策略。</li></ul><h4 id="3-5-IP白名单的注册鉴权（Email方式）"><a href="#3-5-IP白名单的注册鉴权（Email方式）" class="headerlink" title="3.5 IP白名单的注册鉴权（Email方式）"></a>3.5 IP白名单的注册鉴权（Email方式）</h4><ul><li>创建新策略，名称自定义，操作选择<code>Allow</code>，选择器类型选择<code>Emails</code>，值为允许注册的邮箱地址，可以添加多个邮箱。</li><li>保存策略后，回到Worker的应用程序页面，选择现有策略，关联刚创建的策略。</li></ul><h4 id="3-6-使用说明"><a href="#3-6-使用说明" class="headerlink" title="3.6 使用说明"></a>3.6 使用说明</h4><ul><li>浏览器访问Worker脚本的域名，完成认证后，IP将被添加到白名单中，且在指定时间内有效。</li><li>对于不支持认证的客户端应用，可以选择使用自动化任务如（ios的快捷指令等）配置<code>CF-Access-Client-Id</code>和<code>CF-Access-Client-Secret</code>请求头，实现自动认证。</li></ul>]]></content>
+    
+    
+    <summary type="html">本文详细介绍了基于Cloudflare Zero Trust和Tunnel实现的内网穿透方案。通过配置Cloudflared隧道、Access安全认证以及利用Cloudflare Worker构建动态IP白名单，有效解决了传统穿透工具在安全性与易用性上的痛点，为内网资源提供企业级的防火墙保护与灵活的访问控制。</summary>
+    
+    
+    
+    
+    <category term="Cloudflare" scheme="https://blog.rimuru.cc/tags/cloudflare/"/>
+    
+    <category term="内网穿透" scheme="https://blog.rimuru.cc/tags/intranet-penetration/"/>
+    
+    <category term="网络安全" scheme="https://blog.rimuru.cc/tags/cybersecurity/"/>
+    
+  </entry>
   
   <entry>
     <title>Cloudflare代理网页导致页面跳转出现503的解决办法</title>
@@ -33,11 +56,11 @@
     
     <category term="Cloudflare" scheme="https://blog.rimuru.cc/tags/cloudflare/"/>
     
-    <category term="博客优化" scheme="https://blog.rimuru.cc/tags/blog-optimization/"/>
+    <category term="CDN加速" scheme="https://blog.rimuru.cc/tags/cdn/"/>
     
     <category term="问题解决" scheme="https://blog.rimuru.cc/tags/problem-solving/"/>
     
-    <category term="CDN加速" scheme="https://blog.rimuru.cc/tags/cdn/"/>
+    <category term="博客优化" scheme="https://blog.rimuru.cc/tags/blog-optimization/"/>
     
     <category term="网络优化" scheme="https://blog.rimuru.cc/tags/network-optimization/"/>
     
@@ -64,11 +87,11 @@
     
     
     
-    <category term="教程" scheme="https://blog.rimuru.cc/tags/tutorial/"/>
-    
     <category term="问题解决" scheme="https://blog.rimuru.cc/tags/problem-solving/"/>
     
     <category term="网络优化" scheme="https://blog.rimuru.cc/tags/network-optimization/"/>
+    
+    <category term="教程" scheme="https://blog.rimuru.cc/tags/tutorial/"/>
     
     <category term="Windows 11" scheme="https://blog.rimuru.cc/tags/windows-11/"/>
     
@@ -97,19 +120,19 @@
     
     
     
+    <category term="问题解决" scheme="https://blog.rimuru.cc/tags/problem-solving/"/>
+    
+    <category term="网络优化" scheme="https://blog.rimuru.cc/tags/network-optimization/"/>
+    
     <category term="教程" scheme="https://blog.rimuru.cc/tags/tutorial/"/>
     
     <category term="反向代理" scheme="https://blog.rimuru.cc/tags/options/"/>
-    
-    <category term="问题解决" scheme="https://blog.rimuru.cc/tags/problem-solving/"/>
     
     <category term="Linux" scheme="https://blog.rimuru.cc/tags/linux/"/>
     
     <category term="运维命令" scheme="https://blog.rimuru.cc/tags/om-orders/"/>
     
     <category term="系统监控" scheme="https://blog.rimuru.cc/tags/system-monitoring/"/>
-    
-    <category term="网络优化" scheme="https://blog.rimuru.cc/tags/network-optimization/"/>
     
     <category term="OpenVPN" scheme="https://blog.rimuru.cc/tags/openvpn/"/>
     
@@ -134,13 +157,13 @@
     <category term="技术分享" scheme="https://blog.rimuru.cc/categories/tech/"/>
     
     
+    <category term="博客优化" scheme="https://blog.rimuru.cc/tags/blog-optimization/"/>
+    
     <category term="Hexo" scheme="https://blog.rimuru.cc/tags/hexo/"/>
     
     <category term="JavaScript" scheme="https://blog.rimuru.cc/tags/javascript/"/>
     
     <category term="OpenAI" scheme="https://blog.rimuru.cc/tags/openai/"/>
-    
-    <category term="博客优化" scheme="https://blog.rimuru.cc/tags/blog-optimization/"/>
     
   </entry>
   
@@ -149,7 +172,7 @@
     <link href="https://blog.rimuru.cc/2025/12/27/Linux-%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%EF%BC%9A%E9%AB%98%E9%A2%91%E8%BF%90%E7%BB%B4%E5%9C%BA%E6%99%AF%E7%9A%84%E4%B8%80%E9%94%AE%E5%91%BD%E4%BB%A4%E5%90%88%E9%9B%86/"/>
     <id>https://blog.rimuru.cc/2025/12/27/Linux-%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%EF%BC%9A%E9%AB%98%E9%A2%91%E8%BF%90%E7%BB%B4%E5%9C%BA%E6%99%AF%E7%9A%84%E4%B8%80%E9%94%AE%E5%91%BD%E4%BB%A4%E5%90%88%E9%9B%86/</id>
     <published>2025-12-27T16:45:03.000Z</published>
-    <updated>2026-01-10T02:45:48.847Z</updated>
+    <updated>2026-01-11T15:54:25.597Z</updated>
     
     <content type="html"><![CDATA[<h2 id="查看所有硬盘的SMART详细信息"><a href="#查看所有硬盘的SMART详细信息" class="headerlink" title="查看所有硬盘的SMART详细信息"></a>查看所有硬盘的SMART详细信息</h2><h3 id="依赖包安装"><a href="#依赖包安装" class="headerlink" title="依赖包安装"></a>依赖包安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install smartmontools</span><br></pre></td></tr></table></figure><h3 id="命令介绍"><a href="#命令介绍" class="headerlink" title="命令介绍"></a>命令介绍</h3><p>首先使用<code>lsblk</code>获取所有的存储设备，然后使用<code>grep</code>过滤出<code>sd</code>、<code>hd</code>、<code>nvme</code>、<code>vd</code>开头的设备，最后使用<code>xargs</code>和<code>smartctl</code>获取每个设备的SMART信息。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsblk -d -o NAME | grep -E <span class="string">&#x27;^(sd|hd|nvme|vd)&#x27;</span> | xargs -I &#123;&#125; <span class="built_in">sudo</span> smartctl -a <span class="string">&quot;/dev/&#123;&#125;&quot;</span></span><br></pre></td></tr></table></figure><h2 id="查看所有硬盘的SMART详细信息（极简输出）"><a href="#查看所有硬盘的SMART详细信息（极简输出）" class="headerlink" title="查看所有硬盘的SMART详细信息（极简输出）"></a>查看所有硬盘的SMART详细信息（极简输出）</h2><h3 id="依赖包安装-1"><a href="#依赖包安装-1" class="headerlink" title="依赖包安装"></a>依赖包安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install smartmontools</span><br></pre></td></tr></table></figure><h3 id="命令介绍-1"><a href="#命令介绍-1" class="headerlink" title="命令介绍"></a>命令介绍</h3><p>流程同上</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsblk -d -o NAME | grep -E <span class="string">&#x27;^(sd|hd|nvme|vd)&#x27;</span> | xargs -I &#123;&#125; <span class="built_in">sudo</span> smartctl -H <span class="string">&quot;/dev/&#123;&#125;&quot;</span></span><br></pre></td></tr></table></figure><h2 id="定位进程所属容器-Pod"><a href="#定位进程所属容器-Pod" class="headerlink" title="定位进程所属容器&#x2F;Pod"></a>定位进程所属容器&#x2F;Pod</h2><h3 id="依赖包安装-2"><a href="#依赖包安装-2" class="headerlink" title="依赖包安装"></a>依赖包安装</h3><p>定位pod需要crictl</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install crictl</span><br></pre></td></tr></table></figure><h3 id="命令介绍-2"><a href="#命令介绍-2" class="headerlink" title="命令介绍"></a>命令介绍</h3><h4 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h4><p>首先使用<code>cat</code>和<code>grep</code>获取进程所属的cgroup，然后使用<code>docker ps</code>和<code>grep</code>获取容器ID。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps | grep $(<span class="built_in">sudo</span> <span class="built_in">cat</span> /proc/&lt;pid&gt;/cgroup | grep -oP <span class="string">&#x27;docker-\K[a-f0-9]+&#x27;</span> | <span class="built_in">head</span> -c 12)</span><br></pre></td></tr></table></figure><h4 id="ctr-containerd"><a href="#ctr-containerd" class="headerlink" title="ctr(containerd)"></a>ctr(containerd)</h4><p>首先使用<code>cat</code>和<code>grep</code>获取进程所属的cgroup，然后选取包含pids的一行以去掉重复数据，直接从最后的信息中提取命名空间和容器名称。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">cat</span> /proc/&lt;pid&gt;/cgroup | grep pids | awk -F<span class="string">&#x27;/&#x27;</span> <span class="string">&#x27;&#123;print $(NF-1), $NF&#125;&#x27;</span></span><br></pre></td></tr></table></figure><h4 id="Kubernetes获取容器id"><a href="#Kubernetes获取容器id" class="headerlink" title="Kubernetes获取容器id"></a>Kubernetes获取容器id</h4><p>首先使用<code>cat</code>和<code>grep</code>获取进程所属的cgroup, 然后选取包含pids的一行以去掉重复数据，从行中解析最后一级的前12位。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">cat</span> /proc/&lt;pid&gt;/cgroup | grep pids | awk -F<span class="string">&#x27;/&#x27;</span> <span class="string">&#x27;&#123;print substr($NF,1,12)&#125;&#x27;</span></span><br></pre></td></tr></table></figure><h4 id="Kubernetes获取Pod名称"><a href="#Kubernetes获取Pod名称" class="headerlink" title="Kubernetes获取Pod名称"></a>Kubernetes获取Pod名称</h4><p>使用<code>crictl</code>根据容器ID获取Pod名称。其中容器ID为上一步获取到的12位ID。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crictl inspect -o go-template --template=<span class="string">&#x27;&#123;&#123;index .status.labels &quot;io.kubernetes.pod.name&quot;&#125;&#125;&#x27;</span> $(<span class="built_in">sudo</span> <span class="built_in">cat</span> /proc/&lt;pid&gt;/cgroup | grep pids | awk -F<span class="string">&#x27;/&#x27;</span> <span class="string">&#x27;&#123;print substr($NF,1,12)&#125;&#x27;</span>)</span><br></pre></td></tr></table></figure>]]></content>
     
@@ -159,9 +182,9 @@
     
     
     
-    <category term="教程" scheme="https://blog.rimuru.cc/tags/tutorial/"/>
-    
     <category term="问题解决" scheme="https://blog.rimuru.cc/tags/problem-solving/"/>
+    
+    <category term="教程" scheme="https://blog.rimuru.cc/tags/tutorial/"/>
     
     <category term="Linux" scheme="https://blog.rimuru.cc/tags/linux/"/>
     
@@ -192,9 +215,9 @@
     
     
     
-    <category term="教程" scheme="https://blog.rimuru.cc/tags/tutorial/"/>
-    
     <category term="问题解决" scheme="https://blog.rimuru.cc/tags/problem-solving/"/>
+    
+    <category term="教程" scheme="https://blog.rimuru.cc/tags/tutorial/"/>
     
     <category term="Linux" scheme="https://blog.rimuru.cc/tags/linux/"/>
     
@@ -252,9 +275,9 @@
     <category term="技术分享" scheme="https://blog.rimuru.cc/categories/tech/"/>
     
     
-    <category term="教程" scheme="https://blog.rimuru.cc/tags/tutorial/"/>
-    
     <category term="问题解决" scheme="https://blog.rimuru.cc/tags/problem-solving/"/>
+    
+    <category term="教程" scheme="https://blog.rimuru.cc/tags/tutorial/"/>
     
     <category term="Nextcloud" scheme="https://blog.rimuru.cc/tags/nextcloud/"/>
     
@@ -316,9 +339,9 @@
     <category term="技术分享" scheme="https://blog.rimuru.cc/categories/tech/"/>
     
     
-    <category term="教程" scheme="https://blog.rimuru.cc/tags/tutorial/"/>
-    
     <category term="问题解决" scheme="https://blog.rimuru.cc/tags/problem-solving/"/>
+    
+    <category term="教程" scheme="https://blog.rimuru.cc/tags/tutorial/"/>
     
     <category term="Wallpaper Engine" scheme="https://blog.rimuru.cc/tags/wallpaper-engine/"/>
     
@@ -353,13 +376,13 @@
     
     <category term="Cities Skylines 2" scheme="https://blog.rimuru.cc/tags/cities-skylines-2/"/>
     
-    <category term="游戏攻略" scheme="https://blog.rimuru.cc/tags/game-guide/"/>
-    
     <category term="天际线2" scheme="https://blog.rimuru.cc/tags/cities-skylines-2/"/>
     
-    <category term="城市建设" scheme="https://blog.rimuru.cc/tags/city-build/"/>
+    <category term="游戏攻略" scheme="https://blog.rimuru.cc/tags/game-guide/"/>
     
     <category term="交通规划" scheme="https://blog.rimuru.cc/tags/traffic-planning/"/>
+    
+    <category term="城市建设" scheme="https://blog.rimuru.cc/tags/city-build/"/>
     
     <category term="物流优化" scheme="https://blog.rimuru.cc/tags/logistics-optimization/"/>
     
@@ -384,13 +407,13 @@
     
     <category term="Cities Skylines 2" scheme="https://blog.rimuru.cc/tags/cities-skylines-2/"/>
     
-    <category term="BUG修复" scheme="https://blog.rimuru.cc/tags/bug-fix/"/>
+    <category term="天际线2" scheme="https://blog.rimuru.cc/tags/cities-skylines-2/"/>
     
     <category term="游戏攻略" scheme="https://blog.rimuru.cc/tags/game-guide/"/>
     
-    <category term="天际线2" scheme="https://blog.rimuru.cc/tags/cities-skylines-2/"/>
-    
     <category term="城市建设" scheme="https://blog.rimuru.cc/tags/city-build/"/>
+    
+    <category term="BUG修复" scheme="https://blog.rimuru.cc/tags/bug-fix/"/>
     
     <category term="游戏优化" scheme="https://blog.rimuru.cc/tags/game-optimization/"/>
     
@@ -413,9 +436,9 @@
     <category term="技术分享" scheme="https://blog.rimuru.cc/categories/tech/"/>
     
     
-    <category term="教程" scheme="https://blog.rimuru.cc/tags/tutorial/"/>
-    
     <category term="问题解决" scheme="https://blog.rimuru.cc/tags/problem-solving/"/>
+    
+    <category term="教程" scheme="https://blog.rimuru.cc/tags/tutorial/"/>
     
     <category term="Linux" scheme="https://blog.rimuru.cc/tags/linux/"/>
     
@@ -448,9 +471,9 @@
     <category term="疑难杂症" scheme="https://blog.rimuru.cc/categories/troubleshooting/"/>
     
     
-    <category term="教程" scheme="https://blog.rimuru.cc/tags/tutorial/"/>
-    
     <category term="问题解决" scheme="https://blog.rimuru.cc/tags/problem-solving/"/>
+    
+    <category term="教程" scheme="https://blog.rimuru.cc/tags/tutorial/"/>
     
     <category term="Microsoft Word" scheme="https://blog.rimuru.cc/tags/microsoft-word/"/>
     
@@ -481,9 +504,9 @@
     <category term="技术分享" scheme="https://blog.rimuru.cc/categories/tech/"/>
     
     
-    <category term="Hexo" scheme="https://blog.rimuru.cc/tags/hexo/"/>
-    
     <category term="问题解决" scheme="https://blog.rimuru.cc/tags/problem-solving/"/>
+    
+    <category term="Hexo" scheme="https://blog.rimuru.cc/tags/hexo/"/>
     
     <category term="博客教程" scheme="https://blog.rimuru.cc/tags/blog-tutorial/"/>
     
@@ -512,13 +535,13 @@
     <category term="疑难杂症" scheme="https://blog.rimuru.cc/categories/troubleshooting/"/>
     
     
+    <category term="问题解决" scheme="https://blog.rimuru.cc/tags/problem-solving/"/>
+    
     <category term="教程" scheme="https://blog.rimuru.cc/tags/tutorial/"/>
     
     <category term="JetBrains" scheme="https://blog.rimuru.cc/tags/jetbrains/"/>
     
     <category term="学生许可" scheme="https://blog.rimuru.cc/tags/student-license/"/>
-    
-    <category term="问题解决" scheme="https://blog.rimuru.cc/tags/problem-solving/"/>
     
     <category term="教育优惠" scheme="https://blog.rimuru.cc/tags/educational-discount/"/>
     

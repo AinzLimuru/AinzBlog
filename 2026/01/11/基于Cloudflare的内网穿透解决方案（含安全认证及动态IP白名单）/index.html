@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  
+    <link rel="icon" href="/cdn-cgi/image/format=auto,quality=85,fit=contain,width=128,height=128/images/favicon.png">
+  
+  
+  <title>基于Cloudflare的内网穿透解决方案（含安全认证及动态IP白名单） | Rimuru&#39;s Blog</title>
+  <link rel="canonical" href="https://blog.rimuru.cc/2026/01/11/%E5%9F%BA%E4%BA%8ECloudflare%E7%9A%84%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%88%E5%90%AB%E5%AE%89%E5%85%A8%E8%AE%A4%E8%AF%81%E5%8F%8A%E5%8A%A8%E6%80%81IP%E7%99%BD%E5%90%8D%E5%8D%95%EF%BC%89/">
+  <meta name="author" content="Rimuru" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="Cloudflare, 内网穿透, 网络安全" />
+  
+  <meta name="description" content="本文详细介绍了基于Cloudflare Zero Trust和Tunnel实现的内网穿透方案。通过配置Cloudflared隧道、Access安全认证以及利用Cloudflare Worker构建动态IP白名单，有效解决了传统穿透工具在安全性与易用性上的痛点，为内网资源提供企业级的防火墙保护与灵活的访问控制。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于Cloudflare的内网穿透解决方案（含安全认证及动态IP白名单）">
+<meta property="og:url" content="https://blog.rimuru.cc/2026/01/11/%E5%9F%BA%E4%BA%8ECloudflare%E7%9A%84%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%88%E5%90%AB%E5%AE%89%E5%85%A8%E8%AE%A4%E8%AF%81%E5%8F%8A%E5%8A%A8%E6%80%81IP%E7%99%BD%E5%90%8D%E5%8D%95%EF%BC%89/">
+<meta property="og:site_name" content="Rimuru&#39;s Blog">
+<meta property="og:description" content="本文详细介绍了基于Cloudflare Zero Trust和Tunnel实现的内网穿透方案。通过配置Cloudflared隧道、Access安全认证以及利用Cloudflare Worker构建动态IP白名单，有效解决了传统穿透工具在安全性与易用性上的痛点，为内网资源提供企业级的防火墙保护与灵活的访问控制。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.rimuru.cc/2026/01/11/%E5%9F%BA%E4%BA%8ECloudflare%E7%9A%84%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%88%E5%90%AB%E5%AE%89%E5%85%A8%E8%AE%A4%E8%AF%81%E5%8F%8A%E5%8A%A8%E6%80%81IP%E7%99%BD%E5%90%8D%E5%8D%95%EF%BC%89/cover.png">
+<meta property="article:published_time" content="2026-01-11T21:29:43.000Z">
+<meta property="article:modified_time" content="2026-01-11T15:54:25.639Z">
+<meta property="article:author" content="Rimuru">
+<meta property="article:tag" content="Cloudflare">
+<meta property="article:tag" content="内网穿透">
+<meta property="article:tag" content="网络安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.rimuru.cc/2026/01/11/%E5%9F%BA%E4%BA%8ECloudflare%E7%9A%84%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%88%E5%90%AB%E5%AE%89%E5%85%A8%E8%AE%A4%E8%AF%81%E5%8F%8A%E5%8A%A8%E6%80%81IP%E7%99%BD%E5%90%8D%E5%8D%95%EF%BC%89/cover.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Rimuru's Blog" type="application/atom+xml">
+  
+  <!-- JSON-LD 结构化数据 -->
+  
+  
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"BlogPosting","headline":"基于Cloudflare的内网穿透解决方案（含安全认证及动态IP白名单）","description":"本文详细介绍了基于Cloudflare Zero Trust和Tunnel实现的内网穿透方案。通过配置Cloudflared隧道、Access安全认证以及利用Cloudflare Worker构建动态IP白名单，有效解决了传统穿透工具在安全性与易用性上的痛点，为内网资源提供企业级的防火墙保护与灵活的访问控制。","image":"https://blog.rimuru.cc/2026/01/11/%E5%9F%BA%E4%BA%8ECloudflare%E7%9A%84%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%88%E5%90%AB%E5%AE%89%E5%85%A8%E8%AE%A4%E8%AF%81%E5%8F%8A%E5%8A%A8%E6%80%81IP%E7%99%BD%E5%90%8D%E5%8D%95%EF%BC%89/cover.png","author":{"@type":"Person","name":"Rimuru"},"publisher":{"@type":"Organization","name":"Rimuru's Blog","logo":{"@type":"ImageObject","url":"https://blog.rimuru.cc/images/avatar.png"}},"datePublished":"2026-01-11T21:29:43.000Z","dateModified":"2026-01-11T15:54:25.639Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.rimuru.cc/2026/01/11/%E5%9F%BA%E4%BA%8ECloudflare%E7%9A%84%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%88%E5%90%AB%E5%AE%89%E5%85%A8%E8%AE%A4%E8%AF%81%E5%8F%8A%E5%8A%A8%E6%80%81IP%E7%99%BD%E5%90%8D%E5%8D%95%EF%BC%89/"}}
+    </script>
+  
+  <!-- 关键 CSS 预加载 -->
+  <link rel="preload" href="/css/kr-core.min.css" as="style" crossorigin>
+  <link rel="preload" href="/css/kr-theme/light.min.css" as="style" crossorigin>
+  <link rel="preload" href="/css/kr-theme/dark.min.css" as="style" crossorigin>
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kr-core.min.css" media="all">
+  <link rel="stylesheet" id="theme-light-css" href="/css/kr-theme/light.min.css" media="all">
+  <link rel="stylesheet" id="theme-dark-css" href="/css/kr-theme/dark.min.css" media="(prefers-color-scheme: dark)">
+  
+    <link rel="stylesheet"  id="highlight-css" href="/css/highlight/highlight.js/night-eighties.min.css" media="print" onload="this.media='all'" onerror="this.media='all'"><noscript><link rel="stylesheet" href="/css/highlight/highlight.js/night-eighties.min.css"></noscript>
+  
+  <script src="/js/kr-theme.min.js"></script>
+  <link rel="stylesheet"  id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="print" onload="this.media='all'" onerror="this.media='all'"><noscript><link rel="stylesheet" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css"></noscript>
+  
+    <link rel="stylesheet"  id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="print" onload="this.media='all'" onerror="this.media='all'"><noscript><link rel="stylesheet" href="/vendors/nprogress@0.2.0/nprogress.css"></noscript>
+  
+  
+    <link rel="stylesheet"  href="/vendors/viewerjs@1.11.6/dist/viewer.min.css" media="print" onload="this.media='all'" onerror="this.media='all'"><noscript><link rel="stylesheet" href="/vendors/viewerjs@1.11.6/dist/viewer.min.css"></noscript>
+  
+  <!-- 预先加载的JS文件 -->
+  
+    <script src="/vendors/qr-code-styling@1.6.0-rc.1/lib/qr-code-styling.js"></script>
+  
+  <!-- 自定义站点横幅和背景 -->
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('');
+      }
+      html[data-theme="dark"] .kratos-cover.kratos-cover-2 {
+        background-image: url('');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url("/cdn-cgi/image/format=auto,quality=80,fit=scale-down,width=1920/images/background_light.png");
+        }
+        html[data-theme="dark"] body.custom-background {
+          background-image: url("/cdn-cgi/image/format=auto,quality=80,fit=scale-down,width=1920/images/background_dark.png");
+        }
+      }
+    
+    
+      .widget-kratos-about .photo-background {
+        background-image: url('');
+      }
+      html[data-theme="dark"] .widget-kratos-about .photo-background {
+        background-image: url('');
+      }
+    
+  </style>
+
+  <!-- 额外的追加注入项 -->
+  
+    <!-- Preconnect hints for faster resource loading -->
+<link rel="preconnect" href="https://cdn.rimuru.cc" crossorigin>
+<link rel="dns-prefetch" href="https://cdn.rimuru.cc">
+<link rel="preconnect" href="https://analytics.rimuru.cc" crossorigin>
+<link rel="dns-prefetch" href="https://analytics.rimuru.cc">
+<link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+<link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+<link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+<!-- Google AdSense Account Verification -->
+<meta name="google-adsense-account" content="ca-pub-9760626627924711">
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    <li>
+                                        
+                                            <a href="/">
+                                        
+                                            
+                                                <i class="fa fa-home"></i>
+                                            
+                                            首页
+                                        </a>
+                                        
+                                    </li>
+                                
+                                    <li>
+                                        
+                                            <a href="/archives/">
+                                        
+                                            
+                                                <i class="fa fa-archive"></i>
+                                            
+                                            归档
+                                        </a>
+                                        
+                                    </li>
+                                
+                                    <li>
+                                        
+                                            <a href="/categories/">
+                                        
+                                            
+                                                <i class="fa fa-folder"></i>
+                                            
+                                            分类
+                                        </a>
+                                        
+                                    </li>
+                                
+                                    <li>
+                                        
+                                            <a href="/tags/">
+                                        
+                                            
+                                                <i class="fa fa-tags"></i>
+                                            
+                                            标签
+                                        </a>
+                                        
+                                    </li>
+                                
+                                    <li>
+                                        
+                                            <a href="/friends/">
+                                        
+                                            
+                                                <i class="fa fa-link"></i>
+                                            
+                                            友链
+                                        </a>
+                                        
+                                    </li>
+                                
+                                    <li>
+                                        
+                                            <a href="/about/">
+                                        
+                                            
+                                                <i class="fa fa-user"></i>
+                                            
+                                            关于
+                                        </a>
+                                        
+                                    </li>
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Rimuru&#39;s Blog</a></div>
+                    <div id="kratos-nav-toggle-wrapper" class="nav-toggle">
+                        <a id="kratos-nav-toggle" class="kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Rimuru&#39;s Blog</h2> <br />
+                        <span>又是CUDA Out of Memory的一天</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+
+
+        
+
+            
+
+            <section class="kr-main-col col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://blog.rimuru.cc/2026/01/11/%E5%9F%BA%E4%BA%8ECloudflare%E7%9A%84%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%88%E5%90%AB%E5%AE%89%E5%85%A8%E8%AE%A4%E8%AF%81%E5%8F%8A%E5%8A%A8%E6%80%81IP%E7%99%BD%E5%90%8D%E5%8D%95%EF%BC%89/">
+    <div class="kratos-hentry kratos-page-inner clearfix">
+        <header class="kratos-page-header">
+            
+                <h1 class="kratos-page-title text-center" itemprop="name headline">基于Cloudflare的内网穿透解决方案（含安全认证及动态IP白名单）</h1>
+            
+            <ul class="kratos-page-meta text-center">
+                <li><time datetime="2026-01-11T21:29:43.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2026-01-11</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">Rimuru</span>
+                </li>
+                
+                    <li>
+                        <i class="fa fa-edit"></i> 
+                        
+                        
+                            ~2.77K
+                        
+                        字
+                    </li>
+                
+                
+                
+            </ul>
+        </header>
+        <div class="kratos-page-content kr-post">
+            
+            
+            
+                <div class="kratos-post-inner-toc toc-div-class" >
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%A1%88%E6%A6%82%E8%BF%B0"><span class="toc-number">2.</span> <span class="toc-text">方案概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87"><span class="toc-number">3.</span> <span class="toc-text">前期准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4"><span class="toc-number">4.</span> <span class="toc-text">详细步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%85%8D%E7%BD%AECloudflare-Tunnel"><span class="toc-number">4.1.</span> <span class="toc-text">1. 配置Cloudflare Tunnel</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%85%8D%E7%BD%AECloudflare-Access%E5%AE%89%E5%85%A8%E8%AE%A4%E8%AF%81"><span class="toc-number">4.2.</span> <span class="toc-text">2. 配置Cloudflare Access安全认证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%85%8D%E7%BD%AE%E5%8A%A8%E6%80%81IP%E7%99%BD%E5%90%8D%E5%8D%95%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"><span class="toc-number">4.3.</span> <span class="toc-text">3. 配置动态IP白名单（可选）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">4.3.1.</span> <span class="toc-text">3.1 适用场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE"><span class="toc-number">4.3.2.</span> <span class="toc-text">3.2 部署项目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-%E9%85%8D%E7%BD%AE%E7%99%BD%E5%90%8D%E5%8D%95%E7%9A%84Bypass%E7%AD%96%E7%95%A5"><span class="toc-number">4.3.3.</span> <span class="toc-text">3.3 配置白名单的Bypass策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-IP%E7%99%BD%E5%90%8D%E5%8D%95%E7%9A%84%E6%B3%A8%E5%86%8C%E9%89%B4%E6%9D%83%EF%BC%88Token%E6%96%B9%E5%BC%8F%EF%BC%89"><span class="toc-number">4.3.4.</span> <span class="toc-text">3.4 IP白名单的注册鉴权（Token方式）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-IP%E7%99%BD%E5%90%8D%E5%8D%95%E7%9A%84%E6%B3%A8%E5%86%8C%E9%89%B4%E6%9D%83%EF%BC%88Email%E6%96%B9%E5%BC%8F%EF%BC%89"><span class="toc-number">4.3.5.</span> <span class="toc-text">3.5 IP白名单的注册鉴权（Email方式）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-6-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E"><span class="toc-number">4.3.6.</span> <span class="toc-text">3.6 使用说明</span></a></li></ol></li></ol></li></ol>
+                </div>
+            
+            <hr />
+            <div itemprop="articleBody"><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>目前，内网穿透的解决方案有很多，比如frp、ngrok等，但这些方案在安全性和易用性方面仍有提升空间。本文将介绍一种基于Cloudflare的内网穿透解决方案，结合安全认证和动态IP白名单机制，提升内网穿透服务的安全性和可靠性。</p>
+<h2 id="方案概述"><a href="#方案概述" class="headerlink" title="方案概述"></a>方案概述</h2><p>本方案利用Cloudflare的Zero Trust（原Cloudflare Access）和Cloudflare Tunnel（原Argo Tunnel）功能，实现内网服务的安全访问。通过配置安全认证和基于Cloudfare Worker的动态IP白名单，确保只有授权用户能够访问内网资源，同时适配不支持认证的客户端。</p>
+<h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><ol>
+<li>Cloudflare账号及域名</li>
+<li>Docker环境（可选）</li>
+<li>npm环境（用于部署Worker脚本）</li>
+</ol>
+<h2 id="详细步骤"><a href="#详细步骤" class="headerlink" title="详细步骤"></a>详细步骤</h2><h3 id="1-配置Cloudflare-Tunnel"><a href="#1-配置Cloudflare-Tunnel" class="headerlink" title="1. 配置Cloudflare Tunnel"></a>1. 配置Cloudflare Tunnel</h3><ul>
+<li>登录Cloudflare控制台，选择“Zero Trust”。</li>
+<li>导航到“网络” &gt; “连接器”</li>
+<li>选择“创建隧道” &gt; “选择Cloudflared” &gt; 填入名称 &gt; “保存隧道”。</li>
+<li>启动隧道。网页会提供一段命令，复制并在内网服务器上执行以启动Cloudflared隧道。默认显示Windows，可以切换”Mac”,”Debian,”Red Hat”,”Docker”等系统。</li>
+<li>特别提供docker compose方式启动隧道：</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">cloudflared:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">cloudflare/cloudflared:latest</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">cloudflared</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">unless-stopped</span></span><br><span class="line">    <span class="attr">command:</span> <span class="string">tunnel</span> <span class="string">--no-autoupdate</span> <span class="string">run</span> <span class="string">--token</span> <span class="string">&lt;YOUR_TUNNEL_TOKEN&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>选择“路由隧道”&#x2F;“已发布应用程序路由”添加路由，填写子域名和内网服务地址（如<a href="http://localhost:8080）。注意不要经过nginx等代理，直接填写内网服务地址。">http://localhost:8080）。注意不要经过nginx等代理，直接填写内网服务地址。</a></li>
+</ul>
+<h3 id="2-配置Cloudflare-Access安全认证"><a href="#2-配置Cloudflare-Access安全认证" class="headerlink" title="2. 配置Cloudflare Access安全认证"></a>2. 配置Cloudflare Access安全认证</h3><ul>
+<li>在Cloudflare控制台，导航到“Zero Trust” &gt; “访问控制” &gt; “应用程序” &gt; “添加应用程序”。输入应用名称，添加公共主机名（即上一步配置的子域名）。</li>
+<li>选择“创建新新策略”输入策略名称，操作选择“允许”，选择器类型选择“电子邮件”，输入允许访问的用户邮箱（可根据需要选择其他认证方式，不支持认证的客户端应用等后面介绍处理办法）。保存策略。</li>
+<li>回到应用程序页面，选择现有策略，关联刚创建的策略。</li>
+<li>现在，访问该子域名时会被重定向到Cloudflare的认证页面，只有通过认证的用户才能访问内网服务。</li>
+</ul>
+<h3 id="3-配置动态IP白名单（可选）"><a href="#3-配置动态IP白名单（可选）" class="headerlink" title="3. 配置动态IP白名单（可选）"></a>3. 配置动态IP白名单（可选）</h3><h4 id="3-1-适用场景"><a href="#3-1-适用场景" class="headerlink" title="3.1 适用场景"></a>3.1 适用场景</h4><ul>
+<li>如果应用程序不支持Cloudflare Access认证，或者频繁的认证不便，可以通过Cloudflare Worker实现动态IP白名单功能。</li>
+</ul>
+<h4 id="3-2-部署项目"><a href="#3-2-部署项目" class="headerlink" title="3.2 部署项目"></a>3.2 部署项目</h4><ul>
+<li>使用项目<a target="_blank" rel="noopener" href="https://github.com/AinzRimuru/cloudflare_dynamic_ip_list">cloudflare_dynamic_ip_list</a>来实现动态IP白名单功能。</li>
+<li>克隆项目到本地</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/AinzRimuru/cloudflare_dynamic_ip_list.git</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建KV Namespace用于维护IP的过期状态，运行以下命令创建KV命名空间，并记下返回的ID，填入<code>wrangler.toml</code>中的<code>[[kv_namespaces]]</code>部分的<code>id</code>字段：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wrangler kv namespace create IP_WHITELIST</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建List用于存储允许访问的IP地址: 打开<code>ZeroTrust</code> &gt; <code>可重用组件</code> &gt; <code>列表</code> &gt; <code>创建列表</code>，名称无要求，创建后记下列表ID（点开List页面，在URL中可以看到ID，形如<code>********-****-****-****-************</code>）。将该ID填入<code>wrangler.toml</code>中的<code>[vars]</code>部分的<code>LIST_ID</code>字段。</li>
+<li>获取ACCOUNT_ID: 打开<code>计算和AI</code> &gt; <code>Workers和Pages</code>，在右边可以看到<code>Account Details</code>，记下<code>Account ID</code>，填入<code>wrangler.toml</code>中的<code>ACCOUNT_ID</code>字段。</li>
+<li>配置允许的域名（可选）：如果配置了新域名，且希望仅允许该域名访问，可以在<code>wrangler.toml</code>中的<code>[vars]</code>部分的<code>ALLOWED_HOSTS</code>字段添加域名，多个域名用逗号分隔。如果不配置该字段，则允许所有域名访问。</li>
+<li>部署Worker脚本：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npx wrangler login</span><br><span class="line">npx wrangler deploy --config config/wrangler.toml</span><br></pre></td></tr></table></figure>
+<h4 id="3-3-配置白名单的Bypass策略"><a href="#3-3-配置白名单的Bypass策略" class="headerlink" title="3.3 配置白名单的Bypass策略"></a>3.3 配置白名单的Bypass策略</h4><ul>
+<li>配置白名单Bypass路由：在Cloudflare控制台，导航到<code>Zero Trust</code> &gt; <code>访问控制</code> &gt; <code>策略</code>，创建新策略，名称自定义，操作选择<code>BYPASS</code>，选择器类型选择<code>IP List</code>, 值为刚创建的List名称。保存策略。</li>
+<li>现在，将策略添加到刚刚创建的应用程序中，排名第1位。这样，IP在白名单中的请求将绕过认证直接访问内网服务。</li>
+</ul>
+<h4 id="3-4-IP白名单的注册鉴权（Token方式）"><a href="#3-4-IP白名单的注册鉴权（Token方式）" class="headerlink" title="3.4 IP白名单的注册鉴权（Token方式）"></a>3.4 IP白名单的注册鉴权（Token方式）</h4><ul>
+<li>选择<code>Zero Trust</code> &gt; <code>访问控制</code> &gt; <code>服务凭据</code> &gt; <code>创建凭据</code>，输入名称，创建后记下<code>Client ID</code>和<code>Client Secret</code>。</li>
+<li>新建应用程序，名称自定义，公共主机名填写Worker脚本的域名（如<code>your-worker.your-domain.com</code>）。</li>
+<li>创建新策略，名称自定义，操作选择<code>SERVICE AUTH</code>，选择器类型选择<code>Service Token</code>，值为刚创建的服务凭据名称。保存策略。</li>
+<li>回到Worker的应用程序页面，选择现有策略，关联刚创建的策略。</li>
+</ul>
+<h4 id="3-5-IP白名单的注册鉴权（Email方式）"><a href="#3-5-IP白名单的注册鉴权（Email方式）" class="headerlink" title="3.5 IP白名单的注册鉴权（Email方式）"></a>3.5 IP白名单的注册鉴权（Email方式）</h4><ul>
+<li>创建新策略，名称自定义，操作选择<code>Allow</code>，选择器类型选择<code>Emails</code>，值为允许注册的邮箱地址，可以添加多个邮箱。</li>
+<li>保存策略后，回到Worker的应用程序页面，选择现有策略，关联刚创建的策略。</li>
+</ul>
+<h4 id="3-6-使用说明"><a href="#3-6-使用说明" class="headerlink" title="3.6 使用说明"></a>3.6 使用说明</h4><ul>
+<li>浏览器访问Worker脚本的域名，完成认证后，IP将被添加到白名单中，且在指定时间内有效。</li>
+<li>对于不支持认证的客户端应用，可以选择使用自动化任务如（ios的快捷指令等）配置<code>CF-Access-Client-Id</code>和<code>CF-Access-Client-Secret</code>请求头，实现自动认证。</li>
+</ul>
+</div>
+        </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+            
+            
+                <div class="post-actions text-center clearfix" id="post-actions">
+                
+                
+                    <a class="share" href="javascript:;" onclick="krOpenShareModal()"><i class="fa fa-share-alt"></i> 分享</a>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/cloudflare/" rel="tag">Cloudflare</a>, <a class="tag-none-link" href="/tags/intranet-penetration/" rel="tag">内网穿透</a>, <a class="tag-none-link" href="/tags/cybersecurity/" rel="tag">网络安全</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2026-01-11T15:54:25.639Z" itemprop="dateModified">最后编辑：2026-01-11</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" Cloudflare代理网页导致页面跳转出现503的解决办法" href="/2026/01/05/Cloudflare代理网页导致页面跳转出现503的解决办法/"><i class="fa fa-angle-left"></i> 上一篇</a>
+            </div>
+            
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+            
+                
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/cdn-cgi/image/format=auto,quality=85,fit=cover,width=200,height=200/images/avatar.png" alt="Rimuru" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center">分享 DevOps、AI 工具、Linux 运维及游戏攻略。</p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                17
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                3
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                67
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix toc-div-class" >
+    <div class="photo-background"></div>
+    <h4 class="widget-title no-after">
+        <i class="fa fa-compass"></i>
+        文章目录
+        <span class="toc-progress-bar" role="progressbar" aria-label="阅读进度："></span>
+    </h4>
+    <div class="textwidget">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%A1%88%E6%A6%82%E8%BF%B0"><span class="toc-text">方案概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87"><span class="toc-text">前期准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4"><span class="toc-text">详细步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%85%8D%E7%BD%AECloudflare-Tunnel"><span class="toc-text">1. 配置Cloudflare Tunnel</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%85%8D%E7%BD%AECloudflare-Access%E5%AE%89%E5%85%A8%E8%AE%A4%E8%AF%81"><span class="toc-text">2. 配置Cloudflare Access安全认证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%85%8D%E7%BD%AE%E5%8A%A8%E6%80%81IP%E7%99%BD%E5%90%8D%E5%8D%95%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"><span class="toc-text">3. 配置动态IP白名单（可选）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">3.1 适用场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE"><span class="toc-text">3.2 部署项目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-%E9%85%8D%E7%BD%AE%E7%99%BD%E5%90%8D%E5%8D%95%E7%9A%84Bypass%E7%AD%96%E7%95%A5"><span class="toc-text">3.3 配置白名单的Bypass策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-IP%E7%99%BD%E5%90%8D%E5%8D%95%E7%9A%84%E6%B3%A8%E5%86%8C%E9%89%B4%E6%9D%83%EF%BC%88Token%E6%96%B9%E5%BC%8F%EF%BC%89"><span class="toc-text">3.4 IP白名单的注册鉴权（Token方式）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-IP%E7%99%BD%E5%90%8D%E5%8D%95%E7%9A%84%E6%B3%A8%E5%86%8C%E9%89%B4%E6%9D%83%EF%BC%88Email%E6%96%B9%E5%BC%8F%EF%BC%89"><span class="toc-text">3.5 IP白名单的注册鉴权（Email方式）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-6-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E"><span class="toc-text">3.6 使用说明</span></a></li></ol></li></ol></li></ol>
+    </div>
+</aside>
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类列表</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/tech/">技术分享</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/gaming/">游戏</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/troubleshooting/">疑难杂症</a><span class="category-list-count">2</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/503-error/" style="font-size: 0.6em;">503错误</a> <a href="/tags/ai-tools/" style="font-size: 0.7em;">AI工具</a> <a href="/tags/bbr/" style="font-size: 0.6em;">BBR</a> <a href="/tags/bug-fix/" style="font-size: 0.6em;">BUG修复</a> <a href="/tags/cdn/" style="font-size: 0.6em;">CDN加速</a> <a href="/tags/cities-skylines-2/" style="font-size: 0.7em;">Cities Skylines 2</a> <a href="/tags/claude-code/" style="font-size: 0.6em;">Claude Code</a> <a href="/tags/cloudflare/" style="font-size: 0.8em;">Cloudflare</a> <a href="/tags/docker/" style="font-size: 0.7em;">Docker</a> <a href="/tags/ext4/" style="font-size: 0.6em;">EXT4</a> <a href="/tags/hexo/" style="font-size: 0.7em;">Hexo</a> <a href="/tags/hugging-face/" style="font-size: 0.7em;">Hugging Face</a> <a href="/tags/javascript/" style="font-size: 0.6em;">JavaScript</a> <a href="/tags/jetbrains/" style="font-size: 0.6em;">JetBrains</a> <a href="/tags/kubernetes/" style="font-size: 0.6em;">Kubernetes</a> <a href="/tags/linux/" style="font-size: 0.8em;">Linux</a> <a href="/tags/markdown/" style="font-size: 0.6em;">Markdown</a> <a href="/tags/microsoft-word/" style="font-size: 0.6em;">Microsoft Word</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2026/01/11/%E5%9F%BA%E4%BA%8ECloudflare%E7%9A%84%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%88%E5%90%AB%E5%AE%89%E5%85%A8%E8%AE%A4%E8%AF%81%E5%8F%8A%E5%8A%A8%E6%80%81IP%E7%99%BD%E5%90%8D%E5%8D%95%EF%BC%89/"><i class="fa fa-book"></i> 基于Cloudflare的内网穿透解决方案（含安全认证及动态IP白名单）</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2026/01/05/Cloudflare%E4%BB%A3%E7%90%86%E7%BD%91%E9%A1%B5%E5%AF%BC%E8%87%B4%E9%A1%B5%E9%9D%A2%E8%B7%B3%E8%BD%AC%E5%87%BA%E7%8E%B0503%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/"><i class="fa fa-book"></i> Cloudflare代理网页导致页面跳转出现503的解决办法</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2026/01/04/Windows%E9%85%8D%E7%BD%AEClaude-Code%E4%BB%A3%E7%90%86%EF%BC%88%E6%97%A0%E9%A2%9D%E5%A4%96%E4%BE%9D%E8%B5%96%EF%BC%89/"><i class="fa fa-book"></i> Windows配置Claude Code代理（无额外依赖）</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2026/01/03/%E8%A7%A3%E5%86%B3%E9%AB%98%E5%BB%B6%E8%BF%9F%E5%9C%BA%E6%99%AF%E4%B8%ADOpenVPN%E9%80%9F%E5%BA%A6%E7%BC%93%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98/"><i class="fa fa-book"></i> 解决高延迟场景中OpenVPN速度缓慢的问题</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2026/01/03/Hexo%E5%8D%9A%E5%AE%A2%E6%99%BA%E8%83%BD%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB%E5%8A%9F%E8%83%BD%EF%BC%9A%E5%9F%BA%E4%BA%8EOpenAI-Embedding%E7%9A%84%E5%AE%9E%E7%8E%B0/"><i class="fa fa-book"></i> Hexo博客智能推荐阅读功能：基于OpenAI Embedding的实现</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+            
+
+        
+
+                </div>
+    </div>
+</div>
+
+<footer>
+    <div id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2026 Rimuru's Blog 版权所有.</li>
+                            <li>本站已运行<span id="kr-since">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>自豪地使用 <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a> 主题</li>
+                            <li>站点由 <a href="https://blog.rimuru.cc" target="_blank">Rimuru</a> 用 <i class="fa fa-heart" style="color:#d43f57"></i> 搭建</li>
+                        </div>
+                        <!-- 额外的追加注入项 -->
+                        
+                            <div>
+                                
+                                    <li>本页访问人次:<span id="page_pv"></span></li>
+                                
+                                    <li>本页访问人数:<span id="page_uv"></span></li>
+                                
+                            </div>
+                        
+                            <div>
+                                
+                                    <li><a href="/about/">关于</a> | <a href="/privacy/">隐私政策</a> | <a href="/terms/">服务条款</a></li>
+                                
+                            </div>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                <!-- 额外的追加注入项 -->
+                
+                
+                    <div class="box search-box">
+                        <a href="/search">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                <div class="box theme-box" id="theme-toggle">
+                    <span class="fa fa-adjust"></span>
+                </div>
+            </div>
+            <div id="gotop-box" class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+
+
+
+    <div id="kr-share-modal" class="kr-modal">
+    <div class="kr-modal-bg" onclick="krCloseShareModal()"></div>
+    <div class="kr-modal-content">
+        <div class="kr-modal-header">
+            <div class="kr-modal-icon">
+                <i class="fa fa-share-alt"></i>
+            </div>
+            <div class="kr-modal-title">分享</div>
+            <button class="kr-modal-close" onclick="krCloseShareModal()">
+                <i class="fa fa-times-circle"></i>
+            </button>
+        </div>
+        <div class="kr-modal-body">
+            <div class="kr-share-message">分享提示信息</div>
+            <div class="kr-share-qr" id="kr-share-qr"></div>
+            <div class="kr-share-platforms">
+                
+            </div>
+        </div>
+    </div>
+</div>
+<script defer src="/js/kr-modal/share.min.js"></script>
+
+
+
+<!-- 额外的追加注入项 -->
+
+
+        <script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+  <script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+
+
+
+  <script defer src="/vendors/viewerjs@1.11.6/dist/viewer.min.js"></script>
+
+
+<script defer src="/js/kr-core.min.js"></script>
+
+
+  <script defer src="/js/kr-pjax.min.js"></script>
+
+
+<!-- 额外的追加注入项 -->
+
+  <!-- 推荐阅读功能 -->
+<script defer src="/js/recommended-posts.js"></script>
+<!-- Self-hosted analytics -->
+<script defer src="https://cdn.rimuru.cc/analytics_with_cloudflare/index.min.js" data-base-url="https://analytics.rimuru.cc"></script>
+<!-- Google Analytics -->
+<script defer src="https://www.googletagmanager.com/gtag/js?id=G-PKP8Z0FC73"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-PKP8Z0FC73');
+</script>
+<!-- Google AdSense -->
+<script defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9760626627924711" crossorigin="anonymous"></script>
+<!-- PJAX analytics reload handler -->
+<script>
+  window.addEventListener('pjax:complete', function() {
+    const scriptUrl = 'https://cdn.rimuru.cc/analytics_with_cloudflare/index.min.js';
+    const oldScript = document.querySelector('script[src="' + scriptUrl + '"]');
+    if (oldScript) oldScript.remove();
+    const newScript = document.createElement('script');
+    newScript.src = scriptUrl;
+    newScript.defer = true;
+    newScript.setAttribute('data-base-url', 'https://analytics.rimuru.cc');
+    document.body.appendChild(newScript);
+  });
+</script>
+
+
+
+    </body>
+</html>
