@@ -98,4 +98,4 @@ npx wrangler deploy --config config/wrangler.toml
 #### 3.6 使用说明
 - 浏览器访问Worker脚本的域名，完成认证后，IP将被添加到白名单中，且在指定时间内有效。
 
-- 对于不支持认证的客户端应用，可以选择使用自动化任务如（ios的快捷指令等）配置`CF-Access-Client-Id`和`CF-Access-Client-Secret`请求头，实现自动认证。
+- 对于不支持认证的客户端应用，可以选择使用自动化任务如（ios的快捷指令等）配置`CF-Access-Client-Id`和`CF-Access-Client-Secret`请求头，实现自动认证。需要注意的是，自动化任务可能无法指定请求时的IPv4/IPv6地址,因此可以尝试重复请求多次以确保IPv4和IPv6地址均被添加到白名单中。
