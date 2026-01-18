@@ -1,12 +1,12 @@
 # Robots.txt for Rimuru's Blog
-# https://blog.rimuru.cc
+# https://blog.rimuru.work
 
 User-agent: *
 Allow: /
 
 # Sitemap locations
-Sitemap: https://blog.rimuru.cc/sitemap.xml
-Sitemap: https://blog.rimuru.cc/baidusitemap.xml
+Sitemap: https://blog.rimuru.work/sitemap.xml
+Sitemap: https://blog.rimuru.work/baidusitemap.xml
 
 # Disallow admin and internal paths
 Disallow: /js/

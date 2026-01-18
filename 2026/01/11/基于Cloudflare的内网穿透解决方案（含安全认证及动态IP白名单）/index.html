@@ -8,7 +8,7 @@
   
   
   <title>基于Cloudflare的内网穿透解决方案（含安全认证及动态IP白名单） | Rimuru&#39;s Blog</title>
-  <link rel="canonical" href="https://blog.rimuru.cc/2026/01/11/%E5%9F%BA%E4%BA%8ECloudflare%E7%9A%84%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%88%E5%90%AB%E5%AE%89%E5%85%A8%E8%AE%A4%E8%AF%81%E5%8F%8A%E5%8A%A8%E6%80%81IP%E7%99%BD%E5%90%8D%E5%8D%95%EF%BC%89/">
+  <link rel="canonical" href="https://blog.rimuru.work/2026/01/11/%E5%9F%BA%E4%BA%8ECloudflare%E7%9A%84%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%88%E5%90%AB%E5%AE%89%E5%85%A8%E8%AE%A4%E8%AF%81%E5%8F%8A%E5%8A%A8%E6%80%81IP%E7%99%BD%E5%90%8D%E5%8D%95%EF%BC%89/">
   <meta name="author" content="Rimuru" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -22,11 +22,11 @@
   <meta name="description" content="本文详细介绍了基于Cloudflare Zero Trust和Tunnel实现的内网穿透方案。通过配置Cloudflared隧道、Access安全认证以及利用Cloudflare Worker构建动态IP白名单，有效解决了传统穿透工具在安全性与易用性上的痛点，为内网资源提供企业级的防火墙保护与灵活的访问控制。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于Cloudflare的内网穿透解决方案（含安全认证及动态IP白名单）">
-<meta property="og:url" content="https://blog.rimuru.cc/2026/01/11/%E5%9F%BA%E4%BA%8ECloudflare%E7%9A%84%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%88%E5%90%AB%E5%AE%89%E5%85%A8%E8%AE%A4%E8%AF%81%E5%8F%8A%E5%8A%A8%E6%80%81IP%E7%99%BD%E5%90%8D%E5%8D%95%EF%BC%89/">
+<meta property="og:url" content="https://blog.rimuru.work/2026/01/11/%E5%9F%BA%E4%BA%8ECloudflare%E7%9A%84%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%88%E5%90%AB%E5%AE%89%E5%85%A8%E8%AE%A4%E8%AF%81%E5%8F%8A%E5%8A%A8%E6%80%81IP%E7%99%BD%E5%90%8D%E5%8D%95%EF%BC%89/">
 <meta property="og:site_name" content="Rimuru&#39;s Blog">
 <meta property="og:description" content="本文详细介绍了基于Cloudflare Zero Trust和Tunnel实现的内网穿透方案。通过配置Cloudflared隧道、Access安全认证以及利用Cloudflare Worker构建动态IP白名单，有效解决了传统穿透工具在安全性与易用性上的痛点，为内网资源提供企业级的防火墙保护与灵活的访问控制。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.rimuru.cc/2026/01/11/%E5%9F%BA%E4%BA%8ECloudflare%E7%9A%84%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%88%E5%90%AB%E5%AE%89%E5%85%A8%E8%AE%A4%E8%AF%81%E5%8F%8A%E5%8A%A8%E6%80%81IP%E7%99%BD%E5%90%8D%E5%8D%95%EF%BC%89/cover.png">
+<meta property="og:image" content="https://blog.rimuru.work/2026/01/11/%E5%9F%BA%E4%BA%8ECloudflare%E7%9A%84%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%88%E5%90%AB%E5%AE%89%E5%85%A8%E8%AE%A4%E8%AF%81%E5%8F%8A%E5%8A%A8%E6%80%81IP%E7%99%BD%E5%90%8D%E5%8D%95%EF%BC%89/cover.png">
 <meta property="article:published_time" content="2026-01-11T21:29:43.000Z">
 <meta property="article:modified_time" content="2026-01-17T22:10:08.000Z">
 <meta property="article:author" content="Rimuru">
@@ -34,7 +34,7 @@
 <meta property="article:tag" content="内网穿透">
 <meta property="article:tag" content="网络安全">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blog.rimuru.cc/2026/01/11/%E5%9F%BA%E4%BA%8ECloudflare%E7%9A%84%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%88%E5%90%AB%E5%AE%89%E5%85%A8%E8%AE%A4%E8%AF%81%E5%8F%8A%E5%8A%A8%E6%80%81IP%E7%99%BD%E5%90%8D%E5%8D%95%EF%BC%89/cover.png">
+<meta name="twitter:image" content="https://blog.rimuru.work/2026/01/11/%E5%9F%BA%E4%BA%8ECloudflare%E7%9A%84%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%88%E5%90%AB%E5%AE%89%E5%85%A8%E8%AE%A4%E8%AF%81%E5%8F%8A%E5%8A%A8%E6%80%81IP%E7%99%BD%E5%90%8D%E5%8D%95%EF%BC%89/cover.png">
   
     <link rel="alternate" href="/atom.xml" title="Rimuru's Blog" type="application/atom+xml">
   
@@ -42,7 +42,7 @@
   
   
     <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"BlogPosting","headline":"基于Cloudflare的内网穿透解决方案（含安全认证及动态IP白名单）","description":"本文详细介绍了基于Cloudflare Zero Trust和Tunnel实现的内网穿透方案。通过配置Cloudflared隧道、Access安全认证以及利用Cloudflare Worker构建动态IP白名单，有效解决了传统穿透工具在安全性与易用性上的痛点，为内网资源提供企业级的防火墙保护与灵活的访问控制。","image":"https://blog.rimuru.cc/2026/01/11/%E5%9F%BA%E4%BA%8ECloudflare%E7%9A%84%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%88%E5%90%AB%E5%AE%89%E5%85%A8%E8%AE%A4%E8%AF%81%E5%8F%8A%E5%8A%A8%E6%80%81IP%E7%99%BD%E5%90%8D%E5%8D%95%EF%BC%89/cover.png","author":{"@type":"Person","name":"Rimuru"},"publisher":{"@type":"Organization","name":"Rimuru's Blog","logo":{"@type":"ImageObject","url":"https://blog.rimuru.cc/images/avatar.png"}},"datePublished":"2026-01-11T21:29:43.000Z","dateModified":"2026-01-17T22:10:08.000Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.rimuru.cc/2026/01/11/%E5%9F%BA%E4%BA%8ECloudflare%E7%9A%84%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%88%E5%90%AB%E5%AE%89%E5%85%A8%E8%AE%A4%E8%AF%81%E5%8F%8A%E5%8A%A8%E6%80%81IP%E7%99%BD%E5%90%8D%E5%8D%95%EF%BC%89/"}}
+    {"@context":"https://schema.org","@type":"BlogPosting","headline":"基于Cloudflare的内网穿透解决方案（含安全认证及动态IP白名单）","description":"本文详细介绍了基于Cloudflare Zero Trust和Tunnel实现的内网穿透方案。通过配置Cloudflared隧道、Access安全认证以及利用Cloudflare Worker构建动态IP白名单，有效解决了传统穿透工具在安全性与易用性上的痛点，为内网资源提供企业级的防火墙保护与灵活的访问控制。","image":"https://blog.rimuru.work/2026/01/11/%E5%9F%BA%E4%BA%8ECloudflare%E7%9A%84%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%88%E5%90%AB%E5%AE%89%E5%85%A8%E8%AE%A4%E8%AF%81%E5%8F%8A%E5%8A%A8%E6%80%81IP%E7%99%BD%E5%90%8D%E5%8D%95%EF%BC%89/cover.png","author":{"@type":"Person","name":"Rimuru"},"publisher":{"@type":"Organization","name":"Rimuru's Blog","logo":{"@type":"ImageObject","url":"https://blog.rimuru.work/images/avatar.png"}},"datePublished":"2026-01-11T21:29:43.000Z","dateModified":"2026-01-17T22:10:08.000Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.rimuru.work/2026/01/11/%E5%9F%BA%E4%BA%8ECloudflare%E7%9A%84%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%88%E5%90%AB%E5%AE%89%E5%85%A8%E8%AE%A4%E8%AF%81%E5%8F%8A%E5%8A%A8%E6%80%81IP%E7%99%BD%E5%90%8D%E5%8D%95%EF%BC%89/"}}
     </script>
   
   <!-- 关键 CSS 预加载 -->
@@ -101,10 +101,10 @@
   <!-- 额外的追加注入项 -->
   
     <!-- Preconnect hints for faster resource loading -->
-<link rel="preconnect" href="https://cdn.rimuru.cc" crossorigin>
-<link rel="dns-prefetch" href="https://cdn.rimuru.cc">
-<link rel="preconnect" href="https://analytics.rimuru.cc" crossorigin>
-<link rel="dns-prefetch" href="https://analytics.rimuru.cc">
+<link rel="preconnect" href="https://cdn.rimuru.work" crossorigin>
+<link rel="dns-prefetch" href="https://cdn.rimuru.work">
+<link rel="preconnect" href="https://analytics.rimuru.work" crossorigin>
+<link rel="dns-prefetch" href="https://analytics.rimuru.work">
 <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
 <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
@@ -239,7 +239,7 @@
         
 
             <article itemscope itemtype="https://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://blog.rimuru.cc/2026/01/11/%E5%9F%BA%E4%BA%8ECloudflare%E7%9A%84%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%88%E5%90%AB%E5%AE%89%E5%85%A8%E8%AE%A4%E8%AF%81%E5%8F%8A%E5%8A%A8%E6%80%81IP%E7%99%BD%E5%90%8D%E5%8D%95%EF%BC%89/">
+    <link itemprop="mainEntityOfPage" href="https://blog.rimuru.work/2026/01/11/%E5%9F%BA%E4%BA%8ECloudflare%E7%9A%84%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%88%E5%90%AB%E5%AE%89%E5%85%A8%E8%AE%A4%E8%AF%81%E5%8F%8A%E5%8A%A8%E6%80%81IP%E7%99%BD%E5%90%8D%E5%8D%95%EF%BC%89/">
     <div class="kratos-hentry kratos-page-inner clearfix">
         <header class="kratos-page-header">
             
@@ -584,7 +584,7 @@
                         </div>
                         <div>
                             <li>自豪地使用 <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a> 主题</li>
-                            <li>站点由 <a href="https://blog.rimuru.cc" target="_blank">Rimuru</a> 用 <i class="fa fa-heart" style="color:#d43f57"></i> 搭建</li>
+                            <li>站点由 <a href="https://blog.rimuru.work" target="_blank">Rimuru</a> 用 <i class="fa fa-heart" style="color:#d43f57"></i> 搭建</li>
                         </div>
                         <!-- 额外的追加注入项 -->
                         
@@ -688,7 +688,7 @@
   <!-- 推荐阅读功能 -->
 <script defer src="/js/recommended-posts.js"></script>
 <!-- Self-hosted analytics -->
-<script defer src="https://cdn.rimuru.cc/analytics_with_cloudflare/index.min.js" data-base-url="https://analytics.rimuru.cc"></script>
+<script defer src="https://cdn.rimuru.work/analytics_with_cloudflare/index.min.js" data-base-url="https://analytics.rimuru.work"></script>
 <!-- Google Analytics -->
 <script defer src="https://www.googletagmanager.com/gtag/js?id=G-PKP8Z0FC73"></script>
 <script>
@@ -702,13 +702,13 @@
 <!-- PJAX analytics reload handler -->
 <script>
   window.addEventListener('pjax:complete', function() {
-    const scriptUrl = 'https://cdn.rimuru.cc/analytics_with_cloudflare/index.min.js';
+    const scriptUrl = 'https://cdn.rimuru.work/analytics_with_cloudflare/index.min.js';
     const oldScript = document.querySelector('script[src="' + scriptUrl + '"]');
     if (oldScript) oldScript.remove();
     const newScript = document.createElement('script');
     newScript.src = scriptUrl;
     newScript.defer = true;
-    newScript.setAttribute('data-base-url', 'https://analytics.rimuru.cc');
+    newScript.setAttribute('data-base-url', 'https://analytics.rimuru.work');
     document.body.appendChild(newScript);
   });
 </script>

@@ -8,7 +8,7 @@
   
   
   <title>Hexo博客智能推荐阅读功能：基于OpenAI Embedding的实现 | Rimuru&#39;s Blog</title>
-  <link rel="canonical" href="https://blog.rimuru.cc/2026/01/03/Hexo%E5%8D%9A%E5%AE%A2%E6%99%BA%E8%83%BD%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB%E5%8A%9F%E8%83%BD%EF%BC%9A%E5%9F%BA%E4%BA%8EOpenAI-Embedding%E7%9A%84%E5%AE%9E%E7%8E%B0/">
+  <link rel="canonical" href="https://blog.rimuru.work/2026/01/03/Hexo%E5%8D%9A%E5%AE%A2%E6%99%BA%E8%83%BD%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB%E5%8A%9F%E8%83%BD%EF%BC%9A%E5%9F%BA%E4%BA%8EOpenAI-Embedding%E7%9A%84%E5%AE%9E%E7%8E%B0/">
   <meta name="author" content="Rimuru" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -22,11 +22,11 @@
   <meta name="description" content="本文详细介绍了如何为Hexo博客集成基于OpenAI Embedding技术的智能推荐阅读功能。通过Node.js脚本在构建时计算文章语义相似度，并结合前端JavaScript实现优雅降级的展示策略。教程包含完整的自动化工作流、缓存机制设计及PJAX兼容方案，旨在通过AI技术提升博客用户体验与内容发现效率。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo博客智能推荐阅读功能：基于OpenAI Embedding的实现">
-<meta property="og:url" content="https://blog.rimuru.cc/2026/01/03/Hexo%E5%8D%9A%E5%AE%A2%E6%99%BA%E8%83%BD%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB%E5%8A%9F%E8%83%BD%EF%BC%9A%E5%9F%BA%E4%BA%8EOpenAI-Embedding%E7%9A%84%E5%AE%9E%E7%8E%B0/">
+<meta property="og:url" content="https://blog.rimuru.work/2026/01/03/Hexo%E5%8D%9A%E5%AE%A2%E6%99%BA%E8%83%BD%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB%E5%8A%9F%E8%83%BD%EF%BC%9A%E5%9F%BA%E4%BA%8EOpenAI-Embedding%E7%9A%84%E5%AE%9E%E7%8E%B0/">
 <meta property="og:site_name" content="Rimuru&#39;s Blog">
 <meta property="og:description" content="本文详细介绍了如何为Hexo博客集成基于OpenAI Embedding技术的智能推荐阅读功能。通过Node.js脚本在构建时计算文章语义相似度，并结合前端JavaScript实现优雅降级的展示策略。教程包含完整的自动化工作流、缓存机制设计及PJAX兼容方案，旨在通过AI技术提升博客用户体验与内容发现效率。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.rimuru.cc/2026/01/03/Hexo%E5%8D%9A%E5%AE%A2%E6%99%BA%E8%83%BD%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB%E5%8A%9F%E8%83%BD%EF%BC%9A%E5%9F%BA%E4%BA%8EOpenAI-Embedding%E7%9A%84%E5%AE%9E%E7%8E%B0/cover.png">
+<meta property="og:image" content="https://blog.rimuru.work/2026/01/03/Hexo%E5%8D%9A%E5%AE%A2%E6%99%BA%E8%83%BD%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB%E5%8A%9F%E8%83%BD%EF%BC%9A%E5%9F%BA%E4%BA%8EOpenAI-Embedding%E7%9A%84%E5%AE%9E%E7%8E%B0/cover.png">
 <meta property="article:published_time" content="2026-01-03T18:45:00.000Z">
 <meta property="article:modified_time" content="2026-01-06T21:28:54.000Z">
 <meta property="article:author" content="Rimuru">
@@ -35,7 +35,7 @@
 <meta property="article:tag" content="OpenAI">
 <meta property="article:tag" content="博客优化">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blog.rimuru.cc/2026/01/03/Hexo%E5%8D%9A%E5%AE%A2%E6%99%BA%E8%83%BD%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB%E5%8A%9F%E8%83%BD%EF%BC%9A%E5%9F%BA%E4%BA%8EOpenAI-Embedding%E7%9A%84%E5%AE%9E%E7%8E%B0/cover.png">
+<meta name="twitter:image" content="https://blog.rimuru.work/2026/01/03/Hexo%E5%8D%9A%E5%AE%A2%E6%99%BA%E8%83%BD%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB%E5%8A%9F%E8%83%BD%EF%BC%9A%E5%9F%BA%E4%BA%8EOpenAI-Embedding%E7%9A%84%E5%AE%9E%E7%8E%B0/cover.png">
   
     <link rel="alternate" href="/atom.xml" title="Rimuru's Blog" type="application/atom+xml">
   
@@ -43,7 +43,7 @@
   
   
     <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"BlogPosting","headline":"Hexo博客智能推荐阅读功能：基于OpenAI Embedding的实现","description":"本文详细介绍了如何为Hexo博客集成基于OpenAI Embedding技术的智能推荐阅读功能。通过Node.js脚本在构建时计算文章语义相似度，并结合前端JavaScript实现优雅降级的展示策略。教程包含完整的自动化工作流、缓存机制设计及PJAX兼容方案，旨在通过AI技术提升博客用户体验与内容发现效率。","image":"https://blog.rimuru.cc/2026/01/03/Hexo%E5%8D%9A%E5%AE%A2%E6%99%BA%E8%83%BD%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB%E5%8A%9F%E8%83%BD%EF%BC%9A%E5%9F%BA%E4%BA%8EOpenAI-Embedding%E7%9A%84%E5%AE%9E%E7%8E%B0/cover.png","author":{"@type":"Person","name":"Rimuru"},"publisher":{"@type":"Organization","name":"Rimuru's Blog","logo":{"@type":"ImageObject","url":"https://blog.rimuru.cc/images/avatar.png"}},"datePublished":"2026-01-03T18:45:00.000Z","dateModified":"2026-01-06T21:28:54.000Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.rimuru.cc/2026/01/03/Hexo%E5%8D%9A%E5%AE%A2%E6%99%BA%E8%83%BD%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB%E5%8A%9F%E8%83%BD%EF%BC%9A%E5%9F%BA%E4%BA%8EOpenAI-Embedding%E7%9A%84%E5%AE%9E%E7%8E%B0/"}}
+    {"@context":"https://schema.org","@type":"BlogPosting","headline":"Hexo博客智能推荐阅读功能：基于OpenAI Embedding的实现","description":"本文详细介绍了如何为Hexo博客集成基于OpenAI Embedding技术的智能推荐阅读功能。通过Node.js脚本在构建时计算文章语义相似度，并结合前端JavaScript实现优雅降级的展示策略。教程包含完整的自动化工作流、缓存机制设计及PJAX兼容方案，旨在通过AI技术提升博客用户体验与内容发现效率。","image":"https://blog.rimuru.work/2026/01/03/Hexo%E5%8D%9A%E5%AE%A2%E6%99%BA%E8%83%BD%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB%E5%8A%9F%E8%83%BD%EF%BC%9A%E5%9F%BA%E4%BA%8EOpenAI-Embedding%E7%9A%84%E5%AE%9E%E7%8E%B0/cover.png","author":{"@type":"Person","name":"Rimuru"},"publisher":{"@type":"Organization","name":"Rimuru's Blog","logo":{"@type":"ImageObject","url":"https://blog.rimuru.work/images/avatar.png"}},"datePublished":"2026-01-03T18:45:00.000Z","dateModified":"2026-01-06T21:28:54.000Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.rimuru.work/2026/01/03/Hexo%E5%8D%9A%E5%AE%A2%E6%99%BA%E8%83%BD%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB%E5%8A%9F%E8%83%BD%EF%BC%9A%E5%9F%BA%E4%BA%8EOpenAI-Embedding%E7%9A%84%E5%AE%9E%E7%8E%B0/"}}
     </script>
   
   <!-- 关键 CSS 预加载 -->
@@ -102,10 +102,10 @@
   <!-- 额外的追加注入项 -->
   
     <!-- Preconnect hints for faster resource loading -->
-<link rel="preconnect" href="https://cdn.rimuru.cc" crossorigin>
-<link rel="dns-prefetch" href="https://cdn.rimuru.cc">
-<link rel="preconnect" href="https://analytics.rimuru.cc" crossorigin>
-<link rel="dns-prefetch" href="https://analytics.rimuru.cc">
+<link rel="preconnect" href="https://cdn.rimuru.work" crossorigin>
+<link rel="dns-prefetch" href="https://cdn.rimuru.work">
+<link rel="preconnect" href="https://analytics.rimuru.work" crossorigin>
+<link rel="dns-prefetch" href="https://analytics.rimuru.work">
 <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
 <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
@@ -240,7 +240,7 @@
         
 
             <article itemscope itemtype="https://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://blog.rimuru.cc/2026/01/03/Hexo%E5%8D%9A%E5%AE%A2%E6%99%BA%E8%83%BD%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB%E5%8A%9F%E8%83%BD%EF%BC%9A%E5%9F%BA%E4%BA%8EOpenAI-Embedding%E7%9A%84%E5%AE%9E%E7%8E%B0/">
+    <link itemprop="mainEntityOfPage" href="https://blog.rimuru.work/2026/01/03/Hexo%E5%8D%9A%E5%AE%A2%E6%99%BA%E8%83%BD%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB%E5%8A%9F%E8%83%BD%EF%BC%9A%E5%9F%BA%E4%BA%8EOpenAI-Embedding%E7%9A%84%E5%AE%9E%E7%8E%B0/">
     <div class="kratos-hentry kratos-page-inner clearfix">
         <header class="kratos-page-header">
             
@@ -690,7 +690,7 @@
                         </div>
                         <div>
                             <li>自豪地使用 <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a> 主题</li>
-                            <li>站点由 <a href="https://blog.rimuru.cc" target="_blank">Rimuru</a> 用 <i class="fa fa-heart" style="color:#d43f57"></i> 搭建</li>
+                            <li>站点由 <a href="https://blog.rimuru.work" target="_blank">Rimuru</a> 用 <i class="fa fa-heart" style="color:#d43f57"></i> 搭建</li>
                         </div>
                         <!-- 额外的追加注入项 -->
                         
@@ -794,7 +794,7 @@
   <!-- 推荐阅读功能 -->
 <script defer src="/js/recommended-posts.js"></script>
 <!-- Self-hosted analytics -->
-<script defer src="https://cdn.rimuru.cc/analytics_with_cloudflare/index.min.js" data-base-url="https://analytics.rimuru.cc"></script>
+<script defer src="https://cdn.rimuru.work/analytics_with_cloudflare/index.min.js" data-base-url="https://analytics.rimuru.work"></script>
 <!-- Google Analytics -->
 <script defer src="https://www.googletagmanager.com/gtag/js?id=G-PKP8Z0FC73"></script>
 <script>
@@ -808,13 +808,13 @@
 <!-- PJAX analytics reload handler -->
 <script>
   window.addEventListener('pjax:complete', function() {
-    const scriptUrl = 'https://cdn.rimuru.cc/analytics_with_cloudflare/index.min.js';
+    const scriptUrl = 'https://cdn.rimuru.work/analytics_with_cloudflare/index.min.js';
     const oldScript = document.querySelector('script[src="' + scriptUrl + '"]');
     if (oldScript) oldScript.remove();
     const newScript = document.createElement('script');
     newScript.src = scriptUrl;
     newScript.defer = true;
-    newScript.setAttribute('data-base-url', 'https://analytics.rimuru.cc');
+    newScript.setAttribute('data-base-url', 'https://analytics.rimuru.work');
     document.body.appendChild(newScript);
   });
 </script>
